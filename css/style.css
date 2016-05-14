@@ -383,7 +383,7 @@ ul.social li {
 }
 ul.social li a i {
   background: url(../images/img-sprite.png) -2px -3px;
-  width: 32px;
+  width: 35px;
   height: 32px;
   display: block;
   margin: 0 0.5em;
@@ -392,7 +392,10 @@ ul.social li a i.dribble {
   background-position: -47px -3px;
 }
 ul.social li a i.facebook {
-  background-position: -87px -3px;
+  background-position: -85px -3px;
+}
+ul.social li a i.twitter{
+	background-position: -119px -3px;
 }
 ul.social li a i:hover{
 	transform: rotatey(-360deg);
