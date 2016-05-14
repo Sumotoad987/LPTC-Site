@@ -5,6 +5,10 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
+<script src="js/quotes.js"></script>
+<script>
+	setupQuotes("js/quotes.json");
+</script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -50,6 +54,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--content-top-->
 		<div class="content-top">
 			<div class="content-top1">
+				<div class=" col-md-4 grid-top">
+					<div class="top-grid">
+					 <i class="glyphicon glyphicon-edit "></i>
+					  <div class="caption">
+						<h3>What is Coderdojo</h3>
+						<p>Coderdojo is a programming club for those aged 7 to 17 that was founded in July, 2011 by James Whelton and Bill Liao</p>
+					  </div>
+					</div>
+				</div>
 			  	<div class=" col-md-4 grid-top">
 					<div class="top-grid">
 					 <i class="glyphicon glyphicon-book"></i>
@@ -60,20 +73,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				</div>
 				<div class=" col-md-4 grid-top">
-					<div class="top-grid top">
-					 <i class="glyphicon glyphicon-time home1 "></i>
+					<div class="top-grid">
+					 <i class="glyphicon glyphicon-time"></i>
 					  <div class="caption">
 						<h3>It is fun</h3>
 						<p>Coderdojo isn't like school, It is a friendly envoirment where kids teach kids, not staring up at a teacher for 6-7 hours</p>
-					  </div>
-					</div>
-				</div>
-				<div class=" col-md-4 grid-top">
-					<div class="top-grid">
-					 <i class="glyphicon glyphicon-edit "></i>
-					  <div class="caption">
-						<h3>What is Coderdojo</h3>
-						<p>Coderdojo is a programming club for those aged 7 to 17 that was founded in July, 2011 by James Whelton and Bill Liao</p>
 					  </div>
 					</div>
 				</div>
@@ -122,9 +126,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div class="content-right">
-		<div class="col-md-6 content-right-top">
-		</div>
-		<div class="col-md-6 content-right-top col1">
+		<div class="col-md content-right-top">
+			<p id="Quote" class="quotes"></p>
+			<p id="Source" class="quotes"></p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -150,11 +154,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="col-md-4 footer-top1">
 			<ul class="social">
-						<li><a href="https://www.facebook.com/Coderdojo-Leixlip-216306561898011/?fref=ts"><i class="facebook"> </i></a></li>
-					</ul>
+				<li><a href="https://www.facebook.com/Coderdojo-Leixlip-216306561898011/?fref=ts"><i class="facebook"> </i></a></li>
+				<li><a href="h"><i class="twitter"> </i></a></li>
+			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2016. All rights reserved | Design by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >© 2015 - 2016. All rights reserved | Design by <a href="http://rianscode.com/" target="_blank">Rían Errity</a>. All Images are used under the "fair usage policy under the copyright act."</p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
