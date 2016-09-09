@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Leixlip Dojo Website Design Idea #34</title>
+<title>LPTCDojo/title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
@@ -18,6 +18,22 @@
 <meta name="keywords" content="Scientist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script> 
+	window.onload = updateCal;
+	var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
+	function updateCal(){
+		url = "https://www.googleapis.com/calendar/v3/calendars/lofjdpkf8618f8ussbovmjkehc@group.calendar.google.com/events?key=AIzaSyACXx9RDMoj8hYQWEM2OhVyhPKHuT21y3I"
+		$.getJSON(url, function(data) {
+			i = data["items"].length - 1;
+    		month = ((data["items"][i]).end.dateTime.split("-"))[1];
+    		date = (((data["items"][i]).end.dateTime.split("-"))[2]).split("T")[0];
+    		info = data["items"][i].description;
+			document.getElementById("date").innerHTML = date + "<small>" + months[parseInt(month)] + "</small>";
+    		document.getElementById("info").innerHTML = info
+		});
+	}
+</script>
 </head>
 <body>
 <!--header-->
@@ -34,6 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="active"><a href="index.html">Home</a></li>
 					<li><a href="services.html" class="hvr-sweep-to-bottom">Gallery</a></li>
 					<li><a href="blog.html" class="hvr-sweep-to-bottom">News</a></li>
+					<li><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
 					<li><a href="typo.html" class="hvr-sweep-to-bottom">Get Involved</a></li>
 				<div class="clearfix"> </div>
 				</ul>
@@ -92,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-5 content-mid1">
 				<i class="glyphicon glyphicon-filter"> </i>
-				<h2>With a focus on peer to peer helping</h2>
+				<h2>With a focus on peer to peer learning</h2>
 				<p>our dojo emphasizes projects more than following mentors tutorials, students are encouraged to have projects which the mentors and their fellow peers help them with through out the sessions, this allows students to become better at troubleshooting but also allows them to pursue what they are interested in.</p>
 				<a href="single.html"><i class="glyphicon glyphicon-circle-arrow-right"> </i></a>
 			</div>
@@ -148,8 +165,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<h4>Upcoming Events</h4>
 			<div class="col-md-6 content-bottom-top">
-				<span>16<small>Jan</small></span>
-				<p>Coderdojo Returns after the Christmas Holidays!</p>
+				<span id="date">16<small>Jan</small></span>
+				<p id="info">Coderdojo Returns after the Christmas Holidays!</p>
 			</div>
 	<!--<div class="col-md-6 content-bottom-top">
 				<span>day<small>month</small></span>
@@ -171,7 +188,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2016. All rights reserved | Design by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Modified by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >© 2015 - 2016. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
