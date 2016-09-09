@@ -1760,7 +1760,7 @@ h2.imageTitle{
     float:left;
     border-radius: 50%;
     -webkit-shape-outside:circle();
-    shape-outside:circle();
+    shape-outside:circle(50% at 46% 52.5%);
 }
 .center-container{
     text-align:center;
