@@ -1754,11 +1754,14 @@ h2.imageTitle{
     margin: 2rem;
 }
 .curve {
-    width: 33%; height: auto;
+    width: 60%; height: auto;
     min-width: 150px;
-    float: left;
     margin-right:2rem;
+    float:left;
     border-radius: 50%;
     -webkit-shape-outside:circle();
     shape-outside:circle();
+}
+.center-container{
+    text-align:center;
 }
