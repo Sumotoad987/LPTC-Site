@@ -1,8 +1,11 @@
 # LPTC-Site
 The LPTC coderdojo website source code.
 
-Thanks to ThatProgrammerRian who developed the inital code.
+http://lptcdojo.com
 
-To see this version of the site please go here http://php.beattbots.com/LPTC/LPTC-Site
+Developed by Rian Errity, Richard Beattie and Tom Armstrong
 
-To see the site that this code is made for go here http://lptcdojo.com
+Features in progress:
+*Ninjas Circle
+*News section
+
