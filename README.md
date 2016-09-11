@@ -12,3 +12,7 @@ Features in progress:
 <li>Resources</li>
 </ul>
 
+Contributors' Notice
+<li>Please push-master if you have changed something that could potentially fix an issue so It can be 
+published to the live site ASAP - Rían</li>
+
