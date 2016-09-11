@@ -62,6 +62,17 @@ h1,h2,h3,h4,h5,h6,label,p{
 	text-decoration:none;
 	color:#fff;
 }
+.logo-alone h1 a{
+    background:url(../images/coderdojo.png) bottom no-repeat;
+    width: 150px;
+    height: 150px;
+    display:block;
+    text-align: center;
+    padding: 1.7em 0 0;
+    text-decoration:none;
+    color:#fff;
+}
+
 .logo h1{
 	font-size:2.5em;
 	font-family: 'Cinzel-Regular';
@@ -1764,4 +1775,46 @@ h2.imageTitle{
 }
 .center-container{
     text-align:center;
+}
+.purple{
+    background-color: #7D3F98;
+}
+.sidebar{
+   background-color: #7D3F98;
+   border-radius:3px;
+   padding:10px;
+}
+.email{
+    width:100%;
+    border:clear;
+}
+.post{
+    width:70%;
+}
+.blog-content{
+    margin-top:1.5%;
+}
+.coderdojo{
+    width:88;
+    height:88;
+}
+.postText{
+    font-size:16px;
+    line-height:32px;
+     font-family: 'Merriweather'
+}
+.postInfo{
+    display:inline;
+    margin-right:5px;
+}
+
+.titleHr{
+    border-top:2px solid #eee;
+}
+.topic{
+    background-color:#c8dcea;
+    border-radius:3px;
+    display:inline;
+    padding:3px;
+    margin-left:5px;
 }
