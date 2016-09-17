@@ -28,6 +28,9 @@
                     posts[i].style.display = 'block';
                 }
             }
+            if(loaded => post.length){
+               document.getElementById("loadMore").style.display="none";
+            }
         }
         function loadMore(){
             console.log("debug");
@@ -82,112 +85,28 @@
                         <div class="topic">
                             <a>Resource</a>
                         </div>
-                    <hr>
                 </div>
-                <div class="post">
-                    <h2>Coderdojo's back</h2>
-                    <hr class="titleHr">
-                    <p class="postText">Hi all Coderdojo will be resuming this Saturday from 1-3 instead of from 12-2 hope that is ok with everyone. For anyone new to the dojo that is planning to attend here are some programs that might be helpful to download:
-                    <ul style=" list-style-position: inside;" class="postText">
-                        <li> <a href="https://notepad-plus-plus.org/download/v6.9.2.html"> Notepad++</a>(Windows)</li>
-                        <li>Textwrangler(OSX/macOS)</li>
-                        <li><a href="https://www.jetbrains.com/idea/">Intellije</a> for Java, minecraft modding, etc</li>
-                        <li><a href="https://unity3d.com/">Unity</a> for game development</li>
-                    </ul>
-                    </p>
-                    <br>
-                    <p class="postInfo"><i class="fa fa-user"></i> Richard Beattie</p>
-                    <p class="postInfo"><i class="fa fa-clock-o"></i> 11 Sept 2016</p>
-                    <hr>
-                    <div class="topic">
-                        <a>Announcment</a>
-                    </div>
-                    <div class="topic">
-                        <a>Resource</a>
-                    </div>
-                    <hr>
-                </div>
-                <div class="post">
-                    <h2>Coderdojo's back</h2>
-                    <hr class="titleHr">
-                    <p class="postText">Hi all Coderdojo will be resuming this Saturday from 1-3 instead of from 12-2 hope that is ok with everyone. For anyone new to the dojo that is planning to attend here are some programs that might be helpful to download:
-                    <ul style=" list-style-position: inside;" class="postText">
-                        <li> <a href="https://notepad-plus-plus.org/download/v6.9.2.html"> Notepad++</a>(Windows)</li>
-                        <li>Textwrangler(OSX/macOS)</li>
-                        <li><a href="https://www.jetbrains.com/idea/">Intellije</a> for Java, minecraft modding, etc</li>
-                        <li><a href="https://unity3d.com/">Unity</a> for game development</li>
-                    </ul>
-                    </p>
-                    <br>
-                    <p class="postInfo"><i class="fa fa-user"></i> Richard Beattie</p>
-                    <p class="postInfo"><i class="fa fa-clock-o"></i> 11 Sept 2016</p>
-                    <hr>
-                    <div class="topic">
-                        <a>Announcment</a>
-                    </div>
-                    <div class="topic">
-                        <a>Resource</a>
-                    </div>
-                    <hr>
-                </div>
-                <div class="post">
-                    <h2>Coderdojo's back</h2>
-                    <hr class="titleHr">
-                    <p class="postText">Hi all Coderdojo will be resuming this Saturday from 1-3 instead of from 12-2 hope that is ok with everyone. For anyone new to the dojo that is planning to attend here are some programs that might be helpful to download:
-                    <ul style=" list-style-position: inside;" class="postText">
-                        <li> <a href="https://notepad-plus-plus.org/download/v6.9.2.html"> Notepad++</a>(Windows)</li>
-                        <li>Textwrangler(OSX/macOS)</li>
-                        <li><a href="https://www.jetbrains.com/idea/">Intellije</a> for Java, minecraft modding, etc</li>
-                        <li><a href="https://unity3d.com/">Unity</a> for game development</li>
-                    </ul>
-                    </p>
-                    <br>
-                    <p class="postInfo"><i class="fa fa-user"></i> Richard Beattie</p>
-                    <p class="postInfo"><i class="fa fa-clock-o"></i> 11 Sept 2016</p>
-                    <hr>
-                    <div class="topic">
-                        <a>Announcment</a>
-                    </div>
-                    <div class="topic">
-                        <a>Resource</a>
-                    </div>
-                    <hr>
-                </div>
-                <div class="post">
-                    <h2>Hide me please</h2>
-                    <hr class="titleHr">
-                    <p class="postText">Hi all Coderdojo will be resuming this Saturday from 1-3 instead of from 12-2 hope that is ok with everyone. For anyone new to the dojo that is planning to attend here are some programs that might be helpful to download:
-                    <ul style=" list-style-position: inside;" class="postText">
-                        <li> <a href="https://notepad-plus-plus.org/download/v6.9.2.html"> Notepad++</a>(Windows)</li>
-                        <li>Textwrangler(OSX/macOS)</li>
-                        <li><a href="https://www.jetbrains.com/idea/">Intellije</a> for Java, minecraft modding, etc</li>
-                        <li><a href="https://unity3d.com/">Unity</a> for game development</li>
-                    </ul>
-                    </p>
-                    <br>
-                    <p class="postInfo"><i class="fa fa-user"></i> Richard Beattie</p>
-                    <p class="postInfo"><i class="fa fa-clock-o"></i> 11 Sept 2016</p>
-                    <hr>
-                    <div class="topic">
-                        <a>Announcment</a>
-                    </div>
-                    <div class="topic">
-                        <a>Resource</a>
-                    </div>
-                    <hr>
-                </div>
-                <a onclick="loadMore()" style="margin-bottom:15px;">Load more</a>
+                <br>
+                <a onclick="loadMore()" id="loadMore" style="margin-bottom:15px;">Load more</a>
             </div>
             <div class="col-md-3 sidebar" style="color:white">
                 <div class="center text-center">
                     <h2>Newsletter</h2>
                     <p>Subscribe to our email list</p>
-                    <form action="" method="post" role="form">
+                <?php
+                    require_once("includes/dbconnect.php");
+                    if(isset($_POST['email'])){
+                       $stmt = $connection->prepare("INSERT IGNORE INTO Emails (Email) VALUES (?)");
+                       $stmt->bind_param("s", $_POST['email']);
+                       $stmt->execute();
+                    }
+                ?>
+                    <form action="blog.php" method="post" role="form">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="fa fa-envelope"></i>
                             </span>
-                            <input class="form-control" type="text" id="" name="" placeholder="your@email.com">
+                            <input class="form-control" type="text" id="" name="email" placeholder="your@email.com">
                         </div>
                         <br>
                         <input type="submit" value="Subscribe" class="btn btn-large" />

@@ -1783,6 +1783,7 @@ h2.imageTitle{
    background-color: #7D3F98;
    border-radius:3px;
    padding:10px;
+   margin-left:8%;
 }
 .email{
     width:100%;
@@ -1790,6 +1791,7 @@ h2.imageTitle{
 }
 .post{
     width:70%;
+    margin-top:5%;
 }
 .blog-content{
     margin-top:1.5%;
