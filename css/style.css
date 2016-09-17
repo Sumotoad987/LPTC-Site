@@ -1,8 +1,3 @@
-/*Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
 html,body{
 	background:#fff;
 	font-size: 100%;
@@ -37,13 +32,13 @@ h1,h2,h3,h4,h5,h6,label,p{
 /*--header--*/
 .header {
 	background:url(../images/1.jpg) no-repeat;
-	width:100%;
+	width:96%;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-o-background-size:cover;
 	-moz-background-size:cover;
 	-ms-background-size:cover;
-	min-height:800px;
+	min-height:820px;
 }
 .header-top{
 	min-height:250px;
