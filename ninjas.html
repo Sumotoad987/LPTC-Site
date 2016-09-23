@@ -5,6 +5,7 @@
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.lettering.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -14,6 +15,24 @@
 <meta name="keywords" content="Scientist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script>
+    $(function() {
+      $("h1").lettering();
+      var totalChars = $("h1 span").length;
+      var degreesPerChar = 360 / totalChars;
+      var currentOffset = 0;
+      var offset = 0;
+      // Apply-->
+      $("h1 span").each(function(){
+                        $(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');
+                        height = (2.6890756303 * $("h1 span").length > 700) ? 2.6890756303 * $("h1 span").length : 360;
+                        $(this).css('height', height);
+                        currentOffset += degreesPerChar + offset;
+                        ///2.6890756303
+                        });
+      offset += 1;
+      });
+    </script>
 </head>
 <body>
 <!--header-->
@@ -47,56 +66,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="content">
 	<div class="container">
-		<div id="bestProject">
-<!--			<div class="imageHolder">-->
-<!--				<div style="position:relative; height:600px;  margin: auto; width: 60%">-->
-<!--   					<div style="position:absolute;z-index:1">-->
-<!--      					-->
-<!--   					</div>-->
-<!--   				<div style="position:absolute;top:360px; width:600px; height:400px; z-index:2;font-size:200%">-->
-<!--      				<center><b>Richard Beattie's website</b></center>-->
-<!--    			</div> -->
-<!--			</div>-->
-<!--			</div>-->
-            <div style="margin-left:35%; margin-bottom:200px;">
-            <img src="images/bestProject.png" class="curve">
-			<p>Tom Armstrong</p>
-			<p>Sean Power</p>
-			<p>Rian Errity</p>
-			<p>Name</p>
-			<p>Name</p>
-			<p>Name</p>
-			<p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
+        <div class="ProjectOfWeek">
+            <h1>Richard Beattie Tom Armstrong Harry Potter Alan Newsan Micheal Cussak Tim Johnson Richard Beattie Tom Armstrong Harry Potter Alan Newsan Micheal Cussak Tim Johnson </h1>
+            <div class="inside-box">
+                <h2 id="projectWeek">Project of the week</h2>
+                <p>Richard Beatties Website is a remarkable piece of coding</p>
             </div>
-		</div>
+        </div>
 	</div>
 	<div class="content-right">
 		<div class="col-md content-right-top">
