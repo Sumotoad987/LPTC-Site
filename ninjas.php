@@ -17,20 +17,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script>
     $(function() {
-      $("h1").lettering();
-      var totalChars = $("h1 span").length;
-      var degreesPerChar = 360 / totalChars;
+      $("d a").lettering();
+      var totalChars = $("d span").length;
+    degreesPerChar = 360 / totalChars
       var currentOffset = 0;
-      var offset = 0;
       // Apply-->
-      $("h1 span").each(function(){
+      $("d span").each(function(){
+                        console.log($(this));
                         $(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');
-                        height = (2.6890756303 * $("h1 span").length > 700) ? 2.6890756303 * $("h1 span").length : 360;
+                        height = (2.6890756303 * $("d span").length > 700) ? 2.6890756303 * $("d span").length : 360;
                         $(this).css('height', height);
-                        currentOffset += degreesPerChar + offset;
+                        currentOffset += degreesPerChar;
                         ///2.6890756303
                         });
-      offset += 1;
       });
     </script>
 </head>
@@ -67,11 +66,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content">
 	<div class="container">
         <div class="ProjectOfWeek">
-            <h1>Richard Beattie Tom Armstrong Harry Potter Alan Newsan Micheal Cussak Tim Johnson Richard Beattie Tom Armstrong Harry Potter Alan Newsan Micheal Cussak Tim Johnson </h1>
-            <div class="inside-box">
-                <h2 id="projectWeek">Project of the week</h2>
-                <p>Richard Beatties Website is a remarkable piece of coding</p>
-            </div>
+             <d>
+            <?php
+                $column = 1;
+                $other = "";
+                $files = scandir("ninjas/");
+                for($number = 0; $number != count($files); $number++){
+                    if((($number - 3) / $column) == 4){
+                        $column = $column + 1;
+                        $other = "reset";
+                    }
+                    if( !in_array($files[$number], array("..", ".", ".DS_Store", "index.php"), true)){
+                        echo("<a href='Ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
+                        $other = "";
+                    }
+                }
+            ?>
+             </d>
+            <canvas class="myCanvas" style="height:360px">
+            </canvas>
+<!--            <div class="inside-box">-->
+<!--                <h2 id="projectWeek">Project of the week</h2>-->
+<!--                <h3>Test project</h3>-->
+<!--                <p>This project shows a remarkable understanding of coding well done</p>-->
+<!--                <img>-->
+<!--            </div>-->
         </div>
 	</div>
 	<div class="content-right">
