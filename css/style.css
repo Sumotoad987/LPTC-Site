@@ -1792,8 +1792,8 @@ h2.imageTitle{
     margin-top:1.5%;
 }
 .coderdojo{
-    width:88;
-    height:88;
+    width:88px;
+    height:88px;
 }
 .postText{
     font-size:16px;
@@ -1814,4 +1814,31 @@ h2.imageTitle{
     display:inline;
     padding:3px;
     margin-left:5px;
+}
+.ProjectOfWeek{
+    position: relative;
+    width: 800px;
+    border-radius: 60%;
+    height:800px;
+    left:50%;
+}
+.inside-box{
+    display:inline-block;
+    position:absolute;
+    right:85%;
+    top:30;
+}
+#projectWeek{
+    width:200px;
+}
+
+d a span{
+    font: 12px Monaco, MonoSpace;
+    color:black;
+    height: 320px;
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 0;
+    transform-origin: bottom center;
 }
