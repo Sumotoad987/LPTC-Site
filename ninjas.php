@@ -72,8 +72,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              <div class="top-nav">
              <ul>
              <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
-             <li class="active"><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
-             <li><a href="ninjas.html" class="hvr-sweep-to-bottom">Ninjas</a></li>
+             <li><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
+             <li class="active"><a href="ninjas.html" class="hvr-sweep-to-bottom">Ninjas</a></li>
              <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
              <div class="clearfix"></div>
              </ul>
@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $other = "reset";
                     }
                     if( !in_array($files[$number], array("..", ".", ".DS_Store", "index.php"), true)){
-                        echo("<a href='Ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
+                        echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
                         $other = "";
                     }
                 }
