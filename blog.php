@@ -46,7 +46,7 @@
             <div class="top-nav">
                 <ul>
                     <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
-                    <li class="active"><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
+                    <li class="active"><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
                     <li><a href="ninjas.html" class="hvr-sweep-to-bottom">Ninjas</a></li>
                     <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
                     <div class="clearfix"></div>
