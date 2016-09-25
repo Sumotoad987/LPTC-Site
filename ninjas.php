@@ -16,53 +16,77 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script>
-    $(function() {
-      $("d a").lettering();
-      var totalChars = $("d span").length;
-    degreesPerChar = 360 / totalChars
-      var currentOffset = 0;
-      // Apply-->
-      $("d span").each(function(){
-                        console.log($(this));
-                        $(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');
-                        height = (2.6890756303 * $("d span").length > 700) ? 2.6890756303 * $("d span").length : 360;
-                        $(this).css('height', height);
-                        currentOffset += degreesPerChar;
-                        ///2.6890756303
-                        });
-      });
+    function getRotationDegrees(obj) {
+        var matrix = obj.css("-webkit-transform") ||
+        obj.css("-moz-transform")    ||
+        obj.css("-ms-transform")     ||
+        obj.css("-o-transform")      ||
+        obj.css("transform");
+        if(matrix !== 'none') {
+             var values = matrix.split('(')[1].split(')')[0].split(',');
+             var a = values[0];
+             var b = values[1];
+             var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+        }else{
+             var angle = 0;
+        }
+        return (angle < 0) ? angle + 360 : angle;
+    }
+    if(window.innerWidth > 750){
+        $(function() {
+            $("d a").lettering();
+            var totalChars = $("d span").length;
+            degreesPerChar = 360 / totalChars
+            var currentOffset = 0;
+            // Apply-->
+            $("d span").each(function(){
+                console.log($(this));
+                $(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');
+                height = (2.6890756303 * $("d span").length > 700) ? 2.6890756303 * $("d span").length : 360;
+                $(this).css('height', height);
+                currentOffset += degreesPerChar;
+                ///2.6890756303
+            });
+        });
+        window.setInterval(function(){
+            $("d span").each(function(){
+                var rotation = getRotationDegrees($(this)) + 0.8;
+                $(this).css("transform","rotate("+rotation+"deg)");
+            });
+        }, 75);
+    }else{
+        $(function() {
+          $("d a").each(function(){
+            $(this).wrap("<li></li>")
+          });
+          $("d").wrapInner("<ul></ul>");
+        });
+    }
     </script>
 </head>
 <body>
 <!--header-->
-<div class="header">
-	<div class="container">
-		<div class="logo">
-		<h1><a href="index.html">
-			
-		</a></h1>
-		</div>
-		<div class="top-nav">
-			<span class="menu"><img src="images/menu.png" alt=""> </span>
-				<ul>
-					<li><a href="index.html" class="hvr-sweep-to-bottom">Home</a></li>
-					<li><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
-					<li class="active"><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
-					<li><a href="typo.html" class="hvr-sweep-to-bottom">Get Involved</a></li>
-				<div class="clearfix"> </div>
-				</ul>
-						<!--script-->
-					<script>
-						$("span.menu").click(function(){
-							$(".top-nav ul").slideToggle(500, function(){
-							});
-						});
-				</script>				
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-<!---->
-</div>
+             <div id="header" class="purple" style="width:100%">
+             <div class="container">
+             <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
+             <div class="top-nav">
+             <ul>
+             <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
+             <li class="active"><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
+             <li><a href="ninjas.html" class="hvr-sweep-to-bottom">Ninjas</a></li>
+             <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
+             <div class="clearfix"></div>
+             </ul>
+             <script>
+             $("span.menu").click(function(){
+                                  $(".top-nav ul").slideToggle(500, function(){
+                                                               });
+                                  });
+             </script>
+             </div>
+             <div class="clearfix"> </div>
+             </div>
+             </div>
 <div class="content">
 	<div class="container">
         <div class="ProjectOfWeek">
