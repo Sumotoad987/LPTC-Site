@@ -36,5 +36,7 @@ published to the live site ASAP - Rían</li>
 @Mach1982
 @ThatProgrammerRian
 @calucifier
-@Sumotoad987
 @richardbeattie
+## Noncontributors
+@SumoToad987
+
