@@ -9,10 +9,16 @@ Full Contributors List below
 
 Features in progress:
 <ul>
-<li>Ninjas Section</li>
-<li>News section</li>
+<li>CMS</li>
+<li>Style</li>
 <li>Resources</li>
 </ul>
+
+##Want to get involved
+
+This site is open source so anyone can help make it better if have a feature you want to see in the sight, have found a bug or just think the style could be better in some areas download a copy of this repo and edit it. 
+
+Or if you want to help out but just don't know what to do contact one of the developers and they will be deligheted for any extra help.
 
 ##Contributors' Notice
 <ul>
@@ -37,6 +43,4 @@ published to the live site ASAP - Rían</li>
 @ThatProgrammerRian
 @calucifier
 @richardbeattie
-## Noncontributors
-@SumoToad987
 
