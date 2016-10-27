@@ -1821,12 +1821,34 @@ h2.imageTitle{
     width:200px;
 }
 d a span{
-    font: 12px Monaco, MonoSpace;
+    font: 16px Monaco, MonoSpace;
     color:black;
-    height: 320px;
+    height: 20px;
     position: absolute;
     width: 20px;
     left: 0;
     top: 0;
-    transform-origin: bottom center;
+    margin-top:30px;
+    transform-origin: bottom left;
+}
+c{
+	top:100px;
+}
+c a span{
+    font: 16px Monaco, MonoSpace;
+    color:black;
+    height: 200px;
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 0;
+    margin-top:190px;
+    transform-origin: bottom left;
+}
+d a {
+	height:14px;
+}
+.circleLink{
+	display: inline-block;
+	text-align: center;
 }
