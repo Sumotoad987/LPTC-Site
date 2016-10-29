@@ -8,7 +8,7 @@
 <script src="js/jquery.lettering.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet?v=1.1" type="text/css" media="all" />	
+<link href="css/style.css?v=1.1" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
