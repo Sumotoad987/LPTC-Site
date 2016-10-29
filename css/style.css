@@ -303,13 +303,14 @@ i.glyphicon.glyphicon-ok {
 }
 .content-bottom-top span{
 	color: #7D3F98;
-  	font-size: 3em;
+  	font-size: 5em;
   	display: block;
   	line-height: 35px;
   	font-family: 'Cinzel-Bold';
 }
 .content-bottom-top span small{
-	font-size: 28px;
+    margin-top:10px;
+	font-size: 35px;
 	display: block;
 }
 .content-bottom-top p {
@@ -392,6 +393,10 @@ ul.social li a i.dribble {
 }
 ul.social li a i.facebook {
   background-position: -87px -3px;
+}
+ul.social li a i.twitter {
+    background-position: -120px -3px;
+    width:40px;
 }
 ul.social li a i:hover{
 	transform: rotatey(-360deg);
@@ -1530,11 +1535,11 @@ i.glyphicon.glyphicon-filter {
   padding: 0;
 }
 .content-bottom-top span {
-  font-size: 1.7em;
-    line-height: 25px;
+  font-size: 2.5em;
+  line-height: 25px;
 }
 .content-bottom-top span small {
-  font-size: 20px;
+  font-size: 30px;
 }
 .content-bottom-top p {
   font-size: 0.9em;
@@ -1830,3 +1835,8 @@ d a span{
     top: 0;
     transform-origin: bottom center;
 }
+#dojo-info p{
+	font-weight:10px;
+}
+
+

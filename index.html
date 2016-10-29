@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LPTCDojo</title>
+<title>LPTCDojo | Be cool</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
 <script src="js/quotes.js"></script>
 <script>
 	setupQuotes("js/quotes.json");
+	//Anylitcs
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-86397592-1', 'auto');
+  ga('send', 'pageview');
 </script>
 <!-- Custom Theme files -->
 <!--theme-style-->
@@ -25,12 +33,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function updateCal(){
 		url = "https://www.googleapis.com/calendar/v3/calendars/lofjdpkf8618f8ussbovmjkehc@group.calendar.google.com/events?key=AIzaSyACXx9RDMoj8hYQWEM2OhVyhPKHuT21y3I"
 		$.getJSON(url, function(data) {
-			i = data["items"].length - 1;
-    		month = ((data["items"][i]).end.dateTime.split("-"))[1];
-    		date = (((data["items"][i]).end.dateTime.split("-"))[2]).split("T")[0];
-    		info = data["items"][i].description;
-			document.getElementById("date").innerHTML = date + "<small>" + months[parseInt(month)] + "</small>";
-    		document.getElementById("info").innerHTML = info
+                  for(var i = 0; i < data["items"].length; i++){
+                  dateSent = data["items"]["created"].split("T");
+                  }
 		});
 	}
 </script>
@@ -101,6 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//content-top-->
 		<!--cpntent-mid-->
 		<div class="content-middle">
+			<div class="row">
 			<div class="col-md-7 content-mid">
 				<a href="single.html"><img class="img-responsive" src="images/md.jpg" alt=""></a>
 			</div>
@@ -110,46 +116,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<p>our dojo emphasizes projects more than following mentors tutorials, students are encouraged to have projects which the mentors and their fellow peers help them with through out the sessions, this allows students to become better at troubleshooting but also allows them to pursue what they are interested in.</p>
 				<a href="single.html"><i class="glyphicon glyphicon-circle-arrow-right"> </i></a>
 			</div>
+			</div>
 			<div class="clearfix"> </div>
+			<div class="row" id="dojo-info">
+				<div class="col-md-6">
+					<p>The LPTCDojo is on (nearly) every Saturday from 1pm to 3pm in Hewlett-Packard, Lexlip and it is FREE! So why not come along.</p>
+					<br>
+					<p>We have tables for teaching Scratch and Web developement, and some other ninjas work with Swift, Java, C#, Python, Lua and a bunch of other languages so a lot can be thought to the Ninjas that attend.</p>
+					<br>
+					<p>Please bring:</p>
+					<ul style="padding-left:40px;">
+						<li>A snack if needed</li>
+						<li>A laptop</li>
+						<li>A parent or guardian if you are under 12</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.3859564742284!2d-6.514396948981207!3d53.35424728172277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48677190075bd537%3A0x19c1e4d2ab9cd016!2sHewlett-Packard!5e0!3m2!1sen!2sie!4v1477676294849" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
 		</div>
 		<!--//content-mid-->
 		<!--content-left-->
-		<div class="content-left">
-			<div class="col-md-4 content-left-top">
-				<a href="single.html"><img class="img-responsive" src="images/md1.jpg" alt=""></a>
-				<div class=" content-left-bottom">
-					<h4><i class="glyphicon glyphicon-ok"></i><a href="#">Game Development</a></h4>
-					<p></p>				
-				</div>
-			</div>
-			<div class="col-md-4 content-left-top">
-				<a href="single.html"><img class="img-responsive" src="images/md3.jpg" alt=""></a>
-				<div class=" content-left-bottom">
-					<h4><i class="glyphicon glyphicon-ok"></i><a href="#">Java</a></h4>
-					<p></p>				
-				</div>
-			</div>
-			<div class="col-md-4 content-left-top">
-				<a href="single.html"><img class="img-responsive" src="images/md2.jpg" alt=""></a>
-				<div class=" content-left-bottom">
-					<h4><i class="glyphicon glyphicon-ok"></i><a href="#">Web Development</a></h4>
-					<p></p>				
-				</div>
-			</div>
-			<div class="col-md-4 content-left-top">
-				<a href="single.html"><img class="img-responsive" src="images/md4.png" alt=""></a>
-				<div class=" content-left-bottom">
-					<h4><i class="glyphicon glyphicon-ok"></i><a href="#">Scratch</a></h4>
-				</div>
-			</div>
-			<div class="col-md-4 content-left-top">
-				<a href="single.html"><img class="img-responsive" src="images/md5.jpg" alt=""></a>
-				<div class=" content-left-bottom">
-					<h4><i class="glyphicon glyphicon-ok"></i><a href="#">Electronics</a></h4>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
 	</div>
 	<div class="content-right">
 		<div class="col-md content-right-top">
@@ -159,16 +147,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 	</div>
 	<div class="content-bottom">
-		<div class="container">
+        <div class="container" style="text-align:center">
 			<h4>Upcoming Events</h4>
-			<div class="col-md-6 content-bottom-top">
-				<span id="date">16<small>Jan</small></span>
-				<p id="info">Coderdojo Returns after the Christmas Holidays!</p>
+			<div class="col-md-12 content-bottom-top">
+                <div style="float:left;">
+                    <span id="date">16<small>Jan</small></span>
+                </div>
+                <div>
+                    <p id="info">Coderdojo Returns after the Christmas Holidays!</p>
+                </div>
 			</div>
-	<!--<div class="col-md-6 content-bottom-top">
-				<span>day<small>month</small></span>
-				<p>description</p>
-			</div> -->
 			<div class="clearfix"> </div>
 		</div>
 	</div>	
