@@ -7,7 +7,6 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/quotes.js"></script>
 <script>
-	setupQuotes("js/quotes.json");
 	//Anylitcs
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -16,6 +15,8 @@
 
   ga('create', 'UA-86397592-1', 'auto');
   ga('send', 'pageview');
+  
+  setupQuotes("js/quotes.json");
 </script>
 <!-- Custom Theme files -->
 <!--theme-style-->
@@ -28,14 +29,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script> 
 	window.onload = updateCal;
-	var months = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
 	function updateCal(){
 		url = "https://www.googleapis.com/calendar/v3/calendars/lofjdpkf8618f8ussbovmjkehc@group.calendar.google.com/events?key=AIzaSyACXx9RDMoj8hYQWEM2OhVyhPKHuT21y3I"
 		$.getJSON(url, function(data) {
-                  for(var i = 0; i < data["items"].length; i++){
-                  dateSent = data["items"]["created"].split("T");
-                  }
+			var first = true;
+            for(var i = 0; i < data["items"].length; i++){
+                eventStarts = new Date(data["items"][i]["start"]["dateTime"].split("T")[0]);
+             	var date = new Date()
+             	if(eventStarts > date){
+             		month = months[eventStarts.getMonth()];
+             		date = eventStarts.getDate();
+             		info = data["items"][i].description
+             		if(first == true){
+             			document.getElementById("date").innerHTML = date + "<small>" + month + "</small>";
+             			document.getElementById("info").innerHTML = info;
+             			first = false;
+             		}else{
+             			entry = $(".entry").clone();
+             			dateElement = entry.find("span");
+             			dateElement.html(date + "<small class='dateSmall'>" + month + "</small>");
+             			dateElement.attr("class", "dateSmall");
+             			infoElement = entry.find("p");
+             			infoElement.html(info);
+             			$(".content-bottom-top").append(entry);
+             		}
+             	} 
+            }
 		});
 	}
 </script>
@@ -147,17 +168,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 	</div>
 	<div class="content-bottom">
-        <div class="container" style="text-align:center">
+        <div class="container content-bottom-top" style="text-align:center">
 			<h4>Upcoming Events</h4>
-			<div class="col-md-12 content-bottom-top">
-                <div style="float:left;">
-                    <span id="date">16<small>Jan</small></span>
-                </div>
-                <div>
-                    <p id="info">Coderdojo Returns after the Christmas Holidays!</p>
-                </div>
-			</div>
-			<div class="clearfix"> </div>
+			<div class="entry">
+            	<div style="float:left;position:absolute;">
+                	<span id="date">16<small>Jan</small></span>
+            	</div>
+            	<div>
+            		<p id="info">Coderdojo Returns after the Christmas Holidays!</p>
+        		</div>
+        		<div class="clearfix"> </div>
+        	</div>
 		</div>
 	</div>	
 </div>

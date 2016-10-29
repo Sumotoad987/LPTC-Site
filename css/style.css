@@ -1838,5 +1838,14 @@ d a span{
 #dojo-info p{
 	font-weight:10px;
 }
-
+span.dateSmall{
+	font-size:2em !important;
+}
+small.dateSmall{
+	font-size:21px;
+}
+.entry{
+	height:100px;
+	margin-bottom:20px;
+}
 
