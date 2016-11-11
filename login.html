@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    </head>
+    <body>
+        <div class="login-box">
+            <h3>Login to your account</h3>
+            <br>
+            <form action="Content/login.php" method="post" role="form">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="email" id="email" placeholder="Email">
+                    <br>
+                    <input class="form-control" name="password" placeholder="Password">
+                    <br>
+                    <input type="submit" class="btn btn-primary signin" value="Sign in">
+                </div>
+            </form>
+        </div>
+        <style>
+            body{
+                background-color:#eee;
+            }
+            .login-box{
+                width:25%;
+                text-align:center;
+                background-color:white;
+                padding:25px;
+                border-radius:5px;
+                margin-top:10%;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            .signin{
+                width:50%;
+            }
+            .input-group{
+            	margin-left:auto;
+            	margin-right:auto;
+            }
+            .input-group .form-control{
+            	margin-bottom:2%;
+            	border-radius:2px !important;
+            }
+        </style>
+    </body>
+</html>

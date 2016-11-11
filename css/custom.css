@@ -1,0 +1,379 @@
+body#login{
+	background-color: #eee;
+}
+
+body#admin{
+	background-color:#060606;
+	margin-top:70px;
+}
+
+.byUser{
+	font-size:18px;
+	font-weight:400;
+	line-height:1.4;
+}
+
+.form-signin-heading{
+	margin-bottom:25px;
+}
+
+.form-signin{
+	max-width:370px;
+	background-color:white;
+	padding:5 25 40 25px;
+	border-radius:4px;
+	margin: 0 auto;
+	margin-top:120px;
+}
+
+.form-signin .form-control{
+	margin-bottom:10px;
+	font-size:15px;
+	padding:10px;
+	height:auto;
+}
+
+.navbar-inverse{
+	border-radius:0px;
+}
+
+.navbar{
+	margin-bottom:20px;
+}
+
+@media (min-width:768px) {
+
+	.side-nav{
+		margin-left:-255;
+		left:250;
+		width:255;
+		position:fixed;
+		top:50px;
+		height:100%;
+		border-radius:0px;
+		border:none;
+		background-color:#333333;
+		overflow-y:auto;
+	}
+
+	.side-nav > li{
+		width:250px;
+	}
+
+	.wrapper{
+		padding-left:255px;
+	}
+	
+	.content{
+	padding:15px 25px;
+}
+
+}
+
+h1{
+	color:#ffffff;
+}
+
+.panel{
+	background-color:#222222;
+}
+
+.panel-primary{
+	border-color:#2a9fd6;
+}
+
+.panel-primary .panel-heading{
+	background-color:#2a9fd6;
+}
+
+.panel-body{
+	color:#F8F8F8;
+}
+
+.pull-left{
+	float:left;
+}
+
+.item{
+	padding-top:10px;
+}
+
+.item .icon{
+	padding-left:11px;
+	font-size:18px;
+	line-height:28px;
+	text-align:center;
+}
+
+.item-body{
+	margin-left:40px;
+}
+
+.item-body .time{
+	color:#D2D2D2;
+	font-size:11px;
+}
+
+.item-body .item-text{
+	margin-bottom:0px;
+}
+
+
+.setting{
+	display:inline-block;
+	width:auto;
+	margin-right:5px;
+}
+
+.box{
+    box-shadow:0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #e9eff3;
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.button {
+    width:50%;
+    display:block;
+}
+
+.editorTextArea{
+    border:none;
+    resize:none;
+    font-size:26px;
+    font-weight:600;
+    margin-bottom:2%;
+    width:100%;
+}
+
+.editorTextArea:focus{
+    outline: none;
+}
+
+.toolbar{
+	border:1px solid #e6e9ef;
+	height:7%;
+}
+
+.textFormat{
+	border-right:1px solid #e6e9ef;
+	height:100%;
+	padding-right:2px;
+	display:inline-block;
+}
+
+.toolbar-item{
+	padding: 10% 0;
+}
+
+.mce-tinymce{
+	border: 0px !important;
+}
+
+#postInfo{
+	background-color:#cccccc;
+	padding-left:5%;
+	text-align:center;
+	padding-bottom:2%;
+	padding-top:2%;
+}
+
+.side-nav li{
+	border-top:1px solid #a6a6a6;
+	width:100%;
+	border-bottom:1px solid #a6a6a6;
+}
+
+#postInfo h2{
+	margin-top:0;
+}
+
+.side-nav-header{
+	padding:5%;
+}
+
+.side-nav-header a{
+	color:#9d9d9d;
+	cursor: pointer;
+}
+
+.side-nav-header a:hover{
+	color:#808080;
+	text-decoration:none;
+}
+
+.dropdown-tags{
+	padding-left:5%;
+	padding-right:4%;
+	padding-top:2%;
+	padding-bottom:2%;
+	border-top:1px solid #a6a6a6;
+	display:none;
+}
+
+.dropdown-tags input{
+	width:100%;
+	margin: 2px 0 2px 8px;
+}
+
+.actions{
+	list-style-type:none;
+	margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-top:1px solid #e9eff3;
+    display:table-row;
+}
+
+.actions li{
+	padding:10px;
+	margin-left:auto;
+	margin-right:auto;
+	display:table-cell;
+	text-align:center;
+	border-right:1px solid #e9eff3;
+}
+
+.actions li:hover{
+	background-color:#fafafa;
+}
+
+.actions li input{
+	background-color:inherit;
+	border:none;
+	font-size:16px;
+}
+
+.post-content{
+	padding:15px;
+}
+
+.action-container{
+	display:table;
+	table-layout: fixed;
+	width:100%;
+	 border-collapse: collapse; 
+}
+
+.circle {
+  display: inline-block;
+  min-width: 15%;
+  /* to allow placement of numbers on top of circles instead of below them */
+  white-space: nowrap;
+}
+
+.circle:before {
+  border-radius: 50%;
+  /* = 15%, almost gives us viewport width unit (15vw) */
+  width: 100%;
+  padding-bottom: 100%;
+  /* this way we should have 1px gap between circles */
+  margin: 15px .5px;
+  background: white;
+  content: '';
+  display: inline-block;
+  /* circle to the middle, so that... [1] */
+  vertical-align: middle;
+  
+  /* to use viewport based units we can safely override the old units in this way */
+  padding-bottom: 0vw;
+  width: 15vw;
+  height: 15vw;
+}
+
+.circle p {
+  display: inline-block;
+  font-size: 60pt;
+  /* -.5em = white space between p elements... */
+  margin: 0 -.5em 0 -100%;
+  padding: 0;
+  /* ... text can be middle too! [1] */
+  vertical-align: middle;
+  white-space: normal;
+  width: 100%;
+  /* for some reason that I can't figure out right now...
+    viewport units eliminate the white space issue */
+  margin: 0 0 0 -15vw;
+  width: 15vw;
+}
+
+.header{
+	border-bottom:1px solid #e9eff3;
+	padding:15px;
+}
+
+.header p{
+	font-size:17px;
+	margin:0 0 0px;
+	display:inline;
+}
+
+.rank{
+	background-color:#2e4453;
+	color:white;
+	display:inline;
+	padding:4px;
+	border-radius:3px;
+}
+
+.user{
+	padding:20px;
+	border-bottom:1px solid #e9eff3;
+}
+
+.user:hover{
+	background-color:#fafafa;
+}
+
+.user-details{
+	margin-left:96px;
+}
+
+.user-details h3{
+	margin-top:0px;
+	margin-bottom:5px;
+}
+
+.user-img{
+	float:left;
+}
+
+.user-container{
+	height:100% !important;
+}
+
+.add{
+	float:right;
+}
+
+.box-content{
+ padding:15px;
+ overflow: hidden;
+}
+
+.box-content p{
+	font-weight:600;
+	font-size:15px;
+}
+
+.large-input{
+	width:100%;
+	height:6%;
+	padding-left:10px;
+	font-size:14px;
+	margin-bottom:2%;
+}
+
+.bootstrap-select{
+	margin-bottom:2%;
+}
+
+.message{
+	width:100%;
+	resize: none;
+	-webkit-appearance: textfield;
+  	-moz-appearance: textfield;
+  	appearance: textfield;
+}
+
+
