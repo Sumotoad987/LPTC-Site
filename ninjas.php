@@ -8,7 +8,7 @@
 <script src="js/jquery.lettering.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css?v=1.1" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,28 +32,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         return (angle < 0) ? angle + 360 : angle;
     }
+    function addLinks(element){
+    	object = $(element);
+        for(var e = 0; e < object.children().length; e++){
+    		for(var i = 0; i < object.children()[e].childNodes.length; i++){
+    			child = object.children()[e].childNodes[i];         		
+    			parent = document.createElement("a"); 
+        		parent.href=object.children()[e].href; 
+        		console.log(object.children()[e].href);
+    			parent.setAttribute("class", "circleLink")
+    			parent.setAttribute("style", "width: " + width + "px");        		
+    			child.insertBefore(parent, child.childNodes[0]); 
+        		parent.appendChild(child.childNodes[1]);
+    		}
+    		object.children()[e].href="";
+    	}
+    }
+    var width = 0;
+    function setupRotation(element, height){
+    	$(element + " a").lettering();
+        var totalChars = $(element + " span").length;
+        var degreesPerChar = 360 / totalChars; 
+        width = degreesPerChar * 2;         
+        var currentOffset = 0;
+         // Apply-->
+        $(element + " span").each(function(){          
+        	$(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');            
+    		height = (2.6890756303 * $(element + " span").length > 700) ? 2.6890756303 * $(element + "span").length : height;
+    		$(this).css('padding-bottom', height);
+       	 	currentOffset += degreesPerChar;
+       	});
+    }
     if(window.innerWidth > 750){
-        $(function() {
-            $("d a").lettering();
-            var totalChars = $("d span").length;
-            degreesPerChar = 360 / totalChars
-            var currentOffset = 0;
-            // Apply-->
-            $("d span").each(function(){
-                console.log($(this));
-                $(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');
-                height = (2.6890756303 * $("d span").length > 700) ? 2.6890756303 * $("d span").length : 360;
-                $(this).css('height', height);
-                currentOffset += degreesPerChar;
-                ///2.6890756303
-            });
+    	$(function() {
+        	setupRotation("d", 360);
+        	setupRotation("c", 200);
+        	addLinks("c");
+        	addLinks("d");
         });
         window.setInterval(function(){
-            $("d span").each(function(){
-                var rotation = getRotationDegrees($(this)) + 0.8;
-                $(this).css("transform","rotate("+rotation+"deg)");
-            });
-        }, 75);
+            letters = ['c','d']
+            for(i = 0; i < 2; i++){
+            	$(letters[i] + " span").each(function(){
+                	var rotation = getRotationDegrees($(this)) + 0.6;
+                	$(this).css("transform","rotate("+rotation+"deg)");
+            	});
+            }
+        }, 100);
     }else{
         $(function() {
           $("d a").each(function(){
@@ -72,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              <div class="top-nav">
              <ul>
              <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
-             <li><a href="blog.html" class="hvr-sweep-to-bottom">Blog</a></li>
+             <li><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
              <li class="active"><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
              <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
              <div class="clearfix"></div>
@@ -105,16 +130,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $other = "";
                     }
                 }
-            ?>
+             ?>
              </d>
-            <canvas class="myCanvas" style="height:360px">
-            </canvas>
-<!--            <div class="inside-box">-->
-<!--                <h2 id="projectWeek">Project of the week</h2>-->
-<!--                <h3>Test project</h3>-->
-<!--                <p>This project shows a remarkable understanding of coding well done</p>-->
-<!--                <img>-->
-<!--            </div>-->
+             <c>
+                <a href="scratch-projects.php?ninja_username=noahwin">crazymue2</a>
+                <a href="scratch-projects.php?ninja_username=kyla_errity">Kyla Errity </a>
+             </c>
         </div>
 	</div>
 	<div class="content-right">
