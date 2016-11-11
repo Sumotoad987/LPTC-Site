@@ -19,6 +19,16 @@ Features in progress:
 <li>Please push-master if you have changed something that could potentially fix an issue so It can be 
 published to the live site ASAP - Rían</li>
 </ul>
+
+##CMS
+
+<p>The CMS(Content Management system) is a in-house product and as such it will probably(most likly) have some security issuess, if you would like to test it for any please fell free to and then contact me about any thing you find - Richard</p>
+
+<h3>Security flaws and who found them</h3>
+<ul>
+  <li>Nobody yet</li>
+</ul>
+
 ##Developer Contacts:
 
 ###Rían Errity - Web Designer/Developer
