@@ -377,3 +377,32 @@ h1{
 }
 
 
+.box-content .image{
+	width:80px;
+	width:80px;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.filelabel{
+	margin-bottom:0;	
+}
+
+#generator{
+	margin-top:5px;
+	margin-right:5px;
+	display:inline-block;
+}
+
+input[type=checkbox]{
+	margin-right:5px;
+}
+
+

@@ -26,7 +26,6 @@
 				<div class="collapse navbar-collapse" id="collapseable"> 
 					<ul class="nav navbar-nav side-nav">
 						<li class="active"><a href="index.php">Dashboard</a></li>
-						<li><a href="#">General</a></li>
 						<li><a href="posts.php">Posts</a></li>
 						<li><a href="#">Users</a></li>
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pages<span class="caret"></span></a>
@@ -41,6 +40,7 @@
 								<li><a href="#">Plugins</a></li>
 							</ul>
 						</li>
+						<li><a href="settings.php">Settings</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>

@@ -1,14 +1,44 @@
 <?php
     session_start();
+    if(isset($_GET['json_result'])){
+    	$json = json_decode($_GET['json_result'], true);
+    	$source = $json['favicon_generation_result']['favicon']['package_url'];
+    	//Open the connection
+    	$ch = curl_init();
+    	curl_setopt($ch, CURLOPT_URL, $source);
+    	curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+    	//Get the file
+    	$data = curl_exec($ch);
+    	curl_close($ch);
+    	//Save the file
+    	$destination = "favicons.zip";
+    	$file = fopen($destination, "w+");
+    	fputs($file, $data);
+    	fclose($file);
+    	//Unzip the file
+    	$zip = new ZipArchive;
+    	$res = $zip->open("favicons.zip");
+    	echo($res);
+    	if($res === TRUE){
+    		$zip->extractTo("../");
+    		array_map( "unlink", glob( "../images/favicon.*" ) );
+    		unlink("favicons.zip");
+    	}
+    }
  ?>
 <html>
 	<head>
-		<title>Dashboard</title>
+		<title>Settings</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-		<link href="../css/custom.css?v=0.2" rel="stylesheet">
+		<link href="../css/custom.css?v=0.21" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<script>
+			$(document).ready(function() {
+  				$('#tooltip').tooltip({ placement: 'right'});
+			});
+		</script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -65,21 +95,37 @@
 				<div class="col-lg-12">
 					<div class="box">
 						<div class="header">
-							<p><i class="fa fa-users" aria-hidden="true"></i> Users</p>
-							<a href="invite.php"><button class="btn btn-default add"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-user" aria-hidden="true"></i></button></a>
+							<p><i class="fa fa-cog" aria-hidden="true"></i> Settings</p>
 						</div>
-						<div>
-							<?php
-								require_once("../includes/dbconnect.php");
-								$results = $connection->query("Select Email, Username, Rank FROM Users");
-								if($results->num_rows > 0){
-                					while($row = $results->fetch_assoc()){
-                						$hashed = md5($row['Email']);
-                						echo('<div class="user"><div class="user-img"><img src="https://www.gravatar.com/avatar/' . $hashed . '?d=mm"></div>
-                						<div class="user-details"><h3>' . $row['Username'] . '</h3><p>' . $row['Email'] . '</p><p class="rank">' . $row['Rank'] . '</p></div></div>');
-                					}
-                				}							
-                			?>
+						<div class="box-content">
+							<form method="POST" action="Actions/settings.php">
+								<p>Site title:</p>
+								<?php
+									require_once("../includes/dbconnect.php");
+									$results = $connection->query("Select Title, Description From Settings");
+									if($results->num_rows > 0){
+										while($row = $results->fetch_assoc()){
+											echo("<input name='Title' class='large-input' value='" . $row['Title'] . "'>");
+											echo('<p>Site description:</p><input name="Description" class="large-input" value="' . $row['Description'] . '">');
+										}
+									}else{
+										echo('<input name="Title" class="large-input"><p>Site description:</p><input name="description" class="large-input">');
+									}
+									
+								?>
+								<input type="submit" class="btn btn-primary">
+							</form>
+							<form method="POST" enctype="multipart/form-data" action="Actions/upload.php">
+								<p>Site image</p>
+								<?php
+									$file = glob("../favicon.*")[0];
+									echo("<img class='image' src='" . $file . "'>");
+								?>
+								<input type="file" name="file" id="file" onchange="this.form.submit();" class="inputfile" />
+								<button class="btn btn-primary" type="button"><label for="file" class="filelabel">Choose a file</label></button>
+								<br>
+								<p id="generator">Use Favicon Generator:</p><input type="checkbox" name="generator"><i class="fa fa-question-circle" aria-hidden="true" rel="tooltip" title="Creates multiple icons for mobile and browsers" id="tooltip"></i>
+							<form>
 						</div>
 					</div>
 				</div>
@@ -87,6 +133,3 @@
 		</div>
 	</body>
 </html>
-
-admin
-administrator
