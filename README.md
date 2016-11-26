@@ -26,16 +26,15 @@ Or if you want to help out but just don't know what to do contact one of the dev
 published to the live site ASAP - Rían</li>
 </ul>
 ##Developer Contacts:
-
+###Richard Beattie - Head Web Developer
+<ul>
+<li>Website: beattbots.com</li>
+<li>Email: contact@beattbots.com</li>
+</ul>
 ###Rían Errity - Web Designer/Developer
 <ul>
 <li>Website: https://paradaux.pw/dev</li>
 <li>Email: rian@paradaux.pw</li>
-</ul>
-###Richard Beattie - Web Developer
-<ul>
-<li>Website: beattbots.com</li>
-<li>Email: contact@beattbots.com</li>
 </ul>
 
 ## Contributors
