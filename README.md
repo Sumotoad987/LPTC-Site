@@ -7,12 +7,25 @@ LPTC-Site is powered by Bootstrap 3.0, Javascript, PHP 5.3, XML, HTML and CSS3
 Full Contributors List below
 
 
-Features in progress:
+##Features in progress
+###CMS
 <ul>
-<li>CMS</li>
-<li>Style</li>
-<li>Resources</li>
+<li>Rank system</li>
+<li>Newsletter system</li>
+<li>Custom Headers</li>
+<li>Automatic email system to generate api key</li>
+<li>Dashboard</li>
+<li>User profiles</li>
+<li>Page creation</li>
 </ul>
+###Website
+<ul>
+<li>Get involved page</li>
+<li>What you need page</li>
+<li>Calendar displaying top 3 results</li>
+<li>Link to add name to scratch/html circle</li>
+</ul>
+
 
 ##Want to get involved
 
