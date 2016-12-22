@@ -7,7 +7,8 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-		<link href="../css/custom.css" rel="stylesheet">
+		<script src="../js/BeattCMS.js" type="text/javascript"></script>
+		<link href="../css/custom.css?v=0.12" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 	</head>
 	<body>
@@ -25,22 +26,9 @@
 				</div>
 				<div class="collapse navbar-collapse" id="collapseable"> 
 					<ul class="nav navbar-nav side-nav">
-						<li class="active"><a href="index.php">Dashboard</a></li>
-						<li><a href="posts.php">Posts</a></li>
-						<li><a href="#">Users</a></li>
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pages<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Manage pages</a></li> 
-								<li><a href="#">Create new page</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Addons<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Widgets</a></li>
-								<li><a href="#">Plugins</a></li>
-							</ul>
-						</li>
-						<li><a href="settings.php">Settings</a></li>
+						<?php
+							include("../includes/navigation.html");
+						?>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>

@@ -178,9 +178,11 @@ h1{
 	padding-top:2%;
 }
 
-.side-nav li{
+.side-nav>li{
 	border-top:1px solid #a6a6a6;
 	width:100%;
+}
+.side-nav>li:last-child{
 	border-bottom:1px solid #a6a6a6;
 }
 
@@ -348,7 +350,8 @@ h1{
 
 .box-content{
  padding:15px;
- overflow: hidden;
+ overflow: visible;
+ padding-bottom:30px;
 }
 
 .box-content p{
@@ -405,4 +408,101 @@ input[type=checkbox]{
 	margin-right:5px;
 }
 
+table, tr{
+	border-bottom: 0.5px solid rgba(221, 221, 221, 0.58) !important;
+    border-collapse: collapse !important;
+}
+
+td, th{
+	padding:10px;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(221, 221, 221, 0.17);
+}
+
+[data-toggle=tooltip]{
+	color:black;
+	text-decoration:none;
+}
+
+[data-toggle=tooltip]:hover{
+	text-decoration:none;
+	color:black;
+}
+
+.premissons{
+	width:100% !important;
+}
+
+#rotate{
+	-webkit-transform: rotate(-90deg);     
+	transform: rotate(-90deg);
+}
+
+#rotateForward{
+	-webkit-transition: 0.5s;
+  	-moz-transition: 0.5s;
+ 	-ms-transition: 0.5s;
+  	-o-transition: 0.5s;
+  	transition: 0.5s;
+  	-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+    transform: rotate(-90deg);
+}
+
+#rotateBack{
+	-webkit-transition: 0.5s;
+  	-moz-transition: 0.5s;
+ 	-ms-transition: 0.5s;
+  	-o-transition: 0.5s;
+  	transition: 0.5s;
+  	-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+    transform: rotate(0deg);
+}
+
+.indentedOptions{
+	display:none !important;
+}
+
+
+button.edit{
+	float:right;
+	background:none!important;
+    border:none;
+}
+
+.vertical-dropdown{
+	z-index:inherit;
+	background-color:inherit;
+	position:inherit;
+	border:none;
+	box-shadow:none;
+	-webkit-box-shadow:none;
+	margin-left:40px;
+}
+
+.vertical-dropdown>li>a{
+	color:#9d9d9d;
+	padding:3px 20px 3px 0px;
+}
+
+.vertical-dropdown>li>a:hover{
+	background-color:initial;
+	color:#fff;
+}
+
+li>.vertical-toggle{
+	display:inline-block !important;
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+
+li>.vertical-toggle:first-child{
+	padding-left:15px !important;
+}
+
+.open>a{
+	background-color:initial !important;
+	padding-bottom:0px !important;
+}
 

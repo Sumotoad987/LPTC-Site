@@ -557,9 +557,11 @@
        * @param [tokens]
        * @returns {string}
        */
-      var generateA = function (text, classes, inline, tokens) {
+      var generateA = function (text, classes, name, datarole, inline, tokens) {
         return '<a tabindex="0"' +
             (typeof classes !== 'undefined' ? ' class="' + classes + '"' : '') +
+            (typeof name !== 'undefined' ? 'name="' + name + '"' : '') +
+        	(typeof datarole !== 'undefined' ? 'data-role="' + datarole + '"' : '') +
             (typeof inline !== 'undefined' ? ' style="' + inline + '"' : '') +
             (that.options.liveSearchNormalize ? ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' : '') +
             (typeof tokens !== 'undefined' || tokens !== null ? ' data-tokens="' + tokens + '"' : '') +
@@ -608,6 +610,14 @@
             isOptgroup = $parent[0].tagName === 'OPTGROUP',
             isOptgroupDisabled = isOptgroup && $parent[0].disabled,
             isDisabled = this.disabled || isOptgroupDisabled;
+        
+        if(this.className.includes("dropdown")){
+        	var defaultString = "<i class='fa fa-caret-down' id='rotate' onclick='dropdownOptions(this)' aria-hidden='true'></i> "
+        	text = defaultString + text;
+        }
+            
+        var optionName = this.getAttribute("name");
+        var optionDataRole = this.getAttribute("data-role");
 
         if (icon !== '' && isDisabled) {
           icon = '<span>' + icon + '</span>';
@@ -661,11 +671,11 @@
             return;
           }
 
-          _li.push(generateLI(generateA(text, 'opt ' + optionClass + optGroupClass, inline, tokens), index, '', optID));
+          _li.push(generateLI(generateA(text, 'opt ' + optionClass + optGroupClass, optionName, optionDataRole, inline, tokens), index, '', optID));
         } else if ($this.data('divider') === true) {
           _li.push(generateLI('', index, 'divider'));
         } else if ($this.data('hidden') === true) {
-          _li.push(generateLI(generateA(text, optionClass, inline, tokens), index, 'hidden is-hidden'));
+          _li.push(generateLI(generateA(text, optionClass, optionName, optionDataRole, inline, tokens), index, 'hidden is-hidden'));
         } else {
           var showDivider = this.previousElementSibling && this.previousElementSibling.tagName === 'OPTGROUP';
 
@@ -698,7 +708,7 @@
             liIndex++;
             _li.push(generateLI('', null, 'divider', optID + 'div'));
           }
-          _li.push(generateLI(generateA(text, optionClass, inline, tokens), index));
+          _li.push(generateLI(generateA(text, optionClass, optionName, optionDataRole,inline, tokens), index));
         }
 
         that.liObj[index] = liIndex;

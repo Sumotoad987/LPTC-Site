@@ -16,10 +16,8 @@
     include("../includes/PasswordHash.php");
     $hasher = new PasswordHash(8, false);
     if (strlen($password) > 72) { die("Password must be 72 characters or less"); }
-    
     // The $hash variable will contain the hash of the password
     $hash = $hasher->HashPassword($_POST['password']);
-    
     if (strlen($hash) >= 20) {
        	$stmt=$connection->prepare("Update Users Set Username = ?, HashedPassword = ?, AuthCode = NULL WHERE AuthCode = ?");
        	$stmt->bind_param("sss", $_POST['username'], $hash, $_POST['authCode']);

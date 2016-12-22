@@ -1,9 +1,17 @@
 <?php
     session_start();
+    require_once("../includes/dbconnect.php");
+    $stmt = $connection->prepare("Select Email, Username, Rank From Users Where ID = ?");
+   	$id = (int)$_POST['id'];
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($email, $username, $rank);
+    $stmt->fetch();
+    $stmt->close();
  ?>
 <html>
 	<head>
-		<title>Add user</title>
+		<title>User</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
@@ -66,22 +74,31 @@
 					<div class="box">
 						<div class="header" style="text-align:center">
 							<a href="users.php" style="float:left"><i class="fa fa-arrow-left fa-1" aria-hidden="true"></i> Back</a>	
-							<p><b>Invite new user</b></p>
+							<p><b><?php echo($username); ?></b></p>
 							<a href="users.php" style="visibility:hidden; float:right"><i class="fa fa-arrow-left fa-1" aria-hidden="true"></i> Back</a>	
 						</div>
 						<div class="box-content">
 							<form action="Actions/invite.php" method="POST">
-								<p>Email:</p>
-								<input name="email" class="large-input">
-								<p>Rank</p>
-								<select name="rank" class="selectpicker">
-									<option>Admin</option>
-									<option>Author</option>
-								</select>
-								<p>Custom message</p>
-								<textarea maxlength="300" class="message" rows="3"></textarea>
-								<p id="count_message"></p>
-								<input class="btn btn-primary" type="submit" value="Invite user" style="float:right;">
+								<p>Username:</p>
+								<?php
+									echo('<input name="username" class="large-input" value="' . $username . '"><p>Email:</p><input name="email" class="large-input" value="' . $email . '">');
+									//
+									$sql = "SELECT Name From Ranks";
+									$result = $connection->query($sql);
+									echo("<p>Rank</p><select name='rank' class='selectpicker'>");
+									if($result->num_rows > 0){
+										while($row = $result->fetch_assoc()){
+											if($row['Name'] == $rank){
+												echo("<option selected>"  . $row['Name'] . "</option>");
+											}else{
+												echo("<option>"  . $row['Name'] . "</option>");
+											}
+										}
+									}	
+									echo("</select>");
+								?>
+								<br>
+								<input class="btn btn-primary" type="submit" value="Save user" style="">
 							</form>
 						</div>
 					</div>

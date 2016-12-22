@@ -55,22 +55,9 @@
 				</div>
 				<div class="collapse navbar-collapse" id="collapseable"> 
 					<ul class="nav navbar-nav side-nav">
-						<li><a href="index.php">Dashboard</a></li>
-						<li><a href="#">General</a></li>
-						<li><a href="posts.php">Posts</a></li>
-						<li class="active"><a href="#">Users</a></li>
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Pages<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Manage pages</a></li> 
-								<li><a href="#">Create new page</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Addons<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Widgets</a></li>
-								<li><a href="#">Plugins</a></li>
-							</ul>
-						</li>
+						<?php
+							include("../includes/navigation.html");
+						?>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>
