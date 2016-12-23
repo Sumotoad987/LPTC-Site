@@ -506,3 +506,8 @@ li>.vertical-toggle:first-child{
 	padding-bottom:0px !important;
 }
 
+.dropdown-menu{
+	min-height:0 !important;
+}
+
+

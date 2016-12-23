@@ -83,7 +83,7 @@
 								<?php
 									echo('<input name="username" class="large-input" value="' . $username . '"><p>Email:</p><input name="email" class="large-input" value="' . $email . '">');
 									//
-									$sql = "SELECT Name From Ranks";
+									$sql = "SELECT Name From Ranks ORDER BY id";
 									$result = $connection->query($sql);
 									echo("<p>Rank</p><select name='rank' class='selectpicker'>");
 									if($result->num_rows > 0){

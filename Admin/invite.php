@@ -74,10 +74,22 @@
 								<p>Email:</p>
 								<input name="email" class="large-input">
 								<p>Rank</p>
-								<select name="rank" class="selectpicker">
-									<option>Admin</option>
-									<option>Author</option>
-								</select>
+								<?php
+									require_once("../includes/dbconnect.php");
+									$sql = "SELECT Name From Ranks ORDER BY id";
+									$result = $connection->query($sql);
+									echo("<select name='rank' class='selectpicker'>");
+									if($result->num_rows > 0){
+										while($row = $result->fetch_assoc()){
+											if($row['Name'] == $rank){
+												echo("<option selected>"  . $row['Name'] . "</option>");
+											}else{
+												echo("<option>"  . $row['Name'] . "</option>");
+											}
+										}
+									}	
+									echo("</select>");
+								?>
 								<p>Custom message</p>
 								<textarea maxlength="300" class="message" rows="3"></textarea>
 								<p id="count_message"></p>
