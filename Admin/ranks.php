@@ -1,5 +1,9 @@
 <?php
     session_start();
+    require_once("../includes/permissons.php");
+   	require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
+    $p->hasPermisson("Rank");
  ?>
 <html>
 	<head>

@@ -25,6 +25,10 @@
     		unlink("favicons.zip");
     	}
     }
+    require_once("../includes/permissons.php");
+   	require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
+    $p->hasPermisson("Admin");
  ?>
 <html>
 	<head>
@@ -88,7 +92,6 @@
 							<form method="POST" action="Actions/settings.php">
 								<p>Site title:</p>
 								<?php
-									require_once("../includes/dbconnect.php");
 									$results = $connection->query("Select Title, Description From Settings");
 									if($results->num_rows > 0){
 										while($row = $results->fetch_assoc()){

@@ -1,8 +1,8 @@
 <?php
     session_start();
-    if(isset($_SESSION["username"]) == FALSE){
-        header("Location: ../");
-    }
+    require_once("../includes/dbconnect.php");
+    require_once("../includes/permissons.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
 	if(isset($_POST['id'])){
 		require_once("../includes/dbconnect.php");
        	$stmt = $connection->prepare("Select Title, Content, Tags From Posts WHERE id = ?");
@@ -12,6 +12,9 @@
        	$stmt->bind_result($title, $content, $tags);
        	$stmt->fetch(); 
        	$stmt->close();
+       	 $p->hasPermisson("Post_Edit");
+	}else{
+		$p->hasPermisson("Post_Create");
 	}
 ?>
 <html>

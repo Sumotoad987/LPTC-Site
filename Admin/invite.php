@@ -1,5 +1,9 @@
 <?php
     session_start();
+    require_once("../includes/permissons.php");
+    require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
+    $p->hasPermisson("User_Invite");
  ?>
 <html>
 	<head>
@@ -75,7 +79,6 @@
 								<input name="email" class="large-input">
 								<p>Rank</p>
 								<?php
-									require_once("../includes/dbconnect.php");
 									$sql = "SELECT Name From Ranks ORDER BY id";
 									$result = $connection->query($sql);
 									echo("<select name='rank' class='selectpicker'>");

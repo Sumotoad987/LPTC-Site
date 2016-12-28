@@ -13,9 +13,9 @@
             $config = parse_ini_file($path);
             $connection = mysqli_connect($config['servername'],$config['username'],$config['password'],$config['dbname']);
         }
-        
         // If connection was not successful, handle the error
         if($connection === false) {
+        	echo("Not succesful");
             // Handle error - notify administrator, log to a file, show an error screen, etc.
             return mysqli_connect_error();
         }

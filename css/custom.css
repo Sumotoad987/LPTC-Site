@@ -510,4 +510,21 @@ li>.vertical-toggle:first-child{
 	min-height:0 !important;
 }
 
+.denied{
+	color:red;
+	animation: fadeinout 4s linear forwards;
+	-webkit-animation: fadeinout 4s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,85% { opacity: 1; }
+  100% { opacity: 0;}
+}
+
+@keyframes fadeinout {
+  0%,85% { opacity: 1; }
+  100% { opacity: 0;}
+}
+
+
 

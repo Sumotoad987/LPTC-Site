@@ -1,6 +1,9 @@
 <?php
     session_start();
-    require_once("../includes/dbconnect.php");
+    require_once("../includes/permissons.php");
+   	require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
+    $p->hasPermisson("User_Edit");
     $stmt = $connection->prepare("Select Email, Username, Rank From Users Where ID = ?");
    	$id = (int)$_POST['id'];
     $stmt->bind_param("i", $id);

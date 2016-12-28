@@ -1,6 +1,9 @@
 <?php
-    session_start();
- ?>
+	session_start();
+   	require_once("../includes/permissons.php");
+   	require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
+?>
 <html>
 	<head>
 		<title>Dashboard</title>
@@ -8,7 +11,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="../js/BeattCMS.js" type="text/javascript"></script>
-		<link href="../css/custom.css?v=0.12" rel="stylesheet">
+		<link href="../css/custom.css?v=0.14" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 	</head>
 	<body>
@@ -50,6 +53,11 @@
 				</div>
 			</div>
 			<div class="row">
+				<?php
+					if(isset($_GET['denied'])){
+						echo("<p class='denied'>Sorry you do not have the required permisson to access that page</p>");
+					}
+				?>
 				<div class="col-lg-9">
 					<div class="panel panel-primary">
 						<div class="panel-heading">

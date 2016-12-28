@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	require_once("../includes/permissons.php");
+   	require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
+	if(isset($_POST['Rank_Name'])){
+		 $p->hasPermisson("Rank_Edit");
+	}else{
+		$p->hasPermisson("Rank_Create");
+	}
+?>
 <html>
 	<head>
 		<title>New rank</title>
@@ -156,11 +167,12 @@
 							$("#myselect").selectpicker("val", currentValues.diff(values));
 						});
 						selected = $("[selected]");
-						console.log(selected);
 						for(var e = 0; e < selected.length; e++){
 							dataRole = selected[e].getAttribute("data-role");
-							above = $("a[name=" + dataRole + "]");
-							openDropDown(above);
+							if(dataRole != null){
+								above = $("a[name=" + dataRole + "]");
+								openDropDown(above);
+							}
 						}
         			}
     			}, 100);
@@ -205,9 +217,11 @@
 				}
 			}
 			function openDropDown(option){
+				console.log("openDropDown");
 				display="block";
 				name = $(option).attr("name");
 				options = Array.prototype.slice.call(document.querySelectorAll("a[data-role=" + name + "]"));
+				console.log(options)
 				for(var i = 0; i < options.length; i++){
 					$(options[i]).parent().insertAfter(option.parentElement);
 					options[i].style="display:" + display + "!important;";

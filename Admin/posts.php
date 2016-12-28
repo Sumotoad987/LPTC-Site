@@ -11,6 +11,9 @@
     
         return $result;
     }
+    require_once("../includes/permissons.php");
+   	require_once("../includes/dbconnect.php");
+    $p = new Permissons($_SESSION["rank"], $connection);
  ?>
 <html>
 	<head>
@@ -62,7 +65,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <?php
-                    	require_once("../includes/dbconnect.php");
                 		$sql = "SELECT * from Posts";
                 		$results = $connection->query($sql);
                 		if($results->num_rows > 0){
