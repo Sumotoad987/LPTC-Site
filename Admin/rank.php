@@ -16,7 +16,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="../js/bootstrap-select.js" type="text/javascript"></script>
-		<link href="../css/custom.css?v=0.28" rel="stylesheet">
+		<link href="../css/custom.css?v=<?= filemtime('../css/custom.css') ?>" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<link href="../css/bootstrap-select.css" rel="stylesheet">	
 	</head>

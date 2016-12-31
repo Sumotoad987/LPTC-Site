@@ -15,9 +15,6 @@ function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzAB
 }
 $stmt = $connection->prepare("INSERT INTO Users (Email, Rank, AuthCode) Values (?, ?, ?)");
 $authCode = random_str("50");
-echo($authCode);
-echo($_POST["email"]);
-echo($_SESSION["username"]);
 $stmt->bind_param("sss", $_POST["email"], $_POST['rank'], $authCode);
 if(!$stmt->execute()){
 	trigger_error("there was an error....".$connection->error, E_USER_WARNING);

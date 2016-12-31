@@ -81,9 +81,10 @@
 							<a href="users.php" style="visibility:hidden; float:right"><i class="fa fa-arrow-left fa-1" aria-hidden="true"></i> Back</a>	
 						</div>
 						<div class="box-content">
-							<form action="Actions/invite.php" method="POST">
+							<form action="Actions/edit-user.php" method="POST">
 								<p>Username:</p>
 								<?php
+									echo("<input name='id' type='hidden' value='{$_POST['id']}'>");
 									echo('<input name="username" class="large-input" value="' . $username . '"><p>Email:</p><input name="email" class="large-input" value="' . $email . '">');
 									//
 									$sql = "SELECT Name From Ranks ORDER BY id";
