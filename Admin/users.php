@@ -8,12 +8,12 @@
  ?>
 <html>
 	<head>
-		<title>Dashboard</title>
+		<title>Users</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="../css/custom.css?v=<?= filemtime('../css/custom.css') ?>" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -30,12 +30,19 @@
 				</div>
 				<div class="collapse navbar-collapse" id="collapseable"> 
 					<ul class="nav navbar-nav side-nav">
+						<!-- Side navigation -->
 						<?php
 							include("../includes/navigation.html");
 						?>
+						<!-- End of side navigation -->
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<span class="glyphicon glyphicon-user"></span> 
+								<?php echo($_SESSION["username"]);?>
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">View account</a></li>
 								<li><a href="#">Edit account</a></li>
@@ -50,15 +57,15 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Users</h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
 					<div class="box">
 						<div class="header">
 							<p><i class="fa fa-users" aria-hidden="true"></i> Users</p>
-							<a href="invite.php"><button class="btn btn-default add"><i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-user" aria-hidden="true"></i></button></a>
+							<a href="invite.php">
+								<button class="btn btn-default add">
+									<i class="fa fa-plus" aria-hidden="true"></i> 
+									<i class="fa fa-user" aria-hidden="true"></i>
+								</button>
+							</a>
 						</div>
 						<div>
 							<?php				

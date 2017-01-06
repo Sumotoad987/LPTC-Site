@@ -1,46 +1,57 @@
 <html>
     <head>
         <title>Login</title>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="css/font-awesome/css/font-awesome.css" rel="stylesheet">
     </head>
     <body>
         <div class="login-box">
-            <h3>Login to your account</h3>
-            <br>
             <form action="Content/login.php" method="post" role="form">
-                <div class="input-group">
-                    <input class="form-control" type="text" name="email" id="email" placeholder="Email">
-                    <br>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
-                    <br>
-                    <input type="submit" class="btn btn-primary signin" value="Login">
-                </div>
+                <p>Email</p>
+                <input class="form-control" type="text" name="email" id="email" placeholder="Email">
+                <br>
+                <p>Password</p>
+                <input class="form-control" type="password" name="password" placeholder="Password">
+                <br>
+                <input type="submit" class="btn btn-primary login" value="Login">
             </form>
+            <a href="index.php"><i class="fa fa-arrow-left fa-1" aria-hidden="true"></i> Back to site</a>
         </div>
         <style>
             body{
                 background-color:#eee;
             }
             .login-box{
-                width:25%;
-                text-align:center;
-                background-color:white;
-                padding:25px;
-                border-radius:5px;
-                margin-top:10%;
+                width:25%;     
+                margin-top:13%;
                 margin-left:auto;
                 margin-right:auto;
             }
-            .signin{
-                width:50%;
+            .login-box form{ 
+            	background-color:white;
+            	padding:25px;
+            	border-radius:5px;
             }
-            .input-group{
-            	margin-left:auto;
-            	margin-right:auto;
+            .login-box a{
+            	bottom:20;
+            	position:fixed;
             }
-            .input-group .form-control{
+            .login-box a:hover{
+            	text-decoration:none;
+            }
+            .login{
+                width:100%;
+            }
+            .login-box p{
+            	font-weight:600;
+            	font-size:15px;
+            }
+            .login-box .form-control{
             	margin-bottom:2%;
             	border-radius:2px !important;
+            	height:6%;
+            	font-size:16px;
+            	width:100%;
             }
         </style>
     </body>

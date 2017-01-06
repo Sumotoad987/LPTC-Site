@@ -25,10 +25,11 @@
 	<head>
 		<title>Create page</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="../css/custom.css?v=<?= filemtime('../css/custom.css') ?>" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../js/BeattCMS.js" type="text/javascript"></script>
 		<script>
 			templateContent = "";
 			function html(){
@@ -75,25 +76,9 @@
 				}
 				value = $(".template-option-selected").attr("value");
 				getTemplate(value);
-				function myFunc(){
-					var input = $(".editorTextArea").val();
-					if(input == ""){
-						$("#postTitle").text("Title");
-					}else{
-						$("#postTitle").text(input);
-					}
-				}       
-				myFunc();
-		
-				//or this
-				$('.editorTextArea').keyup(function(){
-					myFunc();
-				});
-		
-				//and this for good measure
-				$('.editorTextArea').change(function(){
-					myFunc(); //or direct assignment $('#txtHere').html($(this).val());
-				});
+				//Update the side title with the user editable title
+				updateOnChange($('.titleTextArea'), $("#postTitle"), "Title");
+				//END
 				$(".template-option").click(function(event){
 					options = $(".template-option-selected");
 					$(options[0]).removeClass("template-option-selected");
@@ -146,7 +131,6 @@
 								}
 								echo('<input type="submit" class="btn btn-primary" style="margin-right:5%;" value="' . $value . '">');
 							?>
-							<button class="btn btn-default" style="margin-left:5%;">Preview</button>
 						</div>
 						<li style="background-color:#cccccc;">
 							<a><div onclick="display();">Templates<i style="float:right" class="fa fa-arrow-down fa-1" aria-hidden="true"></i><i style="float:right;display:none;" class="fa fa-arrow-up fa-1" aria-hidden="true"></i></div></a>
@@ -192,15 +176,10 @@
 			</div>
 		</nav>
 		<div class="container-fluid content">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Posts</h1>
-				</div>
-			</div>
             <div class="row">
                 <div class="col-lg-12">
                 	<div class="box">
-                		<textarea id="pageTitle" class="editorTextArea" name="Title" rows="1" placeholder="Title"><?php if(isset($name)){echo($name);}?></textarea>
+                		<textarea id="pageTitle" class="titleTextArea" name="Title" rows="1" placeholder="Title"><?php if(isset($name)){echo($name);}?></textarea>
                 		<?php
                 			if(isset($name)){
                 				echo("<input type='hidden' name='old' value='{$name}'>");

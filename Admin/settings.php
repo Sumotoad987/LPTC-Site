@@ -34,14 +34,20 @@
 	<head>
 		<title>Settings</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="../css/custom.css?v=0.22" rel="stylesheet">
+		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-		<link href="../css/custom.css?v=0.21" rel="stylesheet">
-		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<script src="../js/BeattCMS.js" type="text/javascript"></script>
 		<script>
 			$(document).ready(function() {
-  				$('#tooltip').tooltip({ placement: 'right'});
+  				tooltipRight();
 			});
+			function prepareForm(){
+				var editor = ace.edit('htmlEditor');
+				var textarea = $('textarea[name="Header"]');
+				textarea.val(editor.getSession().getValue());
+			}
 		</script>
 	</head>
 	<body>
@@ -59,12 +65,19 @@
 				</div>
 				<div class="collapse navbar-collapse" id="collapseable"> 
 					<ul class="nav navbar-nav side-nav">
+						<!-- Start of side nav -->
 						<?php
 							include("../includes/navigation.html");
 						?>
+						<!-- End of side nav -->
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<span class="glyphicon glyphicon-user"></span> 
+								<?php echo($_SESSION["username"]);?>
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">View account</a></li>
 								<li><a href="#">Edit account</a></li>
@@ -79,30 +92,34 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>Users</h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
 					<div class="box">
 						<div class="header">
 							<p><i class="fa fa-cog" aria-hidden="true"></i> Settings</p>
 						</div>
 						<div class="box-content">
-							<form method="POST" action="Actions/settings.php">
+							<form onsubmit="prepareForm()" method="POST" action="Actions/settings.php">
 								<p>Site title:</p>
 								<?php
-									$results = $connection->query("Select Title, Description From Settings");
+									$results = $connection->query("Select Title, Description, Header From Settings");
 									if($results->num_rows > 0){
 										while($row = $results->fetch_assoc()){
-											echo("<input name='Title' class='large-input' value='" . $row['Title'] . "'>");
-											echo('<p>Site description:</p><input name="Description" class="large-input" value="' . $row['Description'] . '">');
+											echo("<input name='Title' class='large-input' value='{$row['Title']}'>");
+											echo("<p>Site description:</p><input name='Description' class='large-input' value='{$row['Description']}'>");
+											$header = isset($row['Header']) ? $row['Header'] : "";
 										}
-									}else{
-										echo('<input name="Title" class="large-input"><p>Site description:</p><input name="description" class="large-input">');
 									}
-									
 								?>
+								<p>Header:</p>
+								<textarea style="display:none" name='Header'><?php echo($header); ?></textarea>
+								<div id="htmlEditor" class='headerEditor'></div>
+								<script src="../includes/ace-src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+								<script>
+									var editor = ace.edit("htmlEditor");
+									editor.setTheme("ace/theme/tommorow");
+									editor.getSession().setMode("ace/mode/html");
+									value = $("[name=Header]").text();
+									editor.session.setValue(value, -1);
+								</script>
 								<input type="submit" class="btn btn-primary">
 							</form>
 							<form method="POST" enctype="multipart/form-data" action="Actions/upload.php">

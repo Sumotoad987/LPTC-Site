@@ -8,11 +8,11 @@
 	<head>
 		<title>Dashboard</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="../css/custom.css?v=0.14" rel="stylesheet">
+		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="../js/BeattCMS.js" type="text/javascript"></script>
-		<link href="../css/custom.css?v=0.14" rel="stylesheet">
-		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -34,7 +34,12 @@
 						?>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<span class="glyphicon glyphicon-user"></span> 
+								<?php echo($_SESSION["username"]);?>
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">View account</a></li>
 								<li><a href="#">Edit account</a></li>
@@ -47,11 +52,6 @@
 			</div>
 		</nav>
 		<div class="container-fluid content">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Dashboard</h1>
-				</div>
-			</div>
 			<div class="row">
 				<?php
 					if(isset($_GET['denied'])){

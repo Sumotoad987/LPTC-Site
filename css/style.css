@@ -79,16 +79,10 @@ h1,h2,h3,h4,h5,h6,label,p{
 	font-size:1.2em;
 	text-decoration: none;
 	display: block;
-	padding: 1.6em 1em;
+	padding: 2.0em 1em;
 	text-align: center;
 }
 .top-nav ul li.active a{
-	color: #fff;
-	font-size:1.2em;
-	text-decoration: none;
-	display: block;
-	padding: 1.6em 1em;
-	text-align: center;
 	background:  #00bce4;
 }
 .top-nav span.menu {

@@ -21,47 +21,29 @@
 	<head>
 		<title>Post</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<link href="../css/custom.css?v=1.2" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<link href="../css/bootstrap-tagsinput.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 	    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 	    <script src="../js/bootstrap-tagsinput.js"></script>
-  		<script>tinymce.init({ selector:'.wysiwyg', plugins:['link autoresize'], menubar: false, statusbar: false, toolbar: ["formatselect fontsizeselect | bold italic underline subscript superscript | alignleft aligncenter alignright | bullist numlist | blockquote link"]});</script>
+	    <script src="../js/BeattCMS.js" type='text/javascript'></script>
   		<?php
-  			echo("<script> var tags = '" . $tags . "';</script>");
+  			if(isset($tags)){
+  				echo("<script> var setTags = '" . $tags . "';</script>");
+  			}
   		?>
   		<script>
+  		tinymce.init({ selector:'.wysiwyg', plugins:['link autoresize'], menubar: false, statusbar: false, toolbar: ["formatselect fontsizeselect | bold italic underline subscript superscript | alignleft aligncenter alignright | bullist numlist | blockquote link"]});
   		$(document).ready(function(){
-  			var indiTags = tags.split(", ")
-  			for(var i = 0; i < indiTags.length; i++){
-  				$('#tags').tagsinput('add', indiTags[i]);
-  			}
-  		    function myFunc(){
-  		        var input = $(".editorTextArea").val();
-  		        if(input == ""){
-  		        	$("#postTitle").text("Title");
-  		        }else{
-  		        	$("#postTitle").text(input);
-  		        }
-  		    }       
-  		    myFunc();
-  		
-  		    //either this
-  		    $('.editorTextArea').keyup(function(){
-  		        $('#postTitle').html($(this).val());
-  		    });
-  		
-  		    //or this
-  		    $('.editorTextArea').keyup(function(){
-  		        myFunc();
-  		    });
-  		
-  		    //and this for good measure
-  		    $('.editorTextArea').change(function(){
-  		        myFunc(); //or direct assignment $('#txtHere').html($(this).val());
-  		    });
+  			updateOnChange($('.titleTextArea'), $('#postTitle'), 'Title');
+  			if (typeof setTags !== 'undefined') {
+  				var indiTags = setTags.split(", ");
+  				for(var i = 0; i < indiTags.length; i++){
+  					$('#tags').tagsinput('add', indiTags[i]);
+  				}	
+			}
   		});
   		
   		function copyTags(){		  
@@ -96,11 +78,8 @@
 						<div id="postInfo">
 							<h2 style="color:white" id="postTitle">Title</h2>
 							<?php
-								$value = "Post";
-								if(isset($_POST['id'])){
-									$value = "Update";
-								}
-								echo('<input type="submit" class="btn btn-primary" style="margin-right:5%;" value="' . $value . '">');
+								$value = isset($_POST['id']) ? 'Update' : "Post";
+								echo("<input type='submit' class='btn btn-primary' style='margin-right:5%;' value='{$value}'>");
 							?>
 							<button class="btn btn-default" style="margin-left:5%;">Preview</button>
 						</div>
@@ -113,7 +92,12 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								<span class="glyphicon glyphicon-user"></span> 
+								<?php echo($_SESSION["username"]);?>
+								<span class="caret"></span>
+							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">View account</a></li>
 								<li><a href="#">Edit account</a></li>
@@ -126,14 +110,9 @@
 			</div>
 		</nav>
 		<div class="container-fluid content">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Posts</h1>
-				</div>
-			</div>
             <div class="row">
                 <div class="col-lg-12 editor" style="padding-left:12.5%;padding-right:12.5%;">
-                    <textarea class="editorTextArea" name="Title" rows="1" placeholder="Title"><?php if(isset($title)){echo($title);}?></textarea>
+                    <textarea class="titleTextArea" name="Title" rows="1" placeholder="Title"><?php if(isset($title)){echo($title);}?></textarea>
                     <textarea class="wysiwyg" name="Content"><?php if(isset($title)){echo($content);}?></textarea>
                 	<?php
                 		if(isset($_POST['id'])){
@@ -145,16 +124,5 @@
 		</div>
 		</div>
 		</form>
-        <script>
-            $('.toolbar a').click(function(e){
-                                  console.log("Hello");
-                var command = $(this).data('command');
-                if(command == 'createlink'){
-                    url = prompt('Enter the link here: ', 'http:\/\/');
-                    document.execCommand(command, false, url);
-                }
-                else document.execCommand(command, false, null);
-            });
-        </script>
 	</body>
 </html>

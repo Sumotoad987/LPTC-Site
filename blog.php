@@ -7,7 +7,7 @@
             href="https://fonts.googleapis.com/css?family=Merriweather">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
-    <link href="css/style.css?v=1.1" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css?v=1.2" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,19 +38,24 @@
             hidePosts();
         }
     </script>
+    <?php
+    	include_once('includes/dbconnect.php');
+    	$sql = 'Select Header From Settings';
+    	$result = $connection->query($sql);
+    	if($result->num_rows > 0){
+    		$row = $result->fetch_assoc();
+    		echo($row['Header']);
+    	}
+    ?>	
 </head>
 <body style="font-color:white;">
     <div id="header" class="purple" style="width:100%">
         <div class="container">
             <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
             <div class="top-nav">
-                <ul>
-                    <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
-                    <li class="active"><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
-                    <li><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
-                    <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
-                    <div class="clearfix"></div>
-                </ul>
+                <?php
+                	include('Content/siteNavigation.php');
+                ?>
                 <script>
                     $("span.menu").click(function(){
                         $(".top-nav ul").slideToggle(500, function(){

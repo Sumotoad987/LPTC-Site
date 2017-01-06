@@ -1,1 +1,0 @@
-Hello everyone, this is a page all about us

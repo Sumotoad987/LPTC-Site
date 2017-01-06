@@ -7,6 +7,10 @@ body#admin{
 	margin-top:70px;
 }
 
+body{
+	padding-top:70px;
+}
+
 .byUser{
 	font-size:18px;
 	font-weight:400;
@@ -138,7 +142,7 @@ h1{
     display:block;
 }
 
-.editorTextArea{
+.titleTextArea{
     border:none;
     resize:none;
     font-size:26px;
@@ -147,7 +151,7 @@ h1{
     width:100%;
 }
 
-.editorTextArea:focus{
+.titleTextArea:focus{
     outline: none;
 }
 
@@ -300,6 +304,7 @@ h1{
 .header{
 	border-bottom:1px solid #e9eff3;
 	padding:15px;
+	position:relative;
 }
 
 .header p{
@@ -349,7 +354,16 @@ h1{
 .box-content{
  padding:15px;
  overflow: visible;
- padding-bottom:30px;
+ padding-bottom:15px;
+}
+
+.box-content:before, .box-content:after{
+	content: " ";
+	display: table;
+}
+
+.box-content:after{
+	clear:both;
 }
 
 .box-content p{
@@ -615,6 +629,21 @@ li>.vertical-toggle:first-child{
 .template-option-selected:hover{
 	color:#f2f2f2 !important;
 	cursor:default;
+}
+
+#htmlEditor.headerEditor{
+	height:35%;
+	margin-bottom:2%;
+	border:1px solid #e6e6e6;
+}
+
+form{
+	margin-bottom:0;
+}
+
+.back{
+	position:absolute;
+	left:10;
 }
 
 
