@@ -129,6 +129,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="ProjectOfWeek">
              <d>
             <?php
+            	function is_dir_empty($dir) {
+				  if (!is_readable($dir)) return NULL; 
+				  $handle = opendir($dir);
+				  while (false !== ($entry = readdir($handle))) {
+					if ($entry != "." && $entry != "..") {
+					  return FALSE;
+					}
+				  }
+				  return TRUE;
+				}
                 $column = 1;
                 $other = "";
                 $files = scandir("ninjas/");
@@ -138,8 +148,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $other = "reset";
                     }
                     if( !in_array($files[$number], array("..", ".", ".DS_Store", "index.php"), true)){
-                        echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
-                        $other = "";
+                        if(!is_dir_empty("ninjas/" . $files[$number])){
+                        	echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
+                        	$other = "";
+                        }
                     }
                 }
              ?>
