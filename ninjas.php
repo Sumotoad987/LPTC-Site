@@ -70,15 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	addLinks("c");
         	addLinks("d");
         });
-        window.setInterval(function(){
-            letters = ['c','d']
-            for(i = 0; i < 2; i++){
-            	$(letters[i] + " span").each(function(){
-                	var rotation = getRotationDegrees($(this)) + 0.6;
-                	$(this).css("transform","rotate("+rotation+"deg)");
-            	});
-            }
-        }, 100);
+        var intervalId = beginRotation();
     }else{
         $(function() {
           $("d a").each(function(){
@@ -87,6 +79,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           $("d").wrapInner("<ul></ul>");
         });
     }
+    function beginRotation(){
+    	 var id = window.setInterval(function(){
+            letters = ['c','d']
+            for(i = 0; i < 2; i++){
+            	$(letters[i] + " span").each(function(){
+                	var rotation = getRotationDegrees($(this)) + 0.6;
+                	$(this).css("transform","rotate("+rotation+"deg)");
+            	});
+            }
+        }, 100);
+        return id;
+    }
+    $(document).ready(function(){
+    	$("d a span, c a span").hover(function(){
+    		console.log(intervalId);
+    		clearInterval(intervalId);
+    	}, function(){
+    		intervalId = beginRotation();
+    	});
+    });
     </script>
 </head>
 <body>
