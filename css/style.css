@@ -1,4 +1,10 @@
-y{
+<<<<<<< HEAD
+/*Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+--*/
+html,body{
 	background:#fff;
 	font-size: 100%;
 	font-family: 'DidactGothic';
@@ -73,16 +79,10 @@ h1,h2,h3,h4,h5,h6,label,p{
 	font-size:1.2em;
 	text-decoration: none;
 	display: block;
-	padding: 1.6em 1em;
+	padding: 2.0em 1em;
 	text-align: center;
 }
 .top-nav ul li.active a{
-	color: #fff;
-	font-size:1.2em;
-	text-decoration: none;
-	display: block;
-	padding: 1.6em 1em;
-	text-align: center;
 	background:  #00bce4;
 }
 .top-nav span.menu {
@@ -388,10 +388,13 @@ ul.social li a i.dribble {
 }
 ul.social li a i.facebook {
   background-position: -87px -3px;
+<<<<<<< HEAD
+=======
 }
 ul.social li a i.twitter {
     background-position: -120px -3px;
     width:40px;
+>>>>>>> master
 }
 ul.social li a i:hover{
 	transform: rotatey(-360deg);

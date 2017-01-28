@@ -60,6 +60,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	}
 </script>
+<?php
+    include_once('includes/dbconnect.php');
+    $sql = 'Select Header From Settings';
+    $result = $connection->query($sql);
+    if($result->num_rows > 0){
+    	$row = $result->fetch_assoc();
+    	echo($row['Header']);
+    }
+?>
 </head>
 <body>
 <!--header-->
@@ -70,19 +79,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
 		<div class="top-nav">
 			<span class="menu"><img src="images/menu.png" alt=""> </span>
-				<ul>
-					<li class="active"><a href="index.html">Home</a></li>
-					<li><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
-					<li><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
-					<li><a href="" class="hvr-sweep-to-bottom">Get Involved</a></li>
-				<div class="clearfix"> </div>
-				</ul>
-						<!--script-->
-					<script>
-						$("span.menu").click(function(){
-							$(".top-nav ul").slideToggle(500, function(){
-							});
-						});
+				<?php
+					include('Content/siteNavigation.php');
+				?>
+				<script>
+				$("span.menu").click(function(){
+					$(".top-nav ul").slideToggle(500, function(){
+					});
+				});
 				</script>				
 		</div>
 		<div class="clearfix"> </div>

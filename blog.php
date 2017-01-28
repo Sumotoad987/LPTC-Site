@@ -7,7 +7,7 @@
             href="https://fonts.googleapis.com/css?family=Merriweather">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
-    <link href="css/style.css?v=1.1" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css?v=1.2" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,19 +38,24 @@
             hidePosts();
         }
     </script>
+    <?php
+    	include_once('includes/dbconnect.php');
+    	$sql = 'Select Header From Settings';
+    	$result = $connection->query($sql);
+    	if($result->num_rows > 0){
+    		$row = $result->fetch_assoc();
+    		echo($row['Header']);
+    	}
+    ?>	
 </head>
 <body style="font-color:white;">
     <div id="header" class="purple" style="width:100%">
         <div class="container">
             <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
             <div class="top-nav">
-                <ul>
-                    <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
-                    <li class="active"><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
-                    <li><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
-                    <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
-                    <div class="clearfix"></div>
-                </ul>
+                <?php
+                	include('Content/siteNavigation.php');
+                ?>
                 <script>
                     $("span.menu").click(function(){
                         $(".top-nav ul").slideToggle(500, function(){
@@ -61,14 +66,19 @@
             <div class="clearfix"> </div>
         </div>
     </div>
+    <style>
+    ul{
+    	list-style-position: inside;
+    }
+    </style>
     <div class="container blog-content">
         <div class="row">
             <div class="col-lg-8">
-                <div class="post">
+            	<div class="post">
                     <h2>Coderdojo's back</h2>
                     <hr class="titleHr">
                     <p class="postText">Hi all Coderdojo will be resuming this Saturday from 1-3 instead of from 12-2 hope that is ok with everyone. For anyone new to the dojo that is planning to attend here are some programs that might be helpful to download:
-                        <ul style=" list-style-position: inside;" class="postText">
+                        <ul style="" class="postText">
                             <li> <a href="https://notepad-plus-plus.org/download/v6.9.2.html"> Notepad++</a>(Windows)</li>
                             <li>Textwrangler(OSX/macOS)</li>
                             <li><a href="https://www.jetbrains.com/idea/">Intellije</a> for Java, minecraft modding, etc</li>
@@ -79,13 +89,29 @@
                     <p class="postInfo"><i class="fa fa-user"></i> Richard Beattie</p>
                     <p class="postInfo"><i class="fa fa-clock-o"></i> 11 Sept 2016</p>
                     <hr>
-                        <div class="topic">
-                            <a>Announcment</a>
-                        </div>
-                        <div class="topic">
-                            <a>Resource</a>
-                        </div>
+                    <div class="topic">
+                        <a>Announcment</a>
+                    </div>
+                    <div class="topic">
+                        <a>Resource</a>
+                    </div>
                 </div>
+                <?php
+                	require_once("includes/dbconnect.php");
+                	$sql = "SELECT * from Posts";
+                	$results = $connection->query($sql);
+                	if($results->num_rows > 0){
+                		while($row = $results->fetch_assoc()){
+                			$times = explode(" ", $row['Posted']);
+                			echo("<div class='post'><h2>" . $row['title'] . "</h2><hr class='titleHr'>" . '<div class="postText">' . $row['content'] . '</div>' . '<br><p class="postInfo"><i class="fa fa-user"></i> ' . $row['username'] . '</p> <p class="postInfo"><i class="fa fa-clock-o"></i> ' . $times[0] . '</p><hr>');
+                			$tags = explode(", ", $row['Tags']);
+                			for($i = 0; $i < count($tags); $i++){
+                				echo('<div class="topic"><a>' . $tags[$i] . '</a></div>');
+                			}
+                			echo("</div>");
+                		}
+                	}
+                ?>
                 <br>
                 <a onclick="loadMore()" id="loadMore" style="margin-bottom:15px;">Load more</a>
             </div>
@@ -94,7 +120,6 @@
                     <h2>Newsletter</h2>
                     <p>Subscribe to our email list</p>
                 <?php
-                    require_once("includes/dbconnect.php");
                     if(isset($_POST['email'])){
                        $stmt = $connection->prepare("INSERT IGNORE INTO Emails (Email) VALUES (?)");
                        $stmt->bind_param("s", $_POST['email']);
@@ -111,15 +136,6 @@
                         <br>
                         <input type="submit" value="Subscribe" class="btn btn-large" />
                     </form>
-                    <hr>
-                    <h2>Topics</h2>
-                    <br>
-                    <div class="topic">
-                        <a>Announcment</a>
-                    </div>
-                    <div class="topic">
-                        <a>Resource</a>
-                    </div>
                 </div>
             </div>
         </div>
