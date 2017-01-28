@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,15 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	addLinks("c");
         	addLinks("d");
         });
-        window.setInterval(function(){
-            letters = ['c','d']
-            for(i = 0; i < 2; i++){
-            	$(letters[i] + " span").each(function(){
-                	var rotation = getRotationDegrees($(this)) + 0.6;
-                	$(this).css("transform","rotate("+rotation+"deg)");
-            	});
-            }
-        }, 100);
+        var intervalId = beginRotation();
     }else{
         $(function() {
           $("d a").each(function(){
@@ -87,19 +80,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           $("d").wrapInner("<ul></ul>");
         });
     }
+    function beginRotation(){
+    	 var id = window.setInterval(function(){
+            letters = ['c','d']
+            for(i = 0; i < 2; i++){
+            	$(letters[i] + " span").each(function(){
+                	var rotation = getRotationDegrees($(this)) + 0.6;
+                	$(this).css("transform","rotate("+rotation+"deg)");
+            	});
+            }
+        }, 100);
+        return id;
+    }
     $(document).ready(function(){
-        alert("Hello");
+    	$("d a span, c a span").hover(function(){
+    		console.log(intervalId);
+    		clearInterval(intervalId);
+    	}, function(){
+    		intervalId = beginRotation();
+    	});
     });
     </script>
-    <?php
-    	include_once('includes/dbconnect.php');
-    	$sql = 'Select Header From Settings';
-    	$result = $connection->query($sql);
-    	if($result->num_rows > 0){
-    		$row = $result->fetch_assoc();
-    		echo($row['Header']);
-    	}
-    ?>
 </head>
 <body>
 <!--header-->
@@ -107,9 +108,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              <div class="container">
              <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
              <div class="top-nav">
-             <?php
-             	include('Content/siteNavigation.php');
-             ?>
+             <ul>
+             <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
+             <li><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
+             <li class="active"><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
+             <li><a href="involved".html class="hvr-sweep-to-bottom">Get Involved</a></li>
+             <div class="clearfix"></div>
+             </ul>
              <script>
              $("span.menu").click(function(){
                                   $(".top-nav ul").slideToggle(500, function(){
@@ -125,6 +130,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="ProjectOfWeek">
              <d>
             <?php
+            	function is_dir_empty($dir) {
+				  if (!is_readable($dir)) return NULL; 
+				  $handle = opendir($dir);
+				  while (false !== ($entry = readdir($handle))) {
+					if ($entry != "." && $entry != "..") {
+					  return FALSE;
+					}
+				  }
+				  return TRUE;
+				}
                 $column = 1;
                 $other = "";
                 $files = scandir("ninjas/");
@@ -134,8 +149,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $other = "reset";
                     }
                     if( !in_array($files[$number], array("..", ".", ".DS_Store", "index.php"), true)){
-                        echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
-                        $other = "";
+                        if(!is_dir_empty("ninjas/" . $files[$number])){
+                        	echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
+                        	$other = "";
+                        }
                     }
                 }
              ?>
@@ -164,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >© 2015 - 2016. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
