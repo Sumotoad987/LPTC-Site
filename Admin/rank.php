@@ -3,10 +3,19 @@
 	require_once("../includes/permissons.php");
    	require_once("../includes/dbconnect.php");
     $p = new Permissons($_SESSION["rank"], $connection);
-	if(isset($_POST['Rank_Name'])){
-		 $p->hasPermisson("Rank_Edit");
+	if(isset($_GET['id'])){
+		 $p->hasPermisson(["Rank_Edit"]);
+		 $stmt = $connection->prepare("Select Name, Premissons From Ranks Where id = ?");
+		 $stmt->bind_param("i", $_GET['id']);
+		 $result = $stmt->execute();
+		 $stmt->bind_result($name, $premissons);
+		 $stmt->fetch();
+		 if($name == ""){
+		 	header('Location: ranks.php?denied');
+		 }
+		 $stmt->close();
 	}else{
-		$p->hasPermisson("Rank_Create");
+		$p->hasPermisson(["Rank_Create"]);
 	}
 ?>
 <html>
@@ -24,39 +33,9 @@
 		<div class="wrapper">
 		<nav class="nav navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseable">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand">Homepage</a>				
-				</div>
-				<div class="collapse navbar-collapse" id="collapseable"> 
-					<ul class="nav navbar-nav side-nav">
-						<!-- Start of side nav -->
-						<?php
-							include("../includes/navigation.html");
-						?>
-						<!-- End of side nav -->
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<span class="glyphicon glyphicon-user"></span> 
-								<?php echo($_SESSION["username"]);?>
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">View account</a></li>
-								<li><a href="#">Edit account</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+				<?php
+					include("../includes/navigation.php");
+				?>
 			</div>
 		</nav>
 		<div class="container-fluid content">
@@ -71,16 +50,15 @@
 							<form action="Actions/rank.php" onsubmit="moveValues()" method="POST">
 								<p>Name</p>
 								<?php
-									$name = str_replace(" ", "_", $_POST['Rank_Name']);
-									echo('<input name="Name" class="large-input" value="' . $_POST['Rank_Name'] . '">');
-									echo("<input type='hidden' name='Id' value = " . $_POST[$name][1] . ">");
+									echo("<input name='Name' class='large-input' value='{$name}'>");
+									echo("<input type='hidden' name='Id' value='{$_GET['id']}'>");
 								?>
 								<select id="myselect" class="selectpicker premissons" multiple name="Premissons[]" data-dropup-auto="false">
 									<?php
 										require_once("../includes/dbconnect.php");
 										$sql = "Select Name, Provider, Inherited, Dissolves From Premissons";
 										$results = $connection->query($sql);
-										$Setpremissons = isset($_POST[$name][0]) ? explode(",", $_POST[$name][0]) : array();
+										$Setpremissons = isset($premissons) ? explode(",", $premissons) : array();
 										if($results->num_rows > 0){
 											$value = 1;
                 							while($row = $results->fetch_assoc()){
@@ -105,7 +83,7 @@
 
 								</select>
 								<?php
-									$value = isset($_POST[$name][0]) ? "Update rank" : "Create rank";
+									$value = isset($_GET['id']) ? "Update rank" : "Create rank";
 									echo("<input class='btn btn-primary' type='submit' value='{$value}' style='float:right;'>");
 								?>
 							</form>

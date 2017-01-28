@@ -18,4 +18,11 @@ function timeSince($date){
     return(format_interval($interval));
 }
 
+function insertActivity($connection, $name, $userid, $id, $type, $action){
+	$stmt = $connection->prepare("Insert into Activity (Name, UserId, CorrespondingId, Type, Action) Values (?,?,?,?,?)");
+	$stmt->bind_param("siiss", $name, $userid, $id, $type, $action);
+	$stmt->execute();
+	$stmt->close();
+}
+
 ?>

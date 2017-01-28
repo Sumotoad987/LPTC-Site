@@ -13,44 +13,15 @@
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../js/BeattCMS.js?v=0.1" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="wrapper">
 		<nav class="nav navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseable">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand">Admin panel</a>				
-				</div>
-				<div class="collapse navbar-collapse" id="collapseable"> 
-					<ul class="nav navbar-nav side-nav">
-						<!-- Start of side navigation -->
-						<?php
-							include("../includes/navigation.html");
-						?>
-						<!-- End of side navigation -->					
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<span class="glyphicon glyphicon-user"></span> 
-								<?php echo($_SESSION["username"]);?>
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">View account</a></li>
-								<li><a href="#">Edit account</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+				<?php
+					include("../includes/navigation.php");
+				?>
 			</div>
 		</nav>
 		<div class="container-fluid content">
@@ -63,14 +34,28 @@
 						</div>
 						<div>	
                 			<?php
-                				$sql = "Select id, Name, Publisher, Published From Pages";
+                				$sql = "Select id, Name, Modified From Pages";
                 				$results = $connection->query($sql);
                 				if($results->num_rows > 0){
                 					while($row = $results->fetch_assoc()){
-                						$published = new DateTime($row['Published']);
+                						$published = new DateTime($row['Modified']);
                 						$timeSince = timeSince($published);
-                						echo("<form method='Post' action='page.php'><div onclick='javascript:this.parentNode.submit();' class='item'><div class='item-content'><input type='hidden' name='id' value='{$row['id']}'>
-                						<h2>{$row['Name']}</h2><p><i class='fa fa-clock-o'></i> {$timeSince}</i></p><i class='icon-delete fa fa-trash-o fa-lg'></i></div></div></form>");
+                						if($timeSince == ""){
+                							$timeSince = "Now";
+                						}	
+                						
+                						echo("<a class='plain item-anchor' href='page.php?id={$row['id']}'>
+                								<div class='item'>
+                									<div class='item-content'>
+                										<h2>{$row['Name']}</h2>
+                										<p><i class='fa fa-clock-o'></i> {$timeSince}</p>
+                										<form action='Actions/publish.php' method='POST'>
+                											<input type='hidden' name='Delete' value='{$row['id']}'>
+                											<i class='icon-delete in-a-submit fa fa-trash-o fa-lg'></i>
+                										</form>
+                								 	</div>
+                								 </div>
+                							   </a>");
                 					}
                 				}
                 			?>

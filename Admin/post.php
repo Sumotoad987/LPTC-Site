@@ -3,18 +3,20 @@
     require_once("../includes/dbconnect.php");
     require_once("../includes/permissons.php");
     $p = new Permissons($_SESSION["rank"], $connection);
-	if(isset($_POST['id'])){
+	if(isset($_GET['id'])){
 		require_once("../includes/dbconnect.php");
-       	$stmt = $connection->prepare("Select Title, Content, Tags From Posts WHERE id = ?");
-       	$id = (int)$_POST['id'];
-       	$stmt->bind_param("i", $id);
+       	$stmt = $connection->prepare("Select Name, Content, Tags From Posts WHERE id = ?");
+       	$stmt->bind_param("i", $_GET['id']);
        	$stmt->execute();
-       	$stmt->bind_result($title, $content, $tags);
+       	$stmt->bind_result($name, $content, $tags);
        	$stmt->fetch(); 
        	$stmt->close();
-       	 $p->hasPermisson("Post_Edit");
+       	if($name == ""){
+       		header("Location: posts.php?denied");
+       	}
+       	$p->hasPermisson(["Post_Edit"]);
 	}else{
-		$p->hasPermisson("Post_Create");
+		$p->hasPermisson(["Post_Create"]);
 	}
 ?>
 <html>
@@ -78,7 +80,7 @@
 						<div id="postInfo">
 							<h2 style="color:white" id="postTitle">Title</h2>
 							<?php
-								$value = isset($_POST['id']) ? 'Update' : "Post";
+								$value = isset($_GET['id']) ? 'Update' : "Post";
 								echo("<input type='submit' class='btn btn-primary' style='margin-right:5%;' value='{$value}'>");
 							?>
 							<button class="btn btn-default" style="margin-left:5%;">Preview</button>
@@ -112,11 +114,11 @@
 		<div class="container-fluid content">
             <div class="row">
                 <div class="col-lg-12 editor" style="padding-left:12.5%;padding-right:12.5%;">
-                    <textarea class="titleTextArea" name="Title" rows="1" placeholder="Title"><?php if(isset($title)){echo($title);}?></textarea>
-                    <textarea class="wysiwyg" name="Content"><?php if(isset($title)){echo($content);}?></textarea>
+                    <textarea class="titleTextArea" name="Title" rows="1" placeholder="Title"><?php if(isset($name)){echo($name);}?></textarea>
+                    <textarea class="wysiwyg" name="Content"><?php if(isset($name)){echo($content);}?></textarea>
                 	<?php
-                		if(isset($_POST['id'])){
-                			echo('<input name="id" type="hidden" value="' . $_POST['id'] . '">');
+                		if(isset($_GET['id'])){
+                			echo('<input name="id" type="hidden" value="' . $_GET['id'] . '">');
                 		}
                 	?>
                 </div>

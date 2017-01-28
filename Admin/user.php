@@ -3,7 +3,7 @@
     require_once("../includes/permissons.php");
    	require_once("../includes/dbconnect.php");
     $p = new Permissons($_SESSION["rank"], $connection);
-    $p->hasPermisson("User_Edit");
+    $p->hasPermisson(["User_Edit"]);
     $stmt = $connection->prepare("Select Email, Username, Rank From Users Where ID = ?");
    	$id = (int)$_POST['id'];
     $stmt->bind_param("i", $id);
@@ -38,34 +38,9 @@
 		<div class="wrapper">
 		<nav class="nav navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseable">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand">Homepage</a>				
-				</div>
-				<div class="collapse navbar-collapse" id="collapseable"> 
-					<ul class="nav navbar-nav side-nav">
-						<!-- Side navigation -->
-						<?php
-							include("../includes/navigation.html");
-						?>
-						<!-- End of Side navigation -->
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> <?php echo($_SESSION["username"]);?><span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">View account</a></li>
-								<li><a href="#">Edit account</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+				<?php
+					include("../includes/navigation.php");
+				?>
 			</div>
 		</nav>
 		<div class="container-fluid content">
@@ -99,7 +74,8 @@
 									?>
 								</select>
 								<br>
-								<input class="btn btn-primary" type="submit" value="Save user" style="">
+								<input class="btn btn-primary" type="submit" name="save" value="Save user" style="">
+								<input class="btn btn-danger delete-button" type="submit" name="Delete" value="Delete">
 							</form>
 						</div>
 					</div>

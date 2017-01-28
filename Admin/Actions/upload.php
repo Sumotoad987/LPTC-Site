@@ -1,4 +1,7 @@
 <?php
+require_once("../../includes/permissons.php");
+$p = new Permissons($_SESSION["rank"], $connection);
+$p->hasPermisson(['Admin']);
 $target_dir = "../../images/";
 $imageFileType = explode(".", $_FILES["file"]["name"])[1];
 $target_file = $target_dir . "favicon." . $imageFileType;

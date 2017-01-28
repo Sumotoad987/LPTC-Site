@@ -13,48 +13,24 @@
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../js/BeattCMS.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="wrapper">
 		<nav class="nav navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapseable">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand">Admin panel</a>				
-				</div>
-				<div class="collapse navbar-collapse" id="collapseable"> 
-					<ul class="nav navbar-nav side-nav">
-						<!-- Side navigation bar -->
-						<?php
-							include("../includes/navigation.html");
-						?>
-						<!-- End of side navigation bar -->
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								<span class="glyphicon glyphicon-user"></span> 
-								<?php echo($_SESSION["username"]);?>
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#">View account</a></li>
-								<li><a href="#">Edit account</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+				<?php
+					include("../includes/navigation.php");
+				?>
 			</div>
 		</nav>
 		<div class="container-fluid content">
             <div class="row">
+            	<?php
+					if(isset($_GET['denied'])){
+						echo("<p class='denied'>Sorry that post does not exist</p>");
+					}
+				?>
                 <div class="col-lg-12">
                 	<div class="box">
         				<div class="header"> 
@@ -67,15 +43,26 @@
         					</a>
         				</div>
                    		<?php
-                			$sql = "SELECT id, title, Posted from Posts";
+                			$sql = "SELECT id, Name, Modified from Posts";
                 			$results = $connection->query($sql);
                 			if($results->num_rows > 0){
                 				while($row = $results->fetch_assoc()){
                 					date_default_timezone_set("Europe/Dublin"); 
-                					$posted = new DateTime($row['Posted']);
+                					$posted = new DateTime($row['Modified']);
                 					$timeSince = timeSince($posted);
-                					echo("<form method='POST' action='post.php'><div onclick='javascript:this.parentNode.submit()' class='item'><div class='item-content'><input type='hidden' name='id' value='{$row['id']}'>
-                					<h2>{$row['title']}</h2><p><i class='fa fa-clock-o'></i> {$timeSince}</i></p><i class='icon-delete fa fa-trash-o fa-lg'></i></div></div></form>");
+                					if($timeSince == ""){
+                						$timeSince = "Now";
+                					}
+                					echo("<a class='item-anchor plain' href='post.php?id={$row['id']}'>
+                							<div class='item'><div class='item-content'>
+                								<h2>{$row['Name']}</h2>
+                								<p><i class='fa fa-clock-o'></i> {$timeSince}</p>
+                								<form action='Actions/post.php' method='POST'>
+                									<input type='hidden' name='Delete' value='{$row['id']}'>
+                									<i class='icon-delete in-a-submit fa fa-trash-o fa-lg'></i>
+                								</form>
+                							</div>
+                						</a>");
                 				}
                 			}
                     	?>

@@ -9,7 +9,8 @@
         if(!isset($connection)) {
             // Load configuration as an array. Use the actual location of your configuration file
             $path = $_SERVER['DOCUMENT_ROOT'];
-            $path .= "/private/config.ini";
+           //  $path = "/hsphere/local/home/beri81/private/config.ini";
+           $path .= '/private/config.ini';
             $config = parse_ini_file($path);
             $connection = mysqli_connect($config['servername'],$config['username'],$config['password'],$config['dbname']);
         }
@@ -17,7 +18,7 @@
         if($connection === false) {
         	echo("Not succesful");
             // Handle error - notify administrator, log to a file, show an error screen, etc.
-            return mysqli_connect_error();
+            echo(mysqli_connect_error());
         }
         return $connection;
     }

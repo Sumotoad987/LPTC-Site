@@ -3,10 +3,10 @@
     require_once("../includes/dbconnect.php");
     require_once("../includes/permissons.php");
     $p = new Permissons($_SESSION["rank"], $connection);
-    if(isset($_POST['id'])){
-    	$p->hasPermisson("Page_Edit");
+    if(isset($_GET['id'])){
+    	$p->hasPermisson(["Page_Edit"]);
     	$stmt = $connection->prepare("Select Name, Template From Pages Where id = ?");
-    	$stmt->bind_param("i", $_POST['id']);
+    	$stmt->bind_param("i", $_GET['id']);
     	$stmt->execute();
     	$stmt->bind_result($name, $template);
     	$stmt->fetch();
@@ -18,7 +18,7 @@
 			$page = explode("<!--//Content-End-->", $page)[0];
     	}
     }else{
-		$p->hasPermisson("Page_Create");
+		$p->hasPermisson(["Page_Create"]);
 	}
 ?>
 <html>
@@ -29,7 +29,7 @@
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="../js/BeattCMS.js" type="text/javascript"></script>
+		<script src="../js/BeattCMS.js?v=0.1" type="text/javascript"></script>
 		<script>
 			templateContent = "";
 			function html(){
@@ -125,10 +125,7 @@
 						<div id="postInfo">
 							<h2 style="color:white" id="postTitle">Title</h2>
 							<?php
-								$value = "Publish";
-								if(isset($_POST['id'])){
-									$value = "Update";
-								}
+								$value = isset($_GET['id']) ? "Update" : "Publish";
 								echo('<input type="submit" class="btn btn-primary" style="margin-right:5%;" value="' . $value . '">');
 							?>
 						</div>
@@ -186,13 +183,16 @@
                 			}
                 		?>
                 	</div>
-        			<div class="toolbar">
+        			<div class="toolbar pages-toolbar">
         				<div class="toolbar-item" id="visual" onclick="visual(this)">
         					<a>Visual</a>
         				</div>
         				<div class="toolbar-item selected" id="html" onclick="html(this)">
         					<a onclick="toggleDisplay(this)">HTML</a>
         				</div>
+        				<script>
+							prepareToolbar();
+						</script>
         			</div>
         			<div class="box">
         				<div id="htmlEditor"></div>
@@ -200,14 +200,14 @@
         				<div id="htmlViewer" style="display:none;"></div>
         				<input type="hidden" name="template" id="template">
         				<?php
-        					$value = isset($_POST['id']) ? $_POST['id'] : 0;
+        					$value = isset($_GET['id']) ? $_GET['id'] : NULL;
         					echo("<input type='hidden' name='id' value='{$value}'>");
         				?>
 						<script src="../includes/ace-src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 						<script>
 							var editor = ace.edit("htmlEditor");
 							editor.setTheme("ace/theme/tommorow");
-							editor.getSession().setMode("ace/mode/html");
+							editor.getSession().setMode("ace/mode/php");
 							value = $("[name=Content]").text();
 							editor.session.setValue(value, -1);
 						</script>
