@@ -49,12 +49,12 @@ published to the live site ASAP - Rían</li>
 </ul>
 
 ##Developer Contacts:
-###Richard Beattie - Head Web Developer
+###Richard Beattie - Head Web Developer/Database Admin
 <ul>
-<li>Website: beattbots.com</li>
+<li>Website: http://beattbots.com</li>
 <li>Email: contact@beattbots.com</li>
 </ul>
-###Rían Errity - Web Designer/Developer
+###Rían Errity - Ex Web Designer/Developer
 <ul>
 <li>Website: https://paradaux.pw/dev</li>
 <li>Email: rian@paradaux.pw</li>
