@@ -10,13 +10,10 @@ Full Contributors List below
 ##Features in progress
 ###CMS
 <ul>
-<li>Rank system</li>
 <li>Newsletter system</li>
-<li>Custom Headers</li>
 <li>Automatic email system to generate api key</li>
-<li>Dashboard</li>
-<li>User profiles</li>
-<li>Page creation</li>
+<li>Custom pages for Page_Edit rank</li>
+<li>Pages under another page</li>
 </ul>
 ###Website
 <ul>
