@@ -1,7 +1,7 @@
 <?php
 	require_once("includes/dbconnect.php");
 	if($_GET['authCode'] == NULL){
-		header("Location: ../index.html");
+		header("Location: ../index.php");
 	}
 	$stmt=$connection->prepare("Select AuthCode from Users WHERE AuthCode = ?");
 	$stmt->bind_param("s", $_GET['authCode']);
@@ -10,7 +10,7 @@
 	$stmt->fetch();
 	$stmt->close();
 	if($authCode == ""){
-		header("Location: index.html");
+		header("Location: index.php");
 	}
 ?>
 <html>

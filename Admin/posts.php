@@ -54,13 +54,15 @@
                 						$timeSince = "Now";
                 					}
                 					echo("<a class='item-anchor plain' href='post.php?id={$row['id']}'>
-                							<div class='item'><div class='item-content'>
-                								<h2>{$row['Name']}</h2>
-                								<p><i class='fa fa-clock-o'></i> {$timeSince}</p>
-                								<form action='Actions/post.php' method='POST'>
-                									<input type='hidden' name='Delete' value='{$row['id']}'>
-                									<i class='icon-delete in-a-submit fa fa-trash-o fa-lg'></i>
-                								</form>
+                							<div class='item'>
+                								<div class='item-content'>
+                									<h2>{$row['Name']}</h2>
+                									<p><i class='fa fa-clock-o'></i> {$timeSince}</p>
+                									<form action='Actions/post.php' method='POST'>
+                										<input type='hidden' name='Delete' value='{$row['id']}'>
+                										<i class='icon-delete in-a-submit fa fa-trash-o fa-lg'></i>
+                									</form>
+                								</div>
                 							</div>
                 						</a>");
                 				}

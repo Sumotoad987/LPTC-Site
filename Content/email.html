@@ -1,0 +1,48 @@
+<html>
+<head>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+		<div class="message">
+			<h1 style="text-align:center">{{ SiteName }}</h1>
+			<hr>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>{{ User }} has invited you to be a {{ Rank }} on <a href="http://{{ url }}">{{ SiteName }}</a></p>
+					<p>If you accept please click the button below so you can setup your account
+					<p class="custom">{{ message }}</p>
+					<a href="{{ authUrl }}"><button class="btn btn-primary">Accept invitation</button></a>
+				</div>http://lptcdojo.com/signup.php?authCode=HpBqjna60NJS7uaE;739GrKD2evAeJrL#HJGTqFxOkO9HWHVC@
+			</div>
+		</div>
+	<style>
+		.message{
+			margin-left:auto;
+			margin-right:auto;
+			width:50%;
+		}
+		hr{
+			border-width:5px;
+		}
+		.info{
+			background-color:#0099ff;
+		}
+		.row{
+			display:flex;
+			width:100%;
+			margin-left:0;
+		}
+		.col-lg-8{
+			padding-left:0;
+		}
+		p{
+			font-size:18px;
+		}
+		.custom{
+			background-color:#e6e6e6;
+			border-radius:3px;
+			padding-left:5px;
+		}
+	</style>
+	</body>
+</html>

@@ -140,7 +140,6 @@
 										$default = $template;
 									}else{
 										$default = $row['Theme'];
-										echo("Not set");
 									}
 									$loc = "../Content/templates/";
 									$files = scandir($loc);
