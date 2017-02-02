@@ -10,13 +10,10 @@ Full Contributors List below
 ##Features in progress
 ###CMS
 <ul>
-<li>Rank system</li>
 <li>Newsletter system</li>
-<li>Custom Headers</li>
 <li>Automatic email system to generate api key</li>
-<li>Dashboard</li>
-<li>User profiles</li>
-<li>Page creation</li>
+<li>Custom pages for Page_Edit rank</li>
+<li>Pages under another page</li>
 </ul>
 ###Website
 <ul>
@@ -49,12 +46,12 @@ published to the live site ASAP - Rían</li>
 </ul>
 
 ##Developer Contacts:
-###Richard Beattie - Head Web Developer
+###Richard Beattie - Head Web Developer/Database Admin
 <ul>
-<li>Website: beattbots.com</li>
+<li>Website: http://beattbots.com</li>
 <li>Email: contact@beattbots.com</li>
 </ul>
-###Rían Errity - Web Designer/Developer
+###Rían Errity - Ex Web Designer/Developer
 <ul>
 <li>Website: https://paradaux.pw/dev</li>
 <li>Email: rian@paradaux.pw</li>

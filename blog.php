@@ -3,8 +3,7 @@
     <title>Blog</title>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css"
-            href="https://fonts.googleapis.com/css?family=Merriweather">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,600,700,800">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
     <link href="css/style.css?v=1.2" rel="stylesheet" type="text/css" media="all" />
@@ -74,36 +73,19 @@
     <div class="container blog-content">
         <div class="row">
             <div class="col-lg-8">
-            	<div class="post">
-                    <h2>Coderdojo's back</h2>
-                    <hr class="titleHr">
-                    <p class="postText">Hi all Coderdojo will be resuming this Saturday from 1-3 instead of from 12-2 hope that is ok with everyone. For anyone new to the dojo that is planning to attend here are some programs that might be helpful to download:
-                        <ul style="" class="postText">
-                            <li> <a href="https://notepad-plus-plus.org/download/v6.9.2.html"> Notepad++</a>(Windows)</li>
-                            <li>Textwrangler(OSX/macOS)</li>
-                            <li><a href="https://www.jetbrains.com/idea/">Intellije</a> for Java, minecraft modding, etc</li>
-                            <li><a href="https://unity3d.com/">Unity</a> for game development</li>
-                        </ul>
-                    </p>
-                    <br>
-                    <p class="postInfo"><i class="fa fa-user"></i> Richard Beattie</p>
-                    <p class="postInfo"><i class="fa fa-clock-o"></i> 11 Sept 2016</p>
-                    <hr>
-                    <div class="topic">
-                        <a>Announcment</a>
-                    </div>
-                    <div class="topic">
-                        <a>Resource</a>
-                    </div>
-                </div>
                 <?php
                 	require_once("includes/dbconnect.php");
                 	$sql = "SELECT * from Posts";
                 	$results = $connection->query($sql);
                 	if($results->num_rows > 0){
                 		while($row = $results->fetch_assoc()){
-                			$times = explode(" ", $row['Posted']);
-                			echo("<div class='post'><h2>" . $row['title'] . "</h2><hr class='titleHr'>" . '<div class="postText">' . $row['content'] . '</div>' . '<br><p class="postInfo"><i class="fa fa-user"></i> ' . $row['username'] . '</p> <p class="postInfo"><i class="fa fa-clock-o"></i> ' . $times[0] . '</p><hr>');
+                			$times = explode(" ", $row['Modified']);
+                			$stmt = $connection->prepare("Select Username From Users Where UserId = ?");
+                			$stmt->bind_param("i", $row['UserId']);
+                			$stmt->execute();
+                			$stmt->bind_result($username);
+                			$stmt->fetch();
+                			echo("<div class='post'><h2>" . $row['Name'] . "</h2><hr class='titleHr'>" . '<div class="postText">' . $row['content'] . '</div>' . '<br><p class="postInfo"><i class="fa fa-user"></i> ' . $username . '</p> <p class="postInfo"><i class="fa fa-clock-o"></i> ' . $times[0] . '</p><hr>');
                 			$tags = explode(", ", $row['Tags']);
                 			for($i = 0; $i < count($tags); $i++){
                 				echo('<div class="topic"><a>' . $tags[$i] . '</a></div>');

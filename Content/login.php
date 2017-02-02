@@ -21,11 +21,6 @@
         $_SESSION['rank'] = $rank;
         header( 'Location: ../Admin/' );
     }else{
-        echo("Incorrect username or password");
+        header('Location: ../login.php?denied');
     }
-    
-//    $stmt->execute();
-//    $stmt->bind_result($answer);
-//    $stmt->fetch();
-//    echo($answer);
 ?>

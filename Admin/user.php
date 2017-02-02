@@ -49,7 +49,13 @@
 					<div class="box">
 						<div class="header" style="text-align:center">
 							<a href="users.php" class="back"><i class="fa fa-arrow-left fa-1" aria-hidden="true"></i> Back</a>	
-							<p><b><?php echo($username); ?></b></p>
+							
+							<p><b>
+								<?php 
+									$username = $username == "" ? "&#8291;" : $row['Username'];
+									echo($username); 
+								?>
+							</b></p>
 						</div>
 						<div class="box-content">
 							<form action="Actions/edit-user.php" method="POST">

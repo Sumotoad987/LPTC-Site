@@ -60,17 +60,20 @@
 					<div class="box">
 						<div class="header" style="text-align:center">
 							<p><b><?php echo($username); ?></b></p>
-							<div class="toolbar profile-toolbar">
-								<div class="toolbar-item" id='settings'>
-									<a>Settings</a>
-								</div>
-								<div class="toolbar-item selected" id='me'>
-									<a>Me</a>
-								</div>
-							</div>
-							<script>
-								prepareToolbar();
-							</script>
+							<?php
+								if($_GET['id'] == $_SESSION['id']){
+									echo('<div class="toolbar profile-toolbar">
+										<div class="toolbar-item" id="settings">
+											<a>Settings</a>
+										</div>
+										<div class="toolbar-item selected" id="me">
+											<a>Me</a>
+										</div>
+									</div><script>
+										prepareToolbar();
+									</script>');
+								}
+							?>
 						</div>
 						<div class="box-content">
 							<div class="row user-info">

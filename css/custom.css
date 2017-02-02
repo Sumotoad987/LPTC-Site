@@ -532,13 +532,30 @@ li>.vertical-toggle:first-child{
 }
 
 @-webkit-keyframes fadeinout {
-  0%,85% { opacity: 1; }
-  100% { opacity: 0;}
+ 0%,85% { opacity:1; }
+  100%{
+  	display:none;
+  }
 }
 
 @keyframes fadeinout {
-  0%,85% { opacity: 1; }
-  100% { opacity: 0;}
+  0%,85% { opacity:1 }
+  100% { 
+  	visibility:hidden;
+  }
+}
+
+.deniedJavascript{
+	color:red;
+	transition: all 1.5s linear;
+}
+
+.hidden {
+  display: none;
+}
+
+.visuallyhidden {
+  opacity: 0;
 }
 
 .icon-delete{

@@ -16,7 +16,7 @@
 		function __construct($rank, $connection){
 			if(!$rank){
 				$path = toPath(getcwd());
-				header("Location: {$path}../login.html");
+				header("Location: {$path}../login.php");
 			}else{
 				$this->rank = $rank;
 				$this->connection = $connection;

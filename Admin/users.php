@@ -43,8 +43,9 @@
 								if($results->num_rows > 0){
                 					while($row = $results->fetch_assoc()){
                 						$hashed = md5($row['Email']);
+                						$username = $row['Username'] == "" ? "&#8291;" : $row['Username'];
                 						echo('<form method="POST" style="margin-bottom:0" action="user.php"><div class="user" onclick="javascript:this.parentNode.submit();"><div class="user-img"><img src="https://www.gravatar.com/avatar/' . $hashed . '?d=mm"></div>
-                						<div class="user-details"><input name="id" type="hidden" value="' . $row['id'] . '"><h3>' . $row['Username'] . '</h3><p>' . $row['Email'] . '</p><p class="rank">' . $row['Rank'] . '</p></div></div></form>');
+                						<div class="user-details"><input name="id" type="hidden" value="' . $row['id'] . '"><h3>' . $username . '</h3><p>' . $row['Email'] . '</p><p class="rank">' . $row['Rank'] . '</p></div></div></form>');
                 					}
                 				}							
                 			?>

@@ -61,7 +61,7 @@
 								?>
 								</select>
 								<p>Custom message</p>
-								<textarea maxlength="300" class="message" rows="3"></textarea>
+								<textarea name="message" maxlength="300" class="message" rows="3"></textarea>
 								<p id="count_message"></p>
 								<input class="btn btn-primary" type="submit" value="Invite user" style="float:right;">
 							</form>

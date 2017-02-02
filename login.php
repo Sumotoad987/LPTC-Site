@@ -6,6 +6,11 @@
     </head>
     <body>
         <div class="login-box">
+        	<?php
+        		if(isset($_GET['denied'])){
+					echo("<p class='denied'>Incorrect username or password</p>");
+				}
+			?>
             <form action="Content/login.php" method="post" role="form">
                 <p>Email</p>
                 <input class="form-control" type="text" name="email" id="email" placeholder="Email">
@@ -53,6 +58,20 @@
             	font-size:16px;
             	width:100%;
             }
+            .denied{
+				color:#ff4d4d;
+				animation: fadeinout 4s linear forwards;
+				-webkit-animation: fadeinout 4s linear forwards;
+			}
+			@-webkit-keyframes fadeinout {
+			  0%,85% { opacity: 1; }
+			  100% { opacity: 0;}
+			}
+
+			@keyframes fadeinout {
+			  0%,85% { opacity: 1; }
+			  100% { opacity: 0;}
+			}
         </style>
     </body>
 </html>
