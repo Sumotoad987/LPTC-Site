@@ -14,17 +14,17 @@ $check = getimagesize($_FILES["file"]["tmp_name"]);
 if($check !== false){
     $uploadOk = 1;        
 }else{
-	echo "File is not an image.";
+	$reason = 0;
     $uploadOk = 0;
 }
 // Allow certain file formats
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 && $imageFileType != "gif" && $imageFileType != "ico") {
-    echo "Sorry, only JPG, JPEG, PNG, GIF & ICO files are allowed.";
+    $reason = 1;
     $uploadOk = 0;
 }
 if ($uploadOk == 0){
-	echo("Sorry yout file wasent uploaded");
+	header("Location: ../settings.php?failed={$reason}");
 }else{
 	$file_pattern = $target_dir . "favicon.*";
 	array_map( "unlink", glob( $file_pattern ) );
@@ -49,7 +49,8 @@ if ($uploadOk == 0){
 		if(move_uploaded_file($_FILES['file']['tmp_name'], "../../" . "favicon." . $imageFileType)){
 			header("Location: ../settings.php");
 		}else{
-			echo("Sorry there was an error when uploading your file");
+			$reason = 2;
+			header("Location: ../settings.php?failed={$reason}");
 		}
 	}
 }

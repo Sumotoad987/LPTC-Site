@@ -59,7 +59,6 @@ $subject = "You have been invited to join {$varibles['SiteName']}";
 $headers = "From:  noreply@{$varibles['url']}\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-echo($template);
 mail($_POST["email"], $subject, $template, $headers); 
 header("Location: ../users.php");
 ?>

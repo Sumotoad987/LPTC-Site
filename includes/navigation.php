@@ -24,7 +24,7 @@
 				<li><a href="page.php">Create new page</a></li>
 			</ul>
 		</li>
-		<li><a href="addons.php">Addons</a></li>
+		<li><a href="#">Addons</a></li>
 		<li><a href="settings.php">Settings</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">

@@ -34,7 +34,7 @@
 	<head>
 		<title>Settings</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="../css/custom.css?v=0.22" rel="stylesheet">
+		<link href="../css/custom.css?v=0.55324" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
@@ -42,6 +42,26 @@
 		<script>
 			$(document).ready(function() {
   				tooltipRight();
+  				var denied = $('.deniedJavascript');
+				setTimeout(function(){
+  
+				  if (denied.hasClass('hidden')) {
+					denied.removeClass('hidden');
+					setTimeout(function () {
+					  denied.removeClass('visuallyhidden');
+					}, 20);
+				  } else {
+	
+					denied.addClass('visuallyhidden');
+	
+					denied.one('transitionend', function(e) {
+
+					  denied.addClass('hidden');
+
+					});
+	
+				  }
+				}, 4000);
 			});
 			function prepareForm(){
 				var editor = ace.edit('htmlEditor');
@@ -66,6 +86,15 @@
 						<div class="header">
 							<p><i class="fa fa-cog" aria-hidden="true"></i> Settings</p>
 						</div>
+						<?php
+							$varibles = array();
+							$varibles[0] = "Sorry your file was not a image";
+							$varibles[1] = "Sorry, only JPG, JPEG, PNG, GIF & ICO files are allowed.";
+							$varibles[2] = "Sorry your file was not uploaded please try again";
+							if(isset($_GET['failed'])){
+								echo("<p class='deniedJavascript'>{$varibles[$_GET['failed']]}</p>");
+							}
+						?>
 						<div class="box-content">
 							<form onsubmit="prepareForm()" method="POST" action="Actions/settings.php">
 								<p>Site title:</p>
