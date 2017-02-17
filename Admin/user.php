@@ -52,7 +52,7 @@
 							
 							<p><b>
 								<?php 
-									$username = $username == "" ? "&#8291;" : $row['Username'];
+									$username = $username == "" ? "&#8291;" : $username;
 									echo($username); 
 								?>
 							</b></p>
