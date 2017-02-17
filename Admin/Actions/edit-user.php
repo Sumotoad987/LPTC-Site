@@ -24,6 +24,9 @@
 		$id = $connection->insert_id;
 		$action = "edited";
 		insertActivity($connection, $_POST['username'], $_SESSION['id'], intval($id), $type, $action);
+		if($_SESSION['id'] == $_POST['id']){
+			$_SESSION['rank'] = $_POST['rank'];
+		}
 	}
 	header("Location: ../users.php")
 ?>

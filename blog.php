@@ -75,19 +75,19 @@
             <div class="col-lg-8">
                 <?php
                 	require_once("includes/dbconnect.php");
-                	$sql = "SELECT * from Posts";
+                	$sql = "SELECT Name, content, UserId, Modified from Posts";
                 	$results = $connection->query($sql);
+                	$stmt = $connection->prepare("Select Username From Users Where id = ?");
                 	if($results->num_rows > 0){
                 		while($row = $results->fetch_assoc()){
                 			$times = explode(" ", $row['Modified']);
-                			$stmt = $connection->prepare("Select Username From Users Where UserId = ?");
                 			$stmt->bind_param("i", $row['UserId']);
                 			$stmt->execute();
                 			$stmt->bind_result($username);
                 			$stmt->fetch();
                 			echo("<div class='post'><h2>" . $row['Name'] . "</h2><hr class='titleHr'>" . '<div class="postText">' . $row['content'] . '</div>' . '<br><p class="postInfo"><i class="fa fa-user"></i> ' . $username . '</p> <p class="postInfo"><i class="fa fa-clock-o"></i> ' . $times[0] . '</p><hr>');
                 			$tags = explode(", ", $row['Tags']);
-                			for($i = 0; $i < count($tags); $i++){
+                			for($i = 0; $i < count($tags) - 1; $i++){
                 				echo('<div class="topic"><a>' . $tags[$i] . '</a></div>');
                 			}
                 			echo("</div>");

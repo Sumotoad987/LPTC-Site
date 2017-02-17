@@ -30,12 +30,6 @@ This site is open source so anyone can help make it better if have a feature you
 
 Or if you want to help out but just don't know what to do contact one of the developers and they will be deligheted for any extra help.
 
-##Contributors' Notice
-<ul>
-<li>Please push-master if you have changed something that could potentially fix an issue so It can be 
-published to the live site ASAP - Rían</li>
-</ul>
-
 ##CMS
 
 <p>The CMS(Content Management system) is a in-house product and as such it will probably(most likly) have some security issuess, if you would like to test it for any please fell free to and then contact me about any thing you find - Richard</p>
@@ -46,15 +40,10 @@ published to the live site ASAP - Rían</li>
 </ul>
 
 ##Developer Contacts:
-###Richard Beattie - Head Web Developer/Database Admin
+###Beattbots - Head Web Developer/Database Admin
 <ul>
 <li>Website: http://beattbots.com</li>
 <li>Email: contact@beattbots.com</li>
-</ul>
-###Rían Errity - Ex Web Designer/Developer
-<ul>
-<li>Website: https://paradaux.pw/dev</li>
-<li>Email: rian@paradaux.pw</li>
 </ul>
 
 ## Contributors
