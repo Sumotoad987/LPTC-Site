@@ -30,6 +30,15 @@ Full Contributors List below
 <li>FTP Access to sub-folders</li>
 </ul>
 
+####Ninja Q&A
+<ul>
+<li>Ninjas can register profiles</li>
+<li>Ninjas can post and answers questions</li>
+<li>Emails sent to people who might be able to answer</li>
+<li>Questions divided into categories</li>
+<li>Questions and answers can be up and down voted</li>
+</ul>
+
 ##Want to get involved
 
 This project is currently maintained by the Beattbots organization but due to limited time progress is slow(As you have probably noticed :)) 
@@ -56,8 +65,13 @@ Or talk to Richard at the Miscellaneous table during Coderdojo
 </ul>
 
 ## Contributors
-@Mach1982
-@ThatProgrammerRian
-@calucifier
-@richardbeattie
+@Mach1982 - Inspiration 
+
+@ThatProgrammerRian - Design 
+
+@calucifier - Inspiration
+
+@richardbeattie - Development
+
+@spastorelli - Scratch pages and API
 
