@@ -2,9 +2,12 @@
 
 	//API that makes sure user has correct permisson to access page
 	
+	session_start();
+	
 	function toPath($path){
 		$path = explode("Admin", $path)[1];
 		$down = substr_count($path, '/');
+		$returnPath = "";
 		for($i = 0; $i<$down; $i++){
 			$returnPath .= '../';
 		}
@@ -20,13 +23,19 @@
 			}else{
 				$this->rank = $rank;
 				$this->connection = $connection;
+				$this->enabled = $_SESSION['enabled'];
 			}	
 		}
 		
-		public function hasPermisson($permissons){
+		public function hasPermisson($permissons, $act = TRUE){
 			//Get permissons user has
-			$stmt = $this->connection->prepare("Select Premissons From Ranks Where Name = ?");
-			$stmt->bind_param("s", $this->rank);
+			if($this->enabled == 0){
+				$stmt = $this->connection->prepare("Select PreviousPermissons From Ranks Where Id = ?");
+			}else{
+				$stmt = $this->connection->prepare("Select Premissons From Ranks Where Id = ?");
+			}
+			echo($this->connection->error);
+			$stmt->bind_param("i", $this->rank);
 			$stmt->execute();
 			$stmt->bind_result($user_permissons);
 			$stmt->fetch();
@@ -46,10 +55,14 @@
 			//Check to see if they have any
 			$intersectingPremissons = array_intersect($permissons, explode(",", $user_permissons));
 			if($intersectingPremissons == NULL){
-				$current = getcwd();
-				$path = toPath($current);
-				header("Location: {$path}/index.php?denied");
-				die();
+				if($act == TRUE){
+					$current = getcwd();
+					$path = toPath($current);
+					header("Location: {$path}index.php?denied");
+					die();
+				}else{
+					return False;
+				}
 			}else{
 				return true;
 			}

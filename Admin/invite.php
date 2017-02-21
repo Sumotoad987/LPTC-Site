@@ -51,11 +51,11 @@
 								<p>Rank</p>
 								<select name='rank' class='selectpicker'>
 								<?php
-									$sql = "SELECT Name From Ranks ORDER BY id";
+									$sql = "SELECT id, Name From Ranks ORDER BY id";
 									$result = $connection->query($sql);
 									if($result->num_rows > 0){
 										while($row = $result->fetch_assoc()){
-											echo("<option>"  . $row['Name'] . "</option>");
+											echo("<option value='{$row['id']}'>"  . $row['Name'] . "</option>");
 										}
 									}
 								?>

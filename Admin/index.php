@@ -4,6 +4,7 @@
    	require_once("../includes/dbconnect.php");
    	require_once("../includes/functions.php");
     $p = new Permissons($_SESSION["rank"], $connection);
+    $usernameQuery = $connection->prepare("Select Username From Users Where Id = ?");
 ?>
 <html>
 	<head>
@@ -40,26 +41,31 @@
 							<?php
 								$sql = "Select CorrespondingId, Name, UserId, Date, Type, Action From Activity Order By Date DESC LIMIT 7";
 								$results = $connection->query($sql);
-								$usernameQuery = $connection->prepare("Select Username From Users Where Id = ?");
-								if($results->num_rows > 0){
-									while($row = $results->fetch_assoc()){
-										date_default_timezone_set("Europe/Dublin"); 
-										$posted = new DateTime($row['Date']);
-										$timeSince = timeSince($posted);
-										$usernameQuery->bind_param("i", $row['UserId']);
-										$usernameQuery->execute();
-										$usernameQuery->bind_result($username);
-										$usernameQuery->fetch();
-										$href = isset($row['CorrespondingId']) ? "href='{$row['Type']}.php?id={$row['CorrespondingId']}'" : "";
-										echo("<section class='item panel-item'><div class='icon'><i class='fa fa-edit pull-left'></i></div>
-										<div class='item-body'><p>{$username} {$row['Action']} <a $href>{$row['Name']}</a></p><div class='time'><p>{$timeSince}</p></div>
-										</div></section>");
-									}
+								$resultsArray = $results->fetch_all(MYSQLI_ASSOC);
+								for($i = 0;$i < count($resultsArray); $i++){
+									$row = $resultsArray[$i];
+									date_default_timezone_set("Europe/Dublin"); 
+									$posted = new DateTime($row['Date']);
+									$timeSince = timeSince($posted);
+									$usernameQuery->bind_param("i", $row['UserId']);
+									$usernameQuery->execute();
+									$usernameQuery->bind_result($username);
+									$usernameQuery->store_result();
+									$usernameQuery->fetch();
+									$href = isset($row['CorrespondingId']) ? "href='{$row['Type']}.php?id={$row['CorrespondingId']}'" : "";
+									echo("<section class='item panel-item'><div class='icon'><i class='fa fa-edit pull-left'></i></div>
+									<div class='item-body'><p>{$username} {$row['Action']} <a $href>{$row['Name']}</a></p><div class='time'><p>{$timeSince}</p></div>
+									</div></section>");
 								}
 							?>
 						</div>
 					</div>
 				</div>
+				<?php
+					if($p->hasPermisson(['Admin'], FALSE)){
+						include('Dashboard/Pending.php');
+					}
+				?>
 			</div>
 			<div class="row" id='dashboardAddons'>
 				<i class="fa fa-user fa-5x circle-fa" aria-hidden="true"></i>

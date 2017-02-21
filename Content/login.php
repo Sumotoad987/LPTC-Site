@@ -12,13 +12,24 @@
     $stmt->execute();
     $stmt->bind_result($id, $username, $password, $rank);
     $stmt->fetch();
+    $stmt->close();
     //Check passwords
     $check = $hasher->CheckPassword($_POST['password'], $password);
     if($check){
+    	//Check if there rank is enabled
+    	$stmt = $connection->prepare("Select Enabled From Ranks Where id = ?");
+    	echo($connection->error);
+    	$stmt->bind_param("i", $rank);
+    	$stmt->execute();
+    	$stmt->bind_result($enabled);
+    	$stmt->fetch();
+    	$stmt->close();
+    	//Set the session varibles
     	$_SESSION['id'] = $id;
         $_SESSION["username"] = $username;
         $_SESSION["email"] = $_POST['email'];
         $_SESSION['rank'] = $rank;
+        $_SESSION['enabled'] = $enabled;
         header( 'Location: ../Admin/' );
     }else{
         header('Location: ../login.php?denied');

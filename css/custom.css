@@ -432,7 +432,7 @@ td, th{
 	padding:10px;
 }
 
-tr:nth-child(even) {
+tr:nth-child(even) td{
     background-color: rgba(221, 221, 221, 0.17);
 }
 
@@ -826,4 +826,14 @@ form{
 
 .pages-toolbar{
 	width:80%;
+}
+
+.disabledOption{
+	background-color: rgb(221, 221, 221);
+	opacity: 0.5;
+}
+
+.noActivity{
+	font-size:20px;
+	text-align:center;
 }
