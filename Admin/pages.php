@@ -34,7 +34,7 @@
 						</div>
 						<div>	
                 			<?php
-                				$sql = "Select id, Name, Modified From Pages";
+                				$sql = "Select id, Name, Modified, Parent From Pages Order by PageOrder";
                 				$results = $connection->query($sql);
                 				if($results->num_rows > 0){
                 					while($row = $results->fetch_assoc()){
@@ -44,7 +44,8 @@
                 							$timeSince = "Now";
                 						}	
                 						
-                						echo("<a class='plain item-anchor' href='page.php?id={$row['id']}'>
+                						
+                						echo("<a class='plain item-anchor' name='{$row['id']}' data-role='{$row['Parent']}' href='page.php?id={$row['id']}'>
                 								<div class='item'>
                 									<div class='item-content'>
                 										<h2>{$row['Name']}</h2>
@@ -60,6 +61,44 @@
                 				}
                 			?>
                 		</div>	
+                		<script>
+                			$(document).ready(function(){
+                				pages = $('a[data-role]');
+								//Move them under
+								for(i = 0; i < pages.length; i++){
+									dataRole = $(pages[i]).attr('data-role');
+									if(dataRole != ""){
+										//Is a child
+										parent = $('a[name=' + dataRole + ']')
+										if(parent.parent().attr('type') != "temporary"){
+											parent.wrap("<div type='temporary'></div>");
+										}
+										temporaryDiv = parent.parent()
+										//Check to see if the child has children
+										if($(pages[i]).parent().attr("type") == "temporary"){
+											//Has children we should move temporary div surrounding it
+											pageItem = $(pages[i]).parent()
+										}else{
+											//Doesn't have children
+											pageItem = $(pages[i])
+										}
+										temporaryDiv.append(pageItem)
+										parents = "-"
+										parentsDataRole = parent.attr('data-role')
+										while(parentsDataRole != ""){
+											parents += '-'
+											parentsDataRole = $('a[name=' + parentsDataRole + ']').attr('data-role')
+										}
+										h2 = $(pages[i]).children().children().children()[0]
+										h2.innerHTML = parents + h2.innerHTML
+									}
+								}	
+								temporaryDivs = $("[type='temporary']")
+								temporaryDivs.each(function(i, div){
+									$(div.children[0]).unwrap()
+								})	
+                			});
+                		</script>
 					</div>
 				</div>
 			</div>

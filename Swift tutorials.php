@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Test </title>
+	<title>Swift tutorials</title>
 </head>
 <body>
 	<div class="menu">
@@ -11,7 +11,7 @@
 			<a>About</a>
 		</div>
 	</div>
-	<!--//Content-Begin-->Quick one I promise<!--//Content-End-->
+	<!--//Content-Begin--><!--//Content-End-->
 	<style>
 		.menuitem{
 			float:right;

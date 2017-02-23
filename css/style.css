@@ -1875,3 +1875,21 @@ d:hover a span{
      animation-play-state: paused;
 }
 
+li.dropdown ul.dropdown-menu-custom{
+	visibility:hidden;
+}
+
+li.dropdown ul.dropdown-menu-custom li{
+	background:  #00bce4;
+	width:100%;
+}
+
+li.dropdown ul.dropdown-menu-custom li a{
+	padding:15px;
+}
+
+li.dropdown:hover ul.dropdown-menu-custom {
+    visibility:visible;
+}
+
+

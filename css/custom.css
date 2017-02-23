@@ -616,7 +616,7 @@ li>.vertical-toggle:first-child{
 	font-size:23px;
 }
 
-.templates{
+.innerOptions{
 	padding-left:10%;
 	padding-right:4%;
 	padding-top:5%;
@@ -836,4 +836,9 @@ form{
 .noActivity{
 	font-size:20px;
 	text-align:center;
+}
+
+.innerOptions p{
+	padding-top:2%;
+	padding-bottoM:2%;
 }
