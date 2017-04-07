@@ -2,9 +2,18 @@
     session_start();
     require_once("../includes/dbconnect.php");
     require_once("../includes/permissons.php");
+    require_once("../includes/addon_manager.php");
+    require_once("../includes/addon_api.php");
+    //Setup addons
+    $manager = new Manager();
+    $manager->loadAddons();
+    $api = new api();
+    //
     $p = new Permissons($_SESSION["rank"], $connection);
     if(isset($_GET['id'])){
     	$p->hasPermisson(["Page_Edit"]);
+    	$api->do_actions("isAllowed");
+    	//Get the detials of the page from the database
     	$stmt = $connection->prepare("Select Name, Template, Parent, PageOrder From Pages Where id = ?");
     	$stmt->bind_param("i", $_GET['id']);
     	$stmt->execute();

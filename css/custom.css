@@ -842,3 +842,22 @@ form{
 	padding-top:2%;
 	padding-bottoM:2%;
 }
+
+.rank-options-cog{
+	margin-right: 2%;
+    margin-top: 0.5%;
+}
+
+.rank-options{
+	padding:2%;
+	width:100%;
+	background-color:#cccccc;
+}
+
+.included-options{
+	display:none;
+}
+
+.dropdown-menu li a{
+	outline:none;
+}

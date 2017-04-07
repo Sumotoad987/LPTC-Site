@@ -3,7 +3,15 @@
     require_once("../includes/permissons.php");
     require_once("../includes/dbconnect.php");
     require_once("../includes/functions.php");
+    require_once("../includes/addon_manager.php");
+    require_once("../includes/addon_api.php");
     $p = new Permissons($_SESSION["rank"], $connection);
+    
+    $manager = new Manager();
+    $manager->loadAddons();
+    
+    $api = new api;
+    
  ?>
 <html>
 	<head>
@@ -34,31 +42,30 @@
 						</div>
 						<div>	
                 			<?php
-                				$sql = "Select id, Name, Modified, Parent From Pages Order by PageOrder";
+                				$sql = "Select id, Name, Modified, Parent From Pages";
+                				$api->do_actions("Pages_Select");
                 				$results = $connection->query($sql);
-                				if($results->num_rows > 0){
-                					while($row = $results->fetch_assoc()){
-                						$published = new DateTime($row['Modified']);
+								if($results->num_rows > 0){
+									while($row = $results->fetch_assoc()){
+										$published = new DateTime($row['Modified']);
                 						$timeSince = timeSince($published);
                 						if($timeSince == ""){
                 							$timeSince = "Now";
                 						}	
-                						
-                						
-                						echo("<a class='plain item-anchor' name='{$row['id']}' data-role='{$row['Parent']}' href='page.php?id={$row['id']}'>
-                								<div class='item'>
-                									<div class='item-content'>
-                										<h2>{$row['Name']}</h2>
-                										<p><i class='fa fa-clock-o'></i> {$timeSince}</p>
-                										<form action='Actions/publish.php' method='POST'>
-                											<input type='hidden' name='Delete' value='{$row['id']}'>
-                											<i class='icon-delete in-a-submit fa fa-trash-o fa-lg'></i>
-                										</form>
-                								 	</div>
-                								 </div>
-                							   </a>");
-                					}
-                				}
+										echo("<a class='plain item-anchor' name='{$row['id']} data-role='{$row['Parent']} href='page.php?id={$row['id']}''>
+											<div class='item'>
+												<div class='item-content'>
+													<h2>{$row['Name']}</h2>
+													<p><i class='fa fa-clock-o'></i> {$timeSince} </p>
+													<form action='Actions/publish.php' method='POST'>
+														<input type='hidden' name='Delete' value='{$row['id']}'>
+														<i class='icon-delete in-a-submit fa fa-trash-o fa-lg'></i>
+													</form>
+												</div>
+											</div>											
+										</a>");
+									}
+        						}
                 			?>
                 		</div>	
                 		<script>

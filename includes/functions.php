@@ -54,6 +54,17 @@ function rel2abs($rel, $base)
         return $abs;
 }
 
+function simpleRel2Abs($rel, $abs){
+		$down = substr_count($rel, '../');
+		$rel = str_replace("../", "", $rel);
+		$returnPath = "";
+		for($i = 0; $i<$down; $i++){
+			$abs = implode('/', explode('/', $abs, -1));
+			var_dump($abs);
+		}
+		return($abs . '/' . $rel);
+	}
+
 function userPermissons($rank, $connection){
 	$stmt = $connection->prepare("Select Premissons From Ranks Where Id = ?");
 	$stmt->bind_param("i", $rank);
@@ -105,5 +116,9 @@ function rankName($rankId, $connection){
 	return($rankName);
 }
 
+function includeNoVars($path){
+	//The vars used in the imported file are not accessible in this file
+	include_once($path);
+}
 
 ?>

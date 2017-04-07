@@ -3,6 +3,14 @@
 	require_once("../../includes/dbconnect.php");
 	require_once("../../includes/functions.php");
 	require_once("../../includes/permissons.php");
+	require_once("../../includes/addon_manager.php");
+    require_once("../../includes/addon_api.php");
+    //Run all the addons
+    $manager = new Manager();
+    $manager->loadAddons();
+    $api = new api();
+    $api->do_actions("isAllowed");
+    //
 	$p = new Permissons($_SESSION["rank"], $connection);
 	$type = "page";
 	if(isset($_POST['Delete'])){
@@ -52,6 +60,9 @@
 		$stmt->close();
 		$id = $connection->insert_id;
 		$action = $_POST['id'] == "" ? "created" : "modified";
+		if($action == "created"){
+			$api->do_actions("createdPage");
+		}
  		insertActivity($connection, $_POST['Title'], $_SESSION['id'], intval($id), $type, $action);
 		header("Location: " . $dir);
 	}

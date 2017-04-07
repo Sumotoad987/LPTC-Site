@@ -612,8 +612,12 @@
             isDisabled = this.disabled || isOptgroupDisabled;
         
         if(this.className.includes("dropdown")){
-        	var defaultString = "<i class='fa fa-caret-down' id='rotate' onclick='dropdownOptions(this)' aria-hidden='true'></i> "
-        	text = defaultString + text;
+        	var addedElement = "<i class='fa fa-caret-down' id='rotate' onclick='dropdownOptions(this)' aria-hidden='true'></i> "
+        	text = addedElement + text;
+        }
+        if(this.className.includes("hasOptions")){
+        	var addedElement = '<i class="fa fa-cog pull-right rank-options-cog" aria-hidden="true"></i>'
+        	text = addedElement + text;
         }
             
         var optionName = this.getAttribute("name");
@@ -1152,8 +1156,7 @@
         this.togglePlaceholder(); // check if setSelected is being called by changing the value of the select
         $lis = this.findLis().eq(this.liObj[index]);
       }
-
-      $lis.toggleClass('selected', selected).find('a').attr('aria-selected', selected);
+      $lis.toggleClass('selected', selected).children('a').attr('aria-selected', selected);
     },
 
     /**
@@ -1276,7 +1279,7 @@
           if (!that.multiple) { // Deselect all others if not multi select box
             $options.prop('selected', false);
             $option.prop('selected', true);
-            that.$menuInner.find('.selected').removeClass('selected').find('a').attr('aria-selected', false);
+            that.$menuInner.find('.selected').removeClass('selected').children('a').attr('aria-selected', false);
             that.setSelected(clickedIndex, true);
           } else { // Toggle the one we have chosen if we are multi select.
             $option.prop('selected', !state);
