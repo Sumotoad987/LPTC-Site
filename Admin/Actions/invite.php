@@ -15,10 +15,16 @@ function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzAB
 	return $str;
 }
 //Insert user
-$stmt = $connection->prepare("INSERT INTO Users (Email, Rank, AuthCode, Created, Modified, UserId) Values (?, ?, ?, ?, ?, ?)");
+$authorized = areAuthorized($_SESSION['rank'], $_POST['rank'], $connection);
+$requestedRank = NULL;
+if($authorized == False){
+	$requestedRank = $_POST['rank'];
+	$_POST['rank'] = NULL;
+}
+$stmt = $connection->prepare("INSERT INTO Users (Email, Rank, AuthCode, Created, Modified, UserId, RequestedRank) Values (?, ?, ?, ?, ?, ?, ?)");
 $authCode = random_str("50");
 $time = NULL;
-$stmt->bind_param("sssssi", $_POST["email"], $_POST['rank'], $authCode, $time, $time, $_SESSION['id']);
+$stmt->bind_param("sssssii", $_POST["email"], $_POST['rank'], $authCode, $time, $time, $_SESSION['id'], $requestedRank);
 if(!$stmt->execute()){
 	trigger_error("there was an error....".$connection->error, E_USER_WARNING);
 }
@@ -27,7 +33,7 @@ $id = $connection->insert_id;
 $type = "user";
 $action = "invited";		
 insertActivity($connection, $_POST['email'], $_SESSION['id'], intval($id), $type, $action);
-//-------------------
+//-------------------Send email
 //Get site varibles
 ///Username
 $stmt = $connection->prepare("Select Username From Users Where UserId = ?");
@@ -59,6 +65,14 @@ $subject = "You have been invited to join {$varibles['SiteName']}";
 $headers = "From:  noreply@{$varibles['url']}\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-mail($_POST["email"], $subject, $template, $headers); 
+if($authorized == True){
+	mail($_POST["email"], $subject, $template, $headers); 
+}else{
+	$stmt = $connection->prepare("Insert Into Email (Subject, Message, Headers, ReceiverId) Values (?, ?, ?, ?)");
+	echo($connection->error);
+	$stmt->bind_param("sssi", $subject, $template, $headers, $id);
+	$stmt->execute();
+	$stmt->close();
+}
 header("Location: ../users.php");
 ?>

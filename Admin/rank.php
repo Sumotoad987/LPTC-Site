@@ -2,6 +2,7 @@
 	session_start();
 	require_once("../includes/permissons.php");
    	require_once("../includes/dbconnect.php");
+   	require_once("../includes/functions.php");
     $p = new Permissons($_SESSION["rank"], $connection);
 	if(isset($_GET['id'])){
 		 $p->hasPermisson(["Rank_Edit"]);
@@ -24,10 +25,10 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="../css/custom.css?v=<?= filemtime('../css/custom.css') ?>" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
-		<link href="../css/bootstrap-select.css" rel="stylesheet">	
+		<link href="../css/bootstrap-select.css?v=0.1" rel="stylesheet">	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="../js/bootstrap-select.js" type="text/javascript"></script>
+		<script src="../js/bootstrap-select.js?v=0.22" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -51,12 +52,12 @@
 								<p>Name</p>
 								<?php
 									echo("<input name='Name' class='large-input' value='{$name}'>");
-									echo("<input type='hidden' name='Id' value='{$_GET['id']}'>");
+									echo("<input type='hidden' name='Id' id='rankId' value='{$_GET['id']}'>");
 								?>
 								<select id="myselect" class="selectpicker premissons" multiple name="Premissons[]" data-dropup-auto="false">
 									<?php
 										require_once("../includes/dbconnect.php");
-										$sql = "Select Name, Provider, Inherited, Dissolves From Premissons";
+										$sql = "Select id, Name, Provider, Inherited, Dissolves, Options From Premissons";
 										$results = $connection->query($sql);
 										$Setpremissons = isset($premissons) ? explode(",", $premissons) : array();
 										if($results->num_rows > 0){
@@ -64,18 +65,29 @@
                 							while($row = $results->fetch_assoc()){
                 								$class = "";
                 								$attributes = "" ;
+                								$extraContent = "";
                 								if($row['Inherited'] != NULL){
                 									$class .= "indentedOptions ";
                 									$attributes .= "data-role='" . $row['Inherited'] . "' ";
                 								}
                 								if($row['Dissolves'] == TRUE){
-                									$class .= "dropdownOption";
+                									$class .= "dropdownOption ";
                 									$attributes .= "name='" . $row['Name']. "' ";
                 								}
                 								if(in_array($row['Name'], $Setpremissons)){
                 									$attributes .= "selected";
                 								}
-                								echo("<option value='" . $value . "' class='" . $class . "' " . $attributes . '>' . $row['Name'] . '</option>');
+                								var_dump($row['Options']);
+                								if($row['Options'] == TRUE){
+            										var_dump($row['Name']);
+                									$class .= "hasOptions";
+                									ob_start();
+													includeNoVars('Permissons/' . $row['Name'] . '.php');
+													$file_content = ob_get_contents();
+													ob_end_clean();
+                									$includedOptions .= "<div id='{$row['Name']}' class='included-options'> {$file_content} </div>";
+                								} 
+                								echo("<option value='{$value}' class='{$class}' {$attributes} data-content='<span>{$row['Name']}</span>{$extraContent}'>{$row['Name']}</option>");
                 								$value += 1;
                 							}
                 						}
@@ -83,6 +95,7 @@
 
 								</select>
 								<?php
+									echo($includedOptions);
 									$value = isset($_GET['id']) ? "Update rank" : "Create rank";
 									echo("<input class='btn btn-primary' type='submit' value='{$value}' style='float:right;'>");
 								?>
@@ -96,12 +109,36 @@
 			Array.prototype.diff = function(a) {
     			return this.filter(function(i) {return a.indexOf(i) < 0;});
 			};
+			var openedMenus = []
 			$( document ).ready(function() {
 				var i = setInterval(function (){
 
        				if ($('.bootstrap-select').length){
             			clearInterval(i);
+            			//Settings system
+            			$(".fa-cog").click(function(event){
+            				event.stopPropagation()
+            				//Sets up the the rankOptions and controls if it is hidden of not
+            				if($(event.target).parent().siblings()[0] != undefined){
+            					optionsDiv = $(event.target).parent().siblings()[0]
+            					$(optionsDiv).toggle()
+            				}else{
+								optionsDiv = $("<div class='rank-options'></div>")
+								container = $("<div></div>")
+								siblings =  $(event.target).siblings()
+								//Gets the span element(contains the permisson title), if the first sibling has "fa" it means it is the triangular pointer
+								span = $(siblings[0]).hasClass("fa") ? siblings[1] : siblings[0]
+								//
+								container.css('margin-left', $(span).css('margin-left'))
+								$('#' + span.innerHTML).css('display', 'block')
+								container.append($('#' + span.innerHTML))
+								optionsDiv.append(container)
+								$(event.target).parent().parent().append(optionsDiv)
+            				}
+            			});
+            			//Dropdown system
             			$(".indentedOptions").click(function(event){
+            				//If click indented options makes parent not clicked
             				object = event.target;
 							dataRole = object.getAttribute("data-role");
 							parent = object.parentElement;
@@ -124,6 +161,7 @@
 							}
 						});
 						$(".dropdownOption").click(function(event){
+							console.log("Clicked");
 							object = event.target;
 							name = object.getAttribute("name");
 							parent = object.parentElement
@@ -143,7 +181,8 @@
 							currentValues = $("#myselect").val() || [];
 							$("#myselect").selectpicker("val", currentValues.diff(values));
 						});
-						selected = $("[selected]");
+						//Open the dropdown for all selected elements
+						selected = $(".premissons [selected]");
 						for(var e = 0; e < selected.length; e++){
 							dataRole = selected[e].getAttribute("data-role");
 							if(dataRole != null){
@@ -167,7 +206,18 @@
 				}
 			}
 			function dropdownOptions(rotate){
-				name = rotate.parentElement.parentElement.name;
+				/* -----------------NOTICE------------------------:
+						Two parents/childs if you use the normal text attribute
+						rotate.parentElement.parentElement;
+						options[i].childNodes[0].childNodes[0]
+						
+						
+						One parent/child if you use data-content
+						rotate.parentElement;
+						options[i].childNodes[0]
+						-----------------END--------------------------------	
+					*/
+				name = rotate.parentElement.name;
 				options =  Array.prototype.slice.call(document.querySelectorAll("a[data-role=" + name + "]"));
 				if(rotate.id == "rotateBack"){
 					//Close the dropdown menu
@@ -177,50 +227,111 @@
 						name = options[i].getAttribute("name")
 						if(name != "null"){								
 							options.push.apply(options, Array.prototype.slice.call(document.querySelectorAll('a[data-role=' + name + ']')));
-							options[i].childNodes[0].childNodes[0].id = "rotateForward";
+							options[i].childNodes[0].id = "rotateForward";
 						}
 						options[i].style="display:none";
 					}
 				}else{
 					//Open the dropdown menu
 					rotate.id = 'rotateBack';
-					openDropDown(rotate.parentElement.parentElement);
+					/* -----------------NOTICE------------------------:
+						Two parents if you use the normal text attribute
+						openDropDown(rotate.parentElement.parentElement);
+						
+						
+						One parent if you use data-content
+						openDropDown(rotate.parentElement);
+						-----------------END--------------------------------	
+					*/
+					openDropDown(rotate.parentElement);
 				}
 			}
+			//Moves the values before the form is submitted and submit the permisson options
 			function moveValues(){
 				selectOptions = $("#myselect").children()
 				for(var i = 0; i < selectOptions.length; i++){
 					selectOptions[i].value = selectOptions[i].innerHTML;
 				}
+				rankOptions = $(".included-options");
+				rankOptions.each(function(){
+					topLi = $(this).parent().parent().parent()
+					if(topLi.children("a").attr("aria-selected") == 'true'){
+						formData = $(this).find(":input").serialize()
+						formData = formData + "&Id=" + $("#rankId").attr("value")
+						$.post('Permissons/Page_Edit.php?premissonOptions', formData, function(result){
+						})
+					}
+				});
 			}
 			function openDropDown(option){
 				console.log("openDropDown");
 				display="block";
 				name = $(option).attr("name");
 				options = Array.prototype.slice.call(document.querySelectorAll("a[data-role=" + name + "]"));
-				console.log(options)
+				$(option).children()[0].id = 'rotateBack'
+				//Makes sure option has not been opened yet, if it already has and this code was to run it would change the order of the options
+				if($(option).attr("beenopened") != "true"){
+					console.log($(option).attr("beenopened"))
+					//Move all its children underneath items
+					$(options).each(function(){
+						$(this).parent().insertAfter(option.parentElement);
+					});
+					$(option).attr("beenopened", true);
+				}
+				//Open all dropdowns above it
+				dataRole = $(option).attr("data-role")
+				while(dataRole != "null"){//Has parent
+					parent = $("[name=" + dataRole + "]")
+					rotate = $(parent).children()[0]
+					if($(rotate).attr("id") == "rotate"){//It is not already opened
+						//Change the rotate icon so it is pointing down
+						$(rotate).attr('id', 'rotateBack')
+						//Get the children of the parent(who are the siblings of the option we just had)
+						siblings = Array.prototype.slice.call(document.querySelectorAll("a[data-role=" + dataRole + "]"))
+						//Merges the two arrays
+						options = siblings.concat(options)
+					}
+					dataRole = $(parent).attr("data-role")
+					$(parent).attr("beenopened", true)
+				}
+				///
 				for(var i = 0; i < options.length; i++){
-					$(options[i]).parent().insertAfter(option.parentElement);
 					options[i].style="display:" + display + "!important;";
-					margin = 1;
-					complete = false;
-					var dataRole = name;
-					while(complete == false){
-						above = document.getElementsByName(dataRole);
-						if(above[0].getAttribute("data-role") == "null"){
-							complete = true;
-						}else{
-							dataRole = above[0].getAttribute("data-role");
-							margin += 1;
+					if(openedMenus.indexOf(option) === -1){
+						margin = 1;
+						complete = false;
+						var dataRole = name;
+						while(complete == false){
+							above = document.getElementsByName(dataRole);
+							if(above[0].getAttribute("data-role") == "null"){
+								complete = true;
+							}else{
+								dataRole = above[0].getAttribute("data-role");
+								margin += 1;
+							}
 						}
+						totalMargin = 20 * margin;
+						if($(options[i]).attr("class").includes("dropdownOption")){
+							totalMargin = 8 * margin;
+						}
+						spanText = $(options[i]).children()[0];
+						if($(spanText).hasClass("rank-options-cog")){
+							spanText = $(options[i]).children()[1];
+						}
+						spanText.style="margin-left:" + totalMargin + "px;";
 					}
-					totalMargin = 20 * margin;
-					if(options[i].getAttribute("class").includes("dropdownOption")){
-						totalMargin = 8 * margin;
-					}
-					options[i].childNodes[0].style="margin-left:" + totalMargin + "px;";
+				}
+				if(openedMenus.indexOf(option) === -1){
+					openedMenus.push(option)
 				}
 			}
 		</script>
+
 	</body>
 </html>
+
+<!---
+	Documentation:
+	The ticks on the bootstrap come from a styleing to do with <li>'s with the class="selected" attribute, because the permisson options
+	are inside this they get the tick when the permisson itself is ticked. This was fixed by a change to the bootstrap-select css sheet
+-->

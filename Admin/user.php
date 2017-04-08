@@ -4,11 +4,11 @@
    	require_once("../includes/dbconnect.php");
     $p = new Permissons($_SESSION["rank"], $connection);
     $p->hasPermisson(["User_Edit"]);
-    $stmt = $connection->prepare("Select Email, Username, Rank From Users Where ID = ?");
-   	$id = (int)$_POST['id'];
+    $stmt = $connection->prepare("Select Email, Username, Rank, RequestedRank From Users Where ID = ?");
+   	$id = isset($_GET['id']) ? (int)$_GET['id'] : (int)$_POST['id'] ;
     $stmt->bind_param("i", $id);
     $stmt->execute();
-    $stmt->bind_result($email, $username, $rank);
+    $stmt->bind_result($email, $username, $rank, $requestedRank);
     $stmt->fetch();
     $stmt->close();
  ?>
@@ -30,6 +30,16 @@
 					var text_length = $('.message').val().length;
   					var text_remaining = text_max - text_length;
 					$('#count_message').html(text_remaining + ' remaining');
+				});
+				$('.selectpicker').on('change', function(){
+					console.log($('.selectpicker option:selected').attr('class'));
+					if($('.selectpicker option:selected').attr('class') == 'approvalNeeded'){
+						$('button.dropdown-toggle').removeClass('btn-defualt');
+						$('button.dropdown-toggle').addClass('btn-danger');
+					}else{
+						$('button.dropdown-toggle').removeClass('btn-danger');
+						$('button.dropdown-toggle').addClass('btn-default');
+					}
 				});
 			});
 		</script>
@@ -65,16 +75,25 @@
 									echo("<input name='username' class='large-input' value='{$username}'><p>Email:</p><input name='email' class='large-input' value='{$email}'>");
 								?>
 								<p>Rank</p>
-								<select name='rank' class='selectpicker'>
+								<select name='rank' class='selectpicker' <?php if($requestedRank != NULL){ echo('data-style="btn-danger"'); } ?> >
 									<?php
 										// Get ranks
-										$sql = "SELECT Name From Ranks ORDER BY id";
+										$sql = "SELECT id, Name From Ranks ORDER BY id";
 										$result = $connection->query($sql);
 										echo("");
 										if($result->num_rows > 0){
 											while($row = $result->fetch_assoc()){
-												$attribute = $row['Name'] == $rank ? "selected" : "";
-												echo("<option {$attribute}>"  . $row['Name'] . "</option>");
+												$attribute = '';
+												if($requestedRank != NULL){
+													if($row['id'] == $requestedRank){
+														$attribute = "selected class='approvalNeeded'";
+													}elseif($row['id'] == $rank){
+														$row['Name'] .= "(Current)";
+													}
+												}else{
+													$attribute = $row['id'] == $rank ? "selected" : "";
+												}
+												echo("<option {$attribute} value='{$row[id]}'>"  . $row['Name'] . "</option>");
 											}
 										}	
 									?>

@@ -10,7 +10,7 @@
 		<title>Ranks</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<link href="../css/custom.css?v=0.23" rel="stylesheet">
+		<link href="../css/custom.css?v=0.45" rel="stylesheet">
 		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="../js/BeattCMS.js?v=0.1" type="text/javascript"></script>
@@ -32,9 +32,9 @@
 		<div class="container-fluid content">
 			<div class="row">
 				<?php
-					if(isset($_GET['denied'])){
-						echo("<p class='denied'>Sorry that rank does not exist</p>");
-					}
+					$errors = array('denied' => 'Sorry that rank does not exist', 'refer' => 'Sorry that needs Admin authorization');
+					$result = $errors[array_keys($_GET)[0]];
+					echo("<a class='denied'>{$result}</a>");
 				?>
 				<div class="col-lg-12">
 					<div class="box">
@@ -54,11 +54,12 @@
 									</tr>
 									<?php
 										require_once("../includes/dbconnect.php");
-										$sql = "Select id, Name, Premissons FROM Ranks ORDER BY id";
+										$sql = "Select id, Name, Premissons, Enabled FROM Ranks ORDER BY id";
 										$results = $connection->query($sql);
 										if($results->num_rows > 0){
 											while($row = $results->fetch_assoc()){
-												echo("<tr><td>" . $row['Name'] . '</td><td>');
+												$attribute = $row['Enabled'] == TRUE ? '' : 'class="disabledOption"';
+												echo("<tr {$attribute}><td>" . $row['Name'] . '</td><td>');
 												$premissons = explode(",", $row['Premissons']);
 												$stmt = $connection->prepare("Select Provider, Description From Premissons where Name = ?");
 												foreach($premissons as $premisson){

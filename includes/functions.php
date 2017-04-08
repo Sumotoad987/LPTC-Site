@@ -54,4 +54,71 @@ function rel2abs($rel, $base)
         return $abs;
 }
 
+function simpleRel2Abs($rel, $abs){
+		$down = substr_count($rel, '../');
+		$rel = str_replace("../", "", $rel);
+		$returnPath = "";
+		for($i = 0; $i<$down; $i++){
+			$abs = implode('/', explode('/', $abs, -1));
+			var_dump($abs);
+		}
+		return($abs . '/' . $rel);
+	}
+
+function userPermissons($rank, $connection){
+	$stmt = $connection->prepare("Select Premissons From Ranks Where Id = ?");
+	$stmt->bind_param("i", $rank);
+	$stmt->execute();
+	$stmt->bind_result($user_permissons);
+	$stmt->fetch();
+	$stmt->close();	
+	return $user_permissons;
+}
+
+function getDissolved($premissons, $connection){
+	$disolvedStmt = $connection->prepare("Select Name From Premissons Where Inherited = ?");
+	for($i = 0; $i<count($premissons); $i++){
+		$premissonName = $premissons[$i];
+		$disolvedStmt->bind_param("s", $premissonName);
+		$disolvedStmt->execute();				
+		//The permissons that inherit from the one we are testing
+		$disolvedStmt->bind_result($premisson);
+		while($disolvedStmt->fetch()){
+			$premissons[] = $premisson;
+		}
+	}
+	return $premissons;
+}
+
+function areAuthorized($userRank, $requestedRank, $connection){
+	#Get there premissons
+	$userPremissons = userPermissons($userRank, $connection);
+	$userPremissons = explode(",", $userPremissons);
+	$userPremissons = getDissolved($userPremissons, $connection);
+	#Get the premissons of the rank they are trying to set
+	$rankPremissons = userPermissons($requestedRank, $connection);
+	$rankPremissons = explode(",", $rankPremissons);
+	$rankPremissons = getDissolved($rankPremissons, $connection);
+	$differentPremissons = array_diff($rankPremissons, $userPremissons);
+	if(count($differentPremissons) > 0){
+		#Get the rank of the user they are trying to edit
+		return false;
+	}
+	return true;
+}
+
+function rankName($rankId, $connection){
+	$stmt = $connection->prepare("Select Name From Ranks Where id = ?");
+	$stmt->bind_param("i", $rankId);
+	$stmt->execute();
+	$stmt->bind_result($rankName);
+	$stmt->fetch();
+	return($rankName);
+}
+
+function includeNoVars($path){
+	//The vars used in the imported file are not accessible in this file
+	include_once($path);
+}
+
 ?>

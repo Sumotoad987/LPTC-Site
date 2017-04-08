@@ -3,6 +3,14 @@
 	require_once("../../includes/dbconnect.php");
 	require_once("../../includes/functions.php");
 	require_once("../../includes/permissons.php");
+	require_once("../../includes/addon_manager.php");
+    require_once("../../includes/addon_api.php");
+    //Run all the addons
+    $manager = new Manager();
+    $manager->loadAddons();
+    $api = new api();
+    $api->do_actions("isAllowed");
+    //
 	$p = new Permissons($_SESSION["rank"], $connection);
 	$type = "page";
 	if(isset($_POST['Delete'])){
@@ -42,13 +50,19 @@
 		$newpage = fopen($dir, "w");
 		fwrite($newpage, $template);
 		fclose($newpage);
-		$stmt = $connection->prepare("Insert INTO Pages (id, Name, Template, UserId, Created, Modified) Values (?, ?, ?, ?, ?, ?) ON Duplicate Key Update Name=Values(Name), Template=Values(Template), UserId=Values(UserId), Modified=Values(Modified)");
+		$stmt = $connection->prepare("Insert INTO Pages (id, Name, Template, UserId, Created, Modified, Parent, PageOrder) Values (?, ?, ?, ?, ?, ?, ?, ?) ON Duplicate Key Update Name=Values(Name), Template=Values(Template), UserId=Values(UserId), Modified=Values(Modified), Parent=Values(Parent), PageOrder=Values(PageOrder)");
 		$time = NULL;
-		$stmt->bind_param("ississ", $_POST['id'], $_POST['Title'], $_POST['template'], $_SESSION["id"], $time, $time);
+		if($_POST['parent'] == ''){
+			$_POST['parent'] = NULL;
+		}
+		$stmt->bind_param("ississii", $_POST['id'], $_POST['Title'], $_POST['template'], $_SESSION["id"], $time, $time, $_POST['parent'], $_POST['order']);
 		$stmt->execute();
 		$stmt->close();
 		$id = $connection->insert_id;
 		$action = $_POST['id'] == "" ? "created" : "modified";
+		if($action == "created"){
+			$api->do_actions("createdPage");
+		}
  		insertActivity($connection, $_POST['Title'], $_SESSION['id'], intval($id), $type, $action);
 		header("Location: " . $dir);
 	}

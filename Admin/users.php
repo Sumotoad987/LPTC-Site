@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once("../includes/permissons.php");
+    require_once("../includes/functions.php");
     require_once("../includes/dbconnect.php");
     $p = new Permissons($_SESSION["rank"], $connection);
     $p->hasPermisson(["User_View"]);
@@ -39,13 +40,20 @@
 						</div>
 						<div>
 							<?php				
-								$results = $connection->query("Select Email, Username, Rank, id FROM Users");
+								$results = $connection->query("Select Email, Username, Rank, RequestedRank,  id FROM Users");
 								if($results->num_rows > 0){
                 					while($row = $results->fetch_assoc()){
+                						if(isset($row['RequestedRank'])){
+                							$rankId = $row['RequestedRank'];
+                							$class = 'disabledOption';
+                						}else{
+                							$rankId = $row['Rank'];
+                						}
+                						$rankName = rankName($rankId, $connection);
                 						$hashed = md5($row['Email']);
                 						$username = $row['Username'] == "" ? "&#8291;" : $row['Username'];
-                						echo('<form method="POST" style="margin-bottom:0" action="user.php"><div class="user" onclick="javascript:this.parentNode.submit();"><div class="user-img"><img src="https://www.gravatar.com/avatar/' . $hashed . '?d=mm"></div>
-                						<div class="user-details"><input name="id" type="hidden" value="' . $row['id'] . '"><h3>' . $username . '</h3><p>' . $row['Email'] . '</p><p class="rank">' . $row['Rank'] . '</p></div></div></form>');
+                						echo("<form method='POST' style='margin-bottom:0' action='user.php'><div class='user {$class}' onclick='javascript:this.parentNode.submit();'><div class='user-img'><img src='https://www.gravatar.com/avatar/" . $hashed . "?d=mm'></div>
+                						<div class='user-details'><input name='id' type='hidden' value='" . $row['id'] . "'><h3>" . $username . "</h3><p>" . $row['Email'] . "</p><p class='rank'>" . $rankName . "</p></div></div></form>");
                 					}
                 				}							
                 			?>

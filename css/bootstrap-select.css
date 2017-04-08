@@ -202,7 +202,7 @@ select.selectpicker {
   top: auto;
   margin-top: -1px;
 }
-.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark {
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected > a span.check-mark {
   position: absolute;
   display: inline-block;
   right: 15px;
