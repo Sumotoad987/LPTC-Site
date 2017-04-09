@@ -97,7 +97,8 @@
                 <br>
                 <a onclick="loadMore()" id="loadMore" style="margin-bottom:15px;">Load more</a>
             </div>
-            <div class="col-md-3 sidebar" style="color:white">
+            <!-- 
+<div class="col-md-3 sidebar" style="color:white">
                 <div class="center text-center">
                     <h2>Newsletter</h2>
                     <p>Subscribe to our email list</p>
@@ -120,6 +121,7 @@
                     </form>
                 </div>
             </div>
+ -->
         </div>
     </div>
     <div class="content-right" style="margin-top:15px;">
@@ -139,7 +141,7 @@
                 </ul>
             </div>
             <div class="col-md-4 footer-top2">
-                <p >© 2015 - 2016. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+                <p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
             </div>
             <div class="clearfix"> </div>
         </div>

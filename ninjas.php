@@ -2,105 +2,141 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ninjas</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.lettering.js"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css?v=1.1" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Scientist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script>
-    function getRotationDegrees(obj) {
-        var matrix = obj.css("-webkit-transform") ||
-        obj.css("-moz-transform")    ||
-        obj.css("-ms-transform")     ||
-        obj.css("-o-transform")      ||
-        obj.css("transform");
-        if(matrix !== 'none') {
-             var values = matrix.split('(')[1].split(')')[0].split(',');
-             var a = values[0];
-             var b = values[1];
-             var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
-        }else{
-             var angle = 0;
-        }
-        return (angle < 0) ? angle + 360 : angle;
-    }
-    function addLinks(element){
-    	object = $(element);
-        for(var e = 0; e < object.children().length; e++){
-    		for(var i = 0; i < object.children()[e].childNodes.length; i++){
-    			child = object.children()[e].childNodes[i];         		
-    			parent = document.createElement("a"); 
-        		parent.href=object.children()[e].href; 
-        		console.log(object.children()[e].href);
-    			parent.setAttribute("class", "circleLink")
-    			parent.setAttribute("style", "width: " + width + "px");        		
-    			child.insertBefore(parent, child.childNodes[0]); 
-        		parent.appendChild(child.childNodes[1]);
-    		}
-    		object.children()[e].href="";
-    	}
-    }
-    var width = 0;
-    function setupRotation(element, height){
-    	$(element + " a").lettering();
-        var totalChars = $(element + " span").length;
-        var degreesPerChar = 360 / totalChars; 
-        width = degreesPerChar * 2;         
-        var currentOffset = 0;
-         // Apply-->
-        $(element + " span").each(function(){          
-        	$(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');            
-    		height = (2.6890756303 * $(element + " span").length > 700) ? 2.6890756303 * $(element + "span").length : height;
-    		$(this).css('padding-bottom', height);
-       	 	currentOffset += degreesPerChar;
-       	});
-    }
-    if(window.innerWidth > 750){
-    	$(function() {
-        	setupRotation("d", 360);
-        	setupRotation("c", 200);
-        	addLinks("c");
-        	addLinks("d");
-        });
-        var intervalId = beginRotation();
-    }else{
-        $(function() {
-          $("d a").each(function(){
-            $(this).wrap("<li></li>")
-          });
-          $("d").wrapInner("<ul></ul>");
-        });
-    }
-    function beginRotation(){
-    	 var id = window.setInterval(function(){
-            letters = ['c','d']
-            for(i = 0; i < 2; i++){
-            	$(letters[i] + " span").each(function(){
-                	var rotation = getRotationDegrees($(this)) + 0.6;
-                	$(this).css("transform","rotate("+rotation+"deg)");
-            	});
-            }
-        }, 100);
-        return id;
-    }
-    $(document).ready(function(){
-    	$("d a span, c a span").hover(function(){
-    		console.log(intervalId);
-    		clearInterval(intervalId);
-    	}, function(){
-    		intervalId = beginRotation();
-    	});
-    });
-    </script>
+	<title>Ninjas</title>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.lettering.js"></script>
+	<!-- Custom Theme files -->
+	<!--theme-style-->
+	<link href="css/style.css?v=1.23232" rel="stylesheet" type="text/css" media="all" />	
+	<link href="css/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Scientist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<script>
+		//Gets parameters from a url
+		function getQueryParams(qs) {
+			qs = qs.split('+').join(' ');
+
+			var params = {},
+				tokens,
+				re = /[?&]?([^=]+)=([^&]*)/g;
+
+			while (tokens = re.exec(qs)) {
+				params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+			}
+
+			return params;
+		}
+		function setupLists(){
+			$("#Ninjas").css("left", 0);
+			//Make them into lists
+			$("d a").each(function(){
+				$(this).wrap("<li></li>")
+		  	});
+		 	$("c a").each(function(){
+				$(this).wrap("<li></li>")
+		 	});
+		  	$("d").wrapInner("<ul></ul>");
+		 	$("c").wrapInner("<ul></ul>");
+		 	//Wrap c in a div to make it go to the right
+		 	cContainer = $("<div style='float:right'>");
+		 	cContainer.append($("c"));
+		 	cContainer.insertAfter("d");
+		 	$("<h3 style='display:inline-block'>Scratch Ninjas</h3>").insertBefore("c");
+		 	//Give a header to the d
+		 	$("<h3 style='display:inline-block'>HTML Ninjas</h3>").insertBefore("d");
+		 	$("d").css("display", "inline-block");
+		}
+		function getRotationDegrees(obj) {
+			var matrix = obj.css("-webkit-transform") ||
+			obj.css("-moz-transform")    ||
+			obj.css("-ms-transform")     ||
+			obj.css("-o-transform")      ||
+			obj.css("transform");
+			if(matrix !== 'none') {
+				 var values = matrix.split('(')[1].split(')')[0].split(',');
+				 var a = values[0];
+				 var b = values[1];
+				 var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+			}else{
+				 var angle = 0;
+			}
+			return (angle < 0) ? angle + 360 : angle;
+		}
+		function addLinks(element){
+			object = $(element);
+			for(var e = 0; e < object.children().length; e++){
+				for(var i = 0; i < object.children()[e].childNodes.length; i++){
+					child = object.children()[e].childNodes[i];         		
+					parent = document.createElement("a"); 
+					parent.href=object.children()[e].href; 
+					console.log(object.children()[e].href);
+					parent.setAttribute("class", "circleLink")
+					parent.setAttribute("style", "width: " + width + "px");        		
+					child.insertBefore(parent, child.childNodes[0]); 
+					parent.appendChild(child.childNodes[1]);
+				}
+				object.children()[e].href="";
+			}
+		}
+		var width = 0;
+		function setupRotation(element, height){
+			$(element + " a").lettering();
+			var totalChars = $(element + " span").length;
+			var degreesPerChar = 360 / totalChars; 
+			width = degreesPerChar * 2;         
+			var currentOffset = 0;
+			 // Apply-->
+			$(element + " span").each(function(){          
+				$(this).css('-webkit-transform', 'rotate('+currentOffset+'deg)');            
+				height = (2.6890756303 * $(element + " span").length > 700) ? 2.6890756303 * $(element + "span").length : height;
+				$(this).css('padding-bottom', height);
+				currentOffset += degreesPerChar;
+			});
+		}
+		function beginRotation(){
+			 var id = window.setInterval(function(){
+				letters = ['c','d']
+				for(i = 0; i < 2; i++){
+					$(letters[i] + " span").each(function(){
+						var rotation = getRotationDegrees($(this)) + 0.6;
+						$(this).css("transform","rotate("+rotation+"deg)");
+					});
+				}
+			}, 100);
+			return id;
+		}
+		$(document).ready(function(){
+			$("d a span, c a span").hover(function(){
+				console.log(intervalId);
+				clearInterval(intervalId);
+			}, function(){
+				intervalId = beginRotation();
+			});
+			params = getQueryParams(document.location.search);
+			if(window.innerWidth > 750){
+				$(function() {
+					if(params.list == 'true'){
+						setupLists();
+						$("#switchFrom").attr("href", 'Ninjas.php?list=false');
+					}else{
+						setupRotation("d", 360);
+						setupRotation("c", 200);
+						addLinks("c");
+						addLinks("d");
+					}
+				});
+				var intervalId = beginRotation();
+			}else{
+				setupLists();
+			}
+		});
+	</script>
     <?php
    		include_once('includes/dbconnect.php');
    		$sql = 'Select Header From Settings';
@@ -132,7 +168,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              </div>
 <div class="content">
 	<div class="container">
-        <div class="ProjectOfWeek">
+		<a href="Ninjas.php?list=true" id='switchFrom'><i class="fa fa-list pull-right" style="margin-top:3px;"></i></a>
+        <div id="Ninjas">
              <d>
             <?php
             	function is_dir_empty($dir) {
@@ -186,7 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2016. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>

@@ -1737,6 +1737,7 @@ h3.typo1 {
 /*Richards edits*/
 .quotes{
     font-size:20px;
+	color:white
 }
 .imageHolder{
     position:relative;
@@ -1807,7 +1808,7 @@ h2.imageTitle{
     padding:3px;
     margin-left:5px;
 }
-.ProjectOfWeek{
+#Ninjas{
     position: relative;
     width: 800px;
     border-radius: 60%;
@@ -1891,5 +1892,6 @@ li.dropdown ul.dropdown-menu-custom li a{
 li.dropdown:hover ul.dropdown-menu-custom {
     visibility:visible;
 }
+
 
 

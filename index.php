@@ -21,7 +21,7 @@
 </script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css?v=1.5" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css?v=1.6" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,11 +33,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
 	function updateCal(){
-		url = "https://www.googleapis.com/calendar/v3/calendars/lofjdpkf8618f8ussbovmjkehc@group.calendar.google.com/events?key=AIzaSyACXx9RDMoj8hYQWEM2OhVyhPKHuT21y3I"
+		url = "https://www.googleapis.com/calendar/v3/calendars/lofjdpkf8618f8ussbovmjkehc@group.calendar.google.com/events?key=AIzaSyACXx9RDMoj8hYQWEM2OhVyhPKHuT21y3I&orderBy=startTime&singleEvents=True"
 		$.getJSON(url, function(data) {
 			var first = true;
             for(var i = 0; i < data["items"].length; i++){
-                eventStarts = new Date(data["items"][i]["start"]["dateTime"].split("T")[0]);
+            	try{
+               		eventStarts = new Date(data["items"][i]["start"]["dateTime"].split("T")[0]);
+                }catch(err){
+                	eventStarts = new Date(data["items"][i]["start"]["date"]);
+                }
              	var date = new Date()
              	if(eventStarts > date){
              		month = months[eventStarts.getMonth()];
@@ -199,7 +203,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2016. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
