@@ -1,12 +1,14 @@
 <html>
 <head>
     <title>Blog</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,600,700,800">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,600,700,800">
+    <link href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css" rel="Stylesheet" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <link href="css/style.css?v=1.2" rel="stylesheet" type="text/css" media="all" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,21 +51,32 @@
 </head>
 <body style="font-color:white;">
     <div id="header" class="purple" style="width:100%">
-        <div class="container">
+        <div class="container-fluid">
             <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
-            <div class="top-nav">
-                <?php
-                	include('Content/siteNavigation.php');
-                ?>
-                <script>
-                    $("span.menu").click(function(){
-                        $(".top-nav ul").slideToggle(500, function(){
-                        });
-                    });
-                </script>
-            </div>
+            <div class="top-nav container-fluid">
+				<span class="menu"><img src="images/menu.png" alt=""> </span>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<?php
+						include('Content/siteNavigation.php');
+					?>		
+				</div>		
+			</div>
+			
             <div class="clearfix"> </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+		<script>
+			$(document).ready(function (){
+				$('.menu').sidr({
+					name: 'respNav',
+					source: '.navbar-collapse',
+					side: 'right'
+				});			
+			});
+			$(document).bind("click", function(){
+				$.sidr('close', 'respNav');
+			});
+		</script>
     </div>
     <style>
     ul{

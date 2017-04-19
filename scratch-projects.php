@@ -2,11 +2,12 @@
 <html>
   <head>
     <title>LPTCDojo</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">   
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather">
+    <link href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css" rel="Stylesheet" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
-    <script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style>
@@ -14,31 +15,26 @@
       .project {
         /*background-color: #00bce4;
         border: 1px solid black;*/
-        display: flex;
         margin: 5px;
         justify-content: space-between;
-        align-items: center;
-        overflow: auto;
+        /* overflow: auto; */
+        display:         flex;
+  		flex-wrap: wrap;
       }
       .project-details {
         order: 1;
-        flex: 1 100%;
-        height: 402px;
-        overflow: auto;
-        margin-right: 5px;
+        /* overflow: auto; */
         border: 1px solid black;
         box-shadow: 0 5px 5px 0 rgba(0,0,0,0.14),0 5px 2px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
       }
       .project-scene {
         order: 1;
-        flex: 1 100%;
-        padding: 10px;
         float: left;
       }
 
       .project-scene img, .project-player {
-        height: 402px;
-        width: 485px;
+        height: 100%;
+        width: 100%;
         /*margin: auto;*/
       }
 
@@ -48,32 +44,69 @@
       .project-player {
         display: none; /** Do not show iframe on load */
       }
+      .intrinsic-container{
+      	position:relative;
+      	height:0;
+      	overflow:hidden;	
+      	padding-bottom:82.88%;
+      }
+    .intrinsic-container iframe {
+	  position: absolute;
+	  top:0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	}
+	.intrinsic-container img {
+	  position: absolute;
+	  top:0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	}
+	.row > [class*='col-'] {
+  		display: flex;
+ 		 flex-direction: column;
+	}
     </style>
   </head>
 <body>
   <div id="header" class="purple" style="width:100%">
-      <div class="container">
-          <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
-          <div class="top-nav">
-              <ul>
-                  <li><a href="index.html" class="hvr-sweep-to-bottom">Home</a>
-                  <li><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
-                  <li><a href="ninjas.php" class="hvr-sweep-to-bottom">Ninjas</a></li>
-                  <li><a href="involved.html" class="hvr-sweep-to-bottom">Get Involved</a></li>
-                  <div class="clearfix"></div>
-              </ul>
-          </div>
-          <div class="clearfix"> </div>
-      </div>
+      <div class="container-fluid">
+            <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
+            <div class="top-nav container-fluid">
+				<span class="menu"><img src="images/menu.png" alt=""> </span>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<?php
+						include('Content/siteNavigation.php');
+					?>		
+				</div>		
+			</div>
+			
+            <div class="clearfix"> </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+		<script>
+			$(document).ready(function (){
+				$('.menu').sidr({
+					name: 'respNav',
+					source: '.navbar-collapse',
+					side: 'right'
+				});			
+			});
+			$(document).bind("click", function(){
+				$.sidr('close', 'respNav');
+			});
+		</script>
   </div>
-  <div class="content-middle">
+  <div class="container">
   <!-- Listing of Ninjas Scratch projects -->
   <?php
     require_once('includes/api/scratch.php');
 
     function displayProject($project) {
-      echo '<div class="project content-middle" id="' . $project["id"] . '">';
-      echo '<div class="project-details col-md-5 content-mid1">';
+      echo '<div class="project row" id="' . $project["id"] . '">';
+      echo '<div class="project-details col-xs-6 content-mid1">';
       echo '<div><h3>Title</h3><p>' . $project["title"] . '</p></div>';
 
       if (!empty($project["description"]) ) {
@@ -86,9 +119,11 @@
       echo '<div><h3>Views</h3><p>' . $project["stats"]["views"] . '</p></div>';
       echo '<div><a href="#' . $project["id"] . '">Permalink</a></div>';
       echo '</div>';
-      echo '<div class="project-scene" >';
-      echo '<img data-project_id="' . $project["id"]. '" src="' . $project["image"] . '" />';
-      echo '<iframe class="project-player" frameBorder="0"></iframe>';
+      echo '<div class="project-scene col-xs-6" >';
+      echo '<div class="intrinsic-container">';
+    echo '<img data-project_id="' . $project["id"]. '" src="' . $project["image"] . '" />';
+      echo '<iframe class="project-player" frameborder="0"></iframe>';
+      echo '</div>';
       echo '</div>';
       echo '</div>';
     }
@@ -131,14 +166,22 @@
       </div>
   </div>
   <script type="text/javascript">
-    $(".project-scene > img").on("click", function() {
-      var projectId = $(this).data("project_id");
-      var playerUrl = "https://scratch.mit.edu/projects/embed/" + projectId + "/";
-      var playerIframe = $(this).next();
-      $(this).css("display", "none");
-      playerIframe.attr("src", playerUrl);
-      playerIframe.css("display", "block");
-    });
+  	var hasFlash = false;
+	try {
+		hasFlash = Boolean(new ActiveXObject('ShockwaveFlash.ShockwaveFlash'));
+	} catch(exception) {
+		hasFlash = ('undefined' != typeof navigator.mimeTypes['application/x-shockwave-flash']);
+	}
+	if(hasFlash == true){
+		$(".project-scene img").on("click", function() {
+		  var projectId = $(this).data("project_id");
+		  var playerUrl = "https://scratch.mit.edu/projects/embed/" + projectId + "/";
+		  var playerIframe = $(this).next()
+		  $(this).css("display", "none");
+		  playerIframe.attr("src", playerUrl);
+		  playerIframe.css("display", "block");
+		});
+    }
   </script>
 </body>
 </html>

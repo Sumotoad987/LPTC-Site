@@ -39,11 +39,14 @@ h1,h2,h3,h4,h5,h6,label,p{
 .header {
 	background:url(../images/1.jpg) no-repeat;
 	width:100%;
-	background-size:cover;
+	/* 
+background-size:cover;
 	-webkit-background-size:cover;
 	-o-background-size:cover;
 	-moz-background-size:cover;
 	-ms-background-size:cover;
+ */
+ 	background-size:100% auto;
 	min-height:800px;
 }
 .header-top{
@@ -165,7 +168,8 @@ h1,h2,h3,h4,h5,h6,label,p{
 .content-top1{
 	position:absolute;
 	z-index: 999;
-	top: -53%;
+	top: -100%;
+	width:100%;
 }
 .caption h3{
 	font-size:1.3em;
@@ -203,6 +207,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 }
 .content-middle {
   padding: 0 15px;
+  padding-top:20px;
 }
 .content-mid1{
 	padding: 1.63em;
@@ -907,12 +912,7 @@ h4.media-heading {
 .logo h1 {
   font-size: 2.3em;
 }
-span.menu{
-	display: block;
-	text-align: right;
-	cursor: pointer;
-	position: relative;
-}
+/* 
 .top-nav ul{
 	display: none;
 	position:absolute;
@@ -923,9 +923,8 @@ span.menu{
 	background:#7D3F98;
 	border:0;
 }
-.top-nav span.menu{
-	display: block;
-}
+ */
+
 .top-nav ul li{
 	display: block;
 	float:none;
@@ -941,9 +940,6 @@ span.menu{
 }
 .top-nav ul li.active a {
   padding: 0.5em ;
-}
-.top-nav {
-  margin-top: 1.1em;
 }
 .grid-top {
   width: 33.33%;
@@ -1810,10 +1806,13 @@ h2.imageTitle{
 }
 #Ninjas{
     position: relative;
-    width: 800px;
     border-radius: 60%;
     height:800px;
     left:50%;
+    text-align:center;
+}
+#Ninjas ul{
+	list-style:none;
 }
 .inside-box{
     display:inline-block;
@@ -1893,5 +1892,82 @@ li.dropdown:hover ul.dropdown-menu-custom {
     visibility:visible;
 }
 
+.responsive-iframe-container{
+	position:relative;
+	padding-bottom:65.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+}
 
+.responsive-iframe-container iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
+@media (max-width: 991px){
+	.top-nav ul{
+		display: none;
+	}
+	.top-nav span.menu{
+		display: block;
+		text-align: right;
+		cursor: pointer;
+		position: relative;
+	}
+	.top-nav {
+ 		margin-top: 1.1em;
+	}
+}
+
+#dojo-info{
+	padding-top:5%;
+}
+
+/* Slanted edge divs */
+.slanted {
+  min-height: 380px;
+  width:100%;
+  text-align:center;
+  display: inline-block;
+  transform: rotate(180deg);
+  position: relative;
+  overflow: hidden;
+  z-index: 8;
+  top:-40%;
+}
+.slanted-content{
+	position:absolute;
+	transform: rotate(-180deg);
+	padding: 0em 1.5em 1em;
+}
+.slanted:after {
+  content: "";
+  position: absolute;
+  height: 130%;
+  width: 100%;
+  transform: skewY(10deg);
+  background: rgba(0, 188, 228, 0.44);
+  top: -50%;
+  z-index: -2;
+  left: 0;
+}
+
+@media (max-width: 480px){
+	
+	.content-top{
+		padding:0;
+	}
+	
+	.content-top1{
+		position:relative;
+	}
+	
+}
+
+#switchFrom i{
+	margin-right:1%;
+}

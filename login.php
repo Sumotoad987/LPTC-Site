@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Login</title>
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
         <link href="css/font-awesome/css/font-awesome.css" rel="stylesheet">
     </head>
     <body>

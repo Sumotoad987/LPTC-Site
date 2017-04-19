@@ -10,8 +10,8 @@
 	<head>
 		<title>Dashboard</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
-		<link href="../css/custom.css?v=0.17" rel="stylesheet">
-		<link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+		<link href="../css/custom.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="../js/BeattCMS.js" type="text/javascript"></script>

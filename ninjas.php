@@ -3,14 +3,15 @@
 <html>
 <head>
 	<title>Ninjas</title>
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css" rel="Stylesheet" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="js/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="js/jquery.lettering.js"></script>
 	<!-- Custom Theme files -->
 	<!--theme-style-->
-	<link href="css/style.css?v=1.23232" rel="stylesheet" type="text/css" media="all" />	
-	<link href="css/font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link href="css/style.css?v=0.11" rel="stylesheet" type="text/css" media="all" />	
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!--//theme-style-->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,6 +35,7 @@
 		}
 		function setupLists(){
 			$("#Ninjas").css("left", 0);
+			$("")
 			//Make them into lists
 			$("d a").each(function(){
 				$(this).wrap("<li></li>")
@@ -44,14 +46,13 @@
 		  	$("d").wrapInner("<ul></ul>");
 		 	$("c").wrapInner("<ul></ul>");
 		 	//Wrap c in a div to make it go to the right
-		 	cContainer = $("<div style='float:right'>");
-		 	cContainer.append($("c"));
-		 	cContainer.insertAfter("d");
+		 	$("#c").addClass("col-md-6")
 		 	$("<h3 style='display:inline-block'>Scratch Ninjas</h3>").insertBefore("c");
 		 	//Give a header to the d
 		 	$("<h3 style='display:inline-block'>HTML Ninjas</h3>").insertBefore("d");
 		 	$("d").css("display", "inline-block");
-		}
+		    $("#d").addClass("col-md-6");
+		 }
 		function getRotationDegrees(obj) {
 			var matrix = obj.css("-webkit-transform") ||
 			obj.css("-moz-transform")    ||
@@ -134,6 +135,7 @@
 				var intervalId = beginRotation();
 			}else{
 				setupLists();
+				$("#switchFrom").css('display', 'none');
 			}
 		});
 	</script>
@@ -149,60 +151,75 @@
 </head>
 <body>
 <!--header-->
-             <div id="header" class="purple" style="width:100%">
-             <div class="container">
-             <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
-             <div class="top-nav">
-             	<?php
-                	include('Content/siteNavigation.php');
-                ?>
-             <script>
-             $("span.menu").click(function(){
-                                  $(".top-nav ul").slideToggle(500, function(){
-                                                               });
-                                  });
-             </script>
-             </div>
-             <div class="clearfix"> </div>
-             </div>
-             </div>
+    <div id="header" class="purple" style="width:100%">
+        <div class="container-fluid">
+            <a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
+            <div class="top-nav container-fluid">
+				<span class="menu"><img src="images/menu.png" alt=""> </span>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<?php
+						include('Content/siteNavigation.php');
+					?>		
+				</div>		
+			</div>
+			
+            <div class="clearfix"> </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+		<script>
+			$(document).ready(function (){
+				$('.menu').sidr({
+					name: 'respNav',
+					source: '.navbar-collapse',
+					side: 'right'
+				});			
+			});
+			$(document).bind("click", function(){
+				$.sidr('close', 'respNav');
+			});
+		</script>
+    </div>
 <div class="content">
+	<a href="Ninjas.php?list=true" id='switchFrom'><i class="fa fa-list pull-right" style="margin-top:3px;"></i></a>
 	<div class="container">
-		<a href="Ninjas.php?list=true" id='switchFrom'><i class="fa fa-list pull-right" style="margin-top:3px;"></i></a>
-        <div id="Ninjas">
-             <d>
-            <?php
-            	function is_dir_empty($dir) {
-				  if (!is_readable($dir)) return NULL; 
-				  $handle = opendir($dir);
-				  while (false !== ($entry = readdir($handle))) {
-					if ($entry != "." && $entry != "..") {
-					  return FALSE;
-					}
-				  }
-				  return TRUE;
-				}
-                $column = 1;
-                $other = "";
-                $files = scandir("ninjas/");
-                for($number = 0; $number != count($files); $number++){
-                    if((($number - 3) / $column) == 4){
-                        $column = $column + 1;
-                        $other = "reset";
-                    }
-                    if( !in_array($files[$number], array("..", ".", ".DS_Store", "index.php"), true)){
-                        if(!is_dir_empty("ninjas/" . $files[$number])){
-                        	echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
-                        	$other = "";
-                        }
-                    }
-                }
-             ?>
-             </d>
-             <c>
-                <a href="scratch-projects.php?ninja_username=noahwin">crazymue2</a>
-                <a href="scratch-projects.php?ninja_username=kyla_errity">Kyla Errity </a>
-             </c>
+        <div id="Ninjas" class="row">
+        	<div id="d">
+				<d>
+					<?php
+						function is_dir_empty($dir) {
+						  if (!is_readable($dir)) return NULL; 
+						  $handle = opendir($dir);
+						  while (false !== ($entry = readdir($handle))) {
+							if ($entry != "." && $entry != "..") {
+							  return FALSE;
+							}
+						  }
+						  return TRUE;
+						}
+						$column = 1;
+						$other = "";
+						$files = scandir("ninjas/");
+						for($number = 0; $number != count($files); $number++){
+							if((($number - 3) / $column) == 4){
+								$column = $column + 1;
+								$other = "reset";
+							}
+							if( !in_array($files[$number], array("..", ".", ".DS_Store", "index.php"), true)){
+								if(!is_dir_empty("ninjas/" . $files[$number])){
+									echo("<a href='ninjas/". $files[$number] . "'>" . $files[$number] . " </a>");
+									$other = "";
+								}
+							}
+						}
+					 ?>
+				</d>
+        	</div>
+        	<div id="c">
+				<c>
+					<a href="scratch-projects.php?ninja_username=noahwin">crazymue2</a>
+					<a href="scratch-projects.php?ninja_username=kyla_errity">Kyla Errity </a>
+				</c>
+            </div>
         </div>
 	</div>
 	<div class="content-right">
