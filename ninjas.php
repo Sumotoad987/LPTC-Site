@@ -135,6 +135,7 @@
 				var intervalId = beginRotation();
 			}else{
 				setupLists();
+				$("#switchFrom").css('display', 'none');
 			}
 		});
 	</script>
