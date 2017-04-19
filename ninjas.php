@@ -49,7 +49,7 @@
 		 	$("#c").addClass("col-md-6")
 		 	$("<h3 style='display:inline-block'>Scratch Ninjas</h3>").insertBefore("c");
 		 	//Give a header to the d
-		 	$("<h3 style='display:inline-block'>HTML Ninjas</h3>").insertBefore("d");
+		 	$("<h3>HTML Ninjas</h3>").insertBefore("d");
 		 	$("d").css("display", "inline-block");
 		    $("#d").addClass("col-md-6");
 		 }
