@@ -3,16 +3,13 @@
 <head>
 <title>LPTCDojo | Be cool</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+<link href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css" rel="Stylesheet" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/quotes.js"></script>
-<script>
-	setupQuotes("js/quotes.json");
-</script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css?v=1.26" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -69,24 +66,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!--header-->
 <div class="header">
-	<div class="container">
-        <div class="logo">
-            <h1><a href="index.html"></a></h1>
-        </div>
-		<div class="top-nav">
-			<span class="menu"><img src="images/menu.png" alt=""> </span>
-				<?php
-					include('Content/siteNavigation.php');
-				?>
-				<script>
-				$("span.menu").click(function(){
-					$(".top-nav ul").slideToggle(500, function(){
-					});
-				});
-				</script>				
-		</div>
+	<div class="container-fluid">
+			<div class="top-nav container-fluid">
+				<span class="menu"><img src="images/menu.png" alt=""> </span>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<?php
+						include('Content/siteNavigation.php');
+					?>		
+				</div>		
+			</div>
 		<div class="clearfix"> </div>
 	</div>
+	<script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+	<script>
+		$(document).ready(function (){
+			$('.menu').sidr({
+				name: 'respNav',
+				source: '.navbar-collapse',
+				side: 'right'
+			});			
+		});
+		$(document).bind("click", function(){
+			$.sidr('close', 'respNav');
+		});
+	</script>
 <!---->
 </div>
 <div class="content">
@@ -95,30 +98,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="content-top">
 			<div class="content-top1">
 				<div class=" col-md-4 grid-top">
-					<div class="top-grid">
-					 <i class="glyphicon glyphicon-edit "></i>
-					  <div class="caption">
-						<h3>What is Coderdojo</h3>
-						<p>Coderdojo is a programming club for those aged 7 to 17 that was founded in July, 2011 by James Whelton and Bill Liao</p>
-					  </div>
+					<div class="slanted">
+						<div class="slanted-content">
+					 		<i class="glyphicon glyphicon-edit "></i>
+					  		<div class="caption">
+								<h3>What is Coderdojo</h3>
+								<p>Coderdojo is a programming club for those aged 7 to 17 that was founded in July, 2011 by James Whelton and Bill Liao</p>
+					  		</div>
+					  	</div>
 					</div>
 				</div>
 			  	<div class=" col-md-4 grid-top">
-					<div class="top-grid">
-					 <i class="glyphicon glyphicon-book"></i>
-					  <div class="caption">
-						<h3>Educational</h3>
-						<p>Learning to program has been proved to be beneficial in the workplace.</p>
-					 </div>
-				</div>
+					<div class="slanted">
+						<div class="slanted-content">
+							<i class="glyphicon glyphicon-book"></i>
+							<div class="caption">
+								<h3>Educational</h3>
+								<p>Learning to program has been proved to be beneficial in the workplace.</p>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class=" col-md-4 grid-top">
-					<div class="top-grid">
-					 <i class="glyphicon glyphicon-time"></i>
-					  <div class="caption">
-						<h3>It is fun</h3>
-						<p>Coderdojo isn't like school, it is a friendly envoirment where kids teach kids and learn to do things that excite them</p>
-					  </div>
+					<div class="slanted">
+						<div class="slanted-content">
+							<i class="glyphicon glyphicon-time"></i>
+							<div class="caption">
+								<h3>It is fun</h3>
+								<p>Coderdojo isn't like school, it is a friendly envoirment where kids teach kids and learn to do things that excite them</p>
+					  		</div>
+						</div>
 					</div>
 				</div>
 			<div class="clearfix"> </div>
@@ -129,13 +138,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="content-middle">
 			<div class="row">
 			<div class="col-md-7 content-mid">
-				<a href="single.html"><img class="img-responsive" src="images/md.jpg" alt=""></a>
+				<a><img class="img-responsive" src="images/md.jpg?v=1" alt=""></a>
 			</div>
 			<div class="col-md-5 content-mid1">
 				<i class="glyphicon glyphicon-filter"> </i>
 				<h2>With a focus on peer to peer learning</h2>
 				<p>our dojo emphasizes projects more than following mentors tutorials, students are encouraged to have projects which the mentors and their fellow peers help them with through out the sessions, this allows students to become better at troubleshooting but also allows them to pursue what they are interested in.</p>
-				<a href="single.html"><i class="glyphicon glyphicon-circle-arrow-right"> </i></a>
+				<!-- <a href="single.html"><i class="glyphicon glyphicon-circle-arrow-right"> </i></a> -->
 			</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -153,7 +162,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="col-md-6">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.3859564742284!2d-6.514396948981207!3d53.35424728172277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48677190075bd537%3A0x19c1e4d2ab9cd016!2sHewlett-Packard!5e0!3m2!1sen!2sie!4v1477676294849" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<div class="responsive-iframe-container">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2381.3859564742284!2d-6.514396948981207!3d53.35424728172277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48677190075bd537%3A0x19c1e4d2ab9cd016!2sHewlett-Packard!5e0!3m2!1sen!2sie!4v1477676294849" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -161,6 +172,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--content-left-->
 	</div>
 	<div class="content-right">
+		<script src="js/quotes.js">
+			setupQuotes("js/quotes.json");
+		</script>
 		<div class="col-md content-right-top">
 			<p id="Quote" class="quotes"></p>
 			<p id="Source" class="quotes"></p>
