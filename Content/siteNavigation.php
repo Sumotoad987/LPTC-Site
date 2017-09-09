@@ -1,6 +1,7 @@
 <ul>
     <li><a href="index.php" class="hvr-sweep-to-bottom">Home</a>
     <li><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
+    <li><a href="tutorials.php" class="hvr-sweep-to-bottom">Tutorials</a></li>
     <!-- 
 <li class="dropdown">
     	<a href="http://stackoverflow.com/" class="hvr-sweep-to-bottom">Stack Overflow <b class="caret"></b></a>
