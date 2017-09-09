@@ -52,7 +52,7 @@
 						<h3>By Jake Feeney</h3>
 					</div>
 					<center>
-					<a href="Shoot_the_Balls.pdf">Shoot the balls(PDF)</a>
+					<a href="Shoot-The-Balls.pdf">Shoot the balls(PDF)</a>
 					<br>
 					<a href="https://scratch.mit.edu/projects/173063239/">Template for the project</a>
 					</center>

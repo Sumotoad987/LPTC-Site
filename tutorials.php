@@ -51,7 +51,7 @@
 					<div class="tutorial col-md-4">
 						<img src="images/tutorial-scratch-shoot-the-ball.png" class="tutorial-type-tumbnail">
 						<!-- Allows for this entire div to be a clickable link -->
-						<figcaption><a href="tutorial-scratch-shoot-the-balls">Shoot the balls<span></span</a><figcaption>		
+						<figcaption><a href="tutorial-scratch-shoot-the-balls.php">Shoot the balls<span></span</a><figcaption>		
 					</div>
 				</div>
 			</div>
