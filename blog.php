@@ -88,7 +88,7 @@
             <div class="col-lg-8">
                 <?php
                 	require_once("includes/dbconnect.php");
-                	$sql = "SELECT Name, content, UserId, Modified from Posts";
+                	$sql = "SELECT Name, content, UserId, Modified from Posts ORDER By Modified DESC";
                 	$results = $connection->query($sql);
                 	$stmt = $connection->prepare("Select Username From Users Where id = ?");
                 	if($results->num_rows > 0){
