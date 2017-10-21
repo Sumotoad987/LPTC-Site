@@ -53,6 +53,12 @@
 						<!-- Allows for this entire div to be a clickable link -->
 						<figcaption><a href="tutorial-scratch-shoot-the-balls.php">Shoot the balls<span></span</a><figcaption>		
 					</div>
+					<h3 style="text-align:center;">Unity 3D</h3>
+					<div class="tutorial col-md-4">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Unity_Technologies_logo.svg/2000px-Unity_Technologies_logo.svg.png" class="tutorial-type-tumbnail">
+						<!-- Allows for this entire div to be a clickable link -->
+						<figcaption><a href="https://unity3d.com/learn/tutorials">Unity 3D tutorials<span></span</a><figcaption>		
+					</div>
 				</div>
 			</div>
 			<div class="content-right">
