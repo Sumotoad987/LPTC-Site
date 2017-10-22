@@ -9,6 +9,7 @@
 		<!-- Custom Theme files -->
 		<!--theme-style-->
 		<link href="css/style.css?v=1.3" rel="stylesheet" type="text/css" media="all" />	
+		 <link href="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.dark.min.css" rel="Stylesheet" />
 		<!--//theme-style-->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
