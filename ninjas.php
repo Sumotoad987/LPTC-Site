@@ -240,7 +240,7 @@
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >Developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a></p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>

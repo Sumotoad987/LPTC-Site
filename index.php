@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css?v=1.26" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css?v=1.267" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -136,23 +136,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<!--//content-top-->
 		<!--cpntent-mid-->
 		<div class="content-middle">
-			<div class="row">
-			<div class="col-md-7 content-mid">
-				<a><img class="img-responsive" src="images/md.jpg?v=1" alt=""></a>
-			</div>
-			<div class="col-md-5 content-mid1">
-				<i class="glyphicon glyphicon-filter"> </i>
-				<h2>With a focus on peer to peer learning</h2>
-				<p>our dojo emphasizes projects more than following mentors tutorials, students are encouraged to have projects which the mentors and their fellow peers help them with through out the sessions, this allows students to become better at troubleshooting but also allows them to pursue what they are interested in.</p>
-				<!-- <a href="single.html"><i class="glyphicon glyphicon-circle-arrow-right"> </i></a> -->
-			</div>
-			</div>
 			<div class="clearfix"> </div>
 			<div class="row" id="dojo-info">
 				<div class="col-md-6">
-					<p>The LPTCDojo is on (nearly) every Saturday from 1pm to 3pm in Hewlett-Packard, Lexlip and it is FREE! So why not come along.</p>
+					<p><b>LPTCDojo</b> is on every Saturday from 1pm to 3pm in Hewlett-Packard, Lexlip</p>
 					<br>
-					<p>We have tables for teaching Scratch and Web developement, and some other ninjas work with Swift, Java, C#, Python, Lua and a bunch of other languages so a lot can be thought to the Ninjas that attend.</p>
+					<p>There are tables dedicated to Scratch, HTML, Javascript, Lua, C#, Swift and every other language you can think of.</p>
 					<br>
 					<p>Please bring:</p>
 					<ul style="padding-left:40px;">
@@ -208,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+			<p >Designed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a></p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
