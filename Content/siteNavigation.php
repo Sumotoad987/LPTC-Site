@@ -2,15 +2,6 @@
     <li><a href="index.php" class="hvr-sweep-to-bottom">Home</a>
     <li><a href="blog.php" class="hvr-sweep-to-bottom">Blog</a></li>
     <li><a href="tutorials.php" class="hvr-sweep-to-bottom">Tutorials</a></li>
-    <!-- 
-<li class="dropdown">
-    	<a href="http://stackoverflow.com/" class="hvr-sweep-to-bottom">Stack Overflow <b class="caret"></b></a>
-		<ul class="dropdown-menu-custom">
-			<li><a href="/page2">Page2</a></li>
-			<li><a href="/page2">Page3</a></li>
-		</ul>
-	</li>
- -->
 	<?php
 		require_once("includes/dbconnect.php");
 		$sql = 'Select Name, id, Parent From Pages Order by PageOrder';

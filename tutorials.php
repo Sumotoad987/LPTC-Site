@@ -28,22 +28,33 @@
 	<body>
 	<!--header-->
 		<div id="header" class="purple" style="width:100%">
-			<div class="container">
+			<div class="container-fluid">
 				<a href="index.html"><img src="images/coderdojo.png" class="coderdojo"></a>
-				<div class="top-nav">
-					<?php
-						include('Content/siteNavigation.php');
-					?>
-					<script>
-						$("span.menu").click(function(){
-							$(".top-nav ul").slideToggle(500, function(){
-		 	   				});
-						});
-					</script>
-	 			</div>
-			<div class="clearfix"> </div>
+				<div class="top-nav container-fluid">
+					<span class="menu"><img src="images/menu.png" alt=""> </span>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<?php
+							include('Content/siteNavigation.php');
+						?>		
+					</div>		
+				</div>
+			
+				<div class="clearfix"> </div>
 			</div>
-		</div>
+			<script src="https://cdn.jsdelivr.net/jquery.sidr/2.2.1/jquery.sidr.min.js"></script>
+			<script>
+				$(document).ready(function (){
+					$('.menu').sidr({
+						name: 'respNav',
+						source: '.navbar-collapse',
+						side: 'right'
+					});			
+				});
+				$(document).bind("click", function(){
+					$.sidr('close', 'respNav');
+				});
+			</script>
+   		</div>
 		<div class="content">
 			<div class="container">
 				<div class="row tutorials-container">
@@ -51,13 +62,15 @@
 					<div class="tutorial col-md-4">
 						<img src="images/tutorial-scratch-shoot-the-ball.png" class="tutorial-type-tumbnail">
 						<!-- Allows for this entire div to be a clickable link -->
-						<figcaption><a href="tutorial-scratch-shoot-the-balls.php">Shoot the balls<span></span</a><figcaption>		
+						<figcaption><a href="tutorial-scratch-shoot-the-balls.php">Shoot the balls<span></span</a></a><figcaption>		
 					</div>
+				</div>
+				<div class="row tutorials-container">
 					<h3 style="text-align:center;">Unity 3D</h3>
 					<div class="tutorial col-md-4">
 						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Unity_Technologies_logo.svg/2000px-Unity_Technologies_logo.svg.png" class="tutorial-type-tumbnail">
 						<!-- Allows for this entire div to be a clickable link -->
-						<figcaption><a href="https://unity3d.com/learn/tutorials">Unity 3D tutorials<span></span</a><figcaption>		
+						<figcaption><a href="https://unity3d.com/learn/tutorials">Unity 3D tutorials<span></span</a></a><figcaption>		
 					</div>
 				</div>
 			</div>
@@ -79,7 +92,7 @@
 					</ul>
 				</div>
 				<div class="col-md-4 footer-top2">
-					<p >© 2015 - 2016. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+					<p >Designed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a></p>
 				</div>
 				<div class="clearfix"> </div>
 			</div>

@@ -1927,6 +1927,10 @@ li.dropdown:hover ul.dropdown-menu-custom {
 	padding-top:5%;
 }
 
+#dojo-info p{
+	font-size:15px;
+}
+
 /* Slanted edge divs */
 .slanted {
   min-height: 380px;
@@ -2010,4 +2014,6 @@ li.dropdown:hover ul.dropdown-menu-custom {
 .tutorial-content{
 	padding-bottom:25%;
 }
+
+
 	

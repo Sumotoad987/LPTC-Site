@@ -110,31 +110,6 @@
                 <br>
                 <a onclick="loadMore()" id="loadMore" style="margin-bottom:15px;">Load more</a>
             </div>
-            <!-- 
-<div class="col-md-3 sidebar" style="color:white">
-                <div class="center text-center">
-                    <h2>Newsletter</h2>
-                    <p>Subscribe to our email list</p>
-                <?php
-                    if(isset($_POST['email'])){
-                       $stmt = $connection->prepare("INSERT IGNORE INTO Emails (Email) VALUES (?)");
-                       $stmt->bind_param("s", $_POST['email']);
-                       $stmt->execute();
-                    }
-                ?>
-                    <form action="blog.php" method="post" role="form">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-envelope"></i>
-                            </span>
-                            <input class="form-control" type="text" id="" name="email" placeholder="your@email.com">
-                        </div>
-                        <br>
-                        <input type="submit" value="Subscribe" class="btn btn-large" />
-                    </form>
-                </div>
-            </div>
- -->
         </div>
     </div>
     <div class="content-right" style="margin-top:15px;">
@@ -154,7 +129,7 @@
                 </ul>
             </div>
             <div class="col-md-4 footer-top2">
-                <p >© 2015 - 2017. All rights reserved | Designed and developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a>. All Images are used under the "fair usage policy under the copyright act."</p>
+                <p >Developed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a></p>
             </div>
             <div class="clearfix"> </div>
         </div>
