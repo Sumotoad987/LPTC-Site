@@ -67,7 +67,7 @@ Or talk to Richard at the Miscellaneous table during Coderdojo
 ## Contributors
 @Mach1982 - Inspiration 
 
-@ThatProgrammerRian - Design 
+<a href="https://paradaux.ie">ParadauxDev</a> - Development and Design
 
 @calucifier - Inspiration
 
