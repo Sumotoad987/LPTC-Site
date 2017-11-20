@@ -73,5 +73,7 @@ Or talk to Richard at the Miscellaneous table during Coderdojo
 
 @richardbeattie - Development
 
+Tom Armstrong - Master of Calander
+
 @spastorelli - Scratch pages and API
 
