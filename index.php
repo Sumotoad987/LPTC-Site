@@ -175,10 +175,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h4>Upcoming Events</h4>
 			<div class="entry">
             	<div style="float:left;position:absolute;">
-                	<span id="date">16<small>Jan</small></span>
+                	<span id="date"><small></small></span>
             	</div>
             	<div>
-            		<p id="info">Coderdojo Returns after the Christmas Holidays!</p>
+            		<p id="info">There are no events comming up</p>
         		</div>
         		<div class="clearfix"> </div>
         	</div>
