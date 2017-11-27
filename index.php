@@ -39,9 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              			document.getElementById("date").innerHTML = date + "<small>" + month + "</small>";
              			document.getElementById("info").innerHTML = info;
              			first = false;
-				newentry = new $(".entry").clone();
              		}else{
-             			entry = newentry.clone();
+             			entry = $(".entry:first").clone();
              			dateElement = entry.find("span");
              			dateElement.html(date + "<small class='dateSmall'>" + month + "</small>");
              			dateElement.attr("class", "dateSmall");
