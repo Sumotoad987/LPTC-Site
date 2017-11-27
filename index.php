@@ -34,13 +34,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              	if(eventStarts > date){
              		month = months[eventStarts.getMonth()];
              		date = eventStarts.getDate();
-             		info = data["items"][i].description
+             		info = data["items"][i].description;
              		if(first == true){
              			document.getElementById("date").innerHTML = date + "<small>" + month + "</small>";
              			document.getElementById("info").innerHTML = info;
              			first = false;
              		}else{
-             			entry = $(".entry").clone();
+             			entry = $(".entry:first").clone();
              			dateElement = entry.find("span");
              			dateElement.html(date + "<small class='dateSmall'>" + month + "</small>");
              			dateElement.attr("class", "dateSmall");
