@@ -18,6 +18,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <script> 
 	window.onload = updateCal;
+	hidden = 0;
+	$("document").ready(function(){
+		$("#Button").click(function(){		
+		if (hidden == 1){
+			hidden = 0;
+			$(".newentry").addClass("hideentry");
+			$(".newentry").removeClass("newentry");
+			$(".TomButton2").addClass("TomButton");
+			$(".TomButton2").removeClass("TomButton2");
+		}else{
+			$(".hideentry").addClass("newentry");
+			$(".hideentry").removeClass("hideentry");
+			console.log("test");
+			hidden = 1;
+			$(".TomButton").addClass("TomButton2");
+			$(".TomButton").removeClass("TomButton");
+		}})
+	})
 	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
 	function updateCal(){
@@ -39,13 +57,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              			document.getElementById("date").innerHTML = date + "<small>" + month + "</small>";
              			document.getElementById("info").innerHTML = info;
              			first = false;
+						newentry = new $(".entry").clone();
+						x = 1;
+						$(".TomButton").toggle();
              		}else{
-             			entry = $(".entry:first").clone();
+             			entry = newentry.clone();
              			dateElement = entry.find("span");
              			dateElement.html(date + "<small class='dateSmall'>" + month + "</small>");
              			dateElement.attr("class", "dateSmall");
              			infoElement = entry.find("p");
              			infoElement.html(info);
+						x=x+1
+						if(x>2){
+							entry.addClass("hideentry");
+							entry.removeClass("entry");
+						}else {
+							$(".TomButton").toggle(); 
+						}
+						hidden = 0;
              			$(".content-bottom-top").append(entry);
              		}
              	} 
@@ -184,6 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         	</div>
 		</div>
 	</div>	
+	<img src="images/Arrow.png" alt="" id="Button" class="TomButton">
 </div>
 <div class="footer">
 	<div class="container">
@@ -197,7 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ul>
 		</div>
 		<div class="col-md-4 footer-top2">
-			<p >Designed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a></p>
+			<p >Designed by <a href="http://rianscode.com/" target="_blank">Rían Errity</a> | Developed by <a href="http://beattbots.com/" target="_blank">Richard Beattie</a> | Calendar Maintained by Tom Armstrong</p>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
