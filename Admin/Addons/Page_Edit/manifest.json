@@ -1,0 +1,9 @@
+{
+	"name":"Page_Edit",
+	"description":"Part of BeattCMS",
+	"core": true,
+	"content_scripts":{
+			"matches":["pages.php", "page.php", "publish.php"],
+			"scripts":["pages.php"]
+	}
+}

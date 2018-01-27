@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -38,11 +39,14 @@ h1,h2,h3,h4,h5,h6,label,p{
 .header {
 	background:url(../images/1.jpg) no-repeat;
 	width:100%;
-	background-size:cover;
+	/* 
+background-size:cover;
 	-webkit-background-size:cover;
 	-o-background-size:cover;
 	-moz-background-size:cover;
 	-ms-background-size:cover;
+ */
+ 	background-size:100% auto;
 	min-height:800px;
 }
 .header-top{
@@ -78,16 +82,10 @@ h1,h2,h3,h4,h5,h6,label,p{
 	font-size:1.2em;
 	text-decoration: none;
 	display: block;
-	padding: 1.6em 1em;
+	padding: 2.0em 1em;
 	text-align: center;
 }
 .top-nav ul li.active a{
-	color: #fff;
-	font-size:1.2em;
-	text-decoration: none;
-	display: block;
-	padding: 1.6em 1em;
-	text-align: center;
 	background:  #00bce4;
 }
 .top-nav span.menu {
@@ -170,7 +168,8 @@ h1,h2,h3,h4,h5,h6,label,p{
 .content-top1{
 	position:absolute;
 	z-index: 999;
-	top: -53%;
+	top: -100%;
+	width:100%;
 }
 .caption h3{
 	font-size:1.3em;
@@ -208,6 +207,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 }
 .content-middle {
   padding: 0 15px;
+  padding-top:20px;
 }
 .content-mid1{
 	padding: 1.63em;
@@ -268,7 +268,6 @@ i.glyphicon.glyphicon-ok {
 .content-right-top{
 	padding: 3em;
 	background: #7D3F98;	
-	text-align:center;
 }
 .content-right-top h3{
   	color: #fff;
@@ -304,13 +303,14 @@ i.glyphicon.glyphicon-ok {
 }
 .content-bottom-top span{
 	color: #7D3F98;
-  	font-size: 3em;
+  	font-size: 5em;
   	display: block;
   	line-height: 35px;
   	font-family: 'Cinzel-Bold';
 }
 .content-bottom-top span small{
-	font-size: 28px;
+    margin-top:10px;
+	font-size: 35px;
 	display: block;
 }
 .content-bottom-top p {
@@ -383,7 +383,7 @@ ul.social li {
 }
 ul.social li a i {
   background: url(../images/img-sprite.png) -2px -3px;
-  width: 35px;
+  width: 32px;
   height: 32px;
   display: block;
   margin: 0 0.5em;
@@ -392,10 +392,14 @@ ul.social li a i.dribble {
   background-position: -47px -3px;
 }
 ul.social li a i.facebook {
-  background-position: -85px -3px;
+  background-position: -87px -3px;
+<<<<<<< HEAD
+=======
 }
-ul.social li a i.twitter{
-	background-position: -119px -3px;
+ul.social li a i.twitter {
+    background-position: -120px -3px;
+    width:40px;
+>>>>>>> master
 }
 ul.social li a i:hover{
 	transform: rotatey(-360deg);
@@ -908,12 +912,7 @@ h4.media-heading {
 .logo h1 {
   font-size: 2.3em;
 }
-span.menu{
-	display: block;
-	text-align: right;
-	cursor: pointer;
-	position: relative;
-}
+/* 
 .top-nav ul{
 	display: none;
 	position:absolute;
@@ -924,9 +923,8 @@ span.menu{
 	background:#7D3F98;
 	border:0;
 }
-.top-nav span.menu{
-	display: block;
-}
+ */
+
 .top-nav ul li{
 	display: block;
 	float:none;
@@ -942,9 +940,6 @@ span.menu{
 }
 .top-nav ul li.active a {
   padding: 0.5em ;
-}
-.top-nav {
-  margin-top: 1.1em;
 }
 .grid-top {
   width: 33.33%;
@@ -1534,11 +1529,11 @@ i.glyphicon.glyphicon-filter {
   padding: 0;
 }
 .content-bottom-top span {
-  font-size: 1.7em;
-    line-height: 25px;
+  font-size: 2.5em;
+  line-height: 25px;
 }
 .content-bottom-top span small {
-  font-size: 20px;
+  font-size: 30px;
 }
 .content-bottom-top p {
   font-size: 0.9em;
@@ -1735,21 +1730,21 @@ h3.typo1 {
   font-size: 1.8em;
 } 
 }
+/*Richards edits*/
 .quotes{
-	font-size:20px;
+    font-size:20px;
+	color:white
 }
 .imageHolder{
-	position:relative;
-	width:100%;
+    position:relative;
+    width:100%;
 }
-
 h2.imageTitle{
-	position:absolute;
-	top:200px;
-	left:20;
-	width:100%;
+    position:absolute;
+    top:200px;
+    left:20;
+    width:100%;
 }
-/*Best project styles*/
 #bestProject{
     margin: 2rem;
 }
@@ -1765,3 +1760,260 @@ h2.imageTitle{
 .center-container{
     text-align:center;
 }
+.purple{
+    background-color: #7D3F98;
+}
+.sidebar{
+    background-color: #7D3F98;
+    border-radius:3px;
+    padding:10px;
+    margin-left:8%;
+}
+.email{
+    width:100%;
+    border:clear;
+}
+.post{
+    width:70%;
+    margin-top:5%;
+}
+.blog-content{
+    margin-top:1.5%;
+}
+.coderdojo{
+    width:88px;
+    height:88px;
+}
+.postText{
+    font-size:16px;
+    line-height:32px;
+    font-family: 'Merriweather'
+}
+.postInfo{
+    display:inline;
+    margin-right:5px;
+}
+
+.titleHr{
+    border-top:2px solid #eee;
+}
+.topic{
+    background-color:#c8dcea;
+    border-radius:3px;
+    display:inline;
+    padding:3px;
+    margin-left:5px;
+}
+#Ninjas{
+    position: relative;
+    border-radius: 60%;
+    height:800px;
+    left:50%;
+    text-align:center;
+}
+#Ninjas ul{
+	list-style:none;
+}
+.inside-box{
+    display:inline-block;
+    position:absolute;
+    right:85%;
+    top:30;
+}
+#projectWeek{
+    width:200px;
+}
+d a span{
+    font: 16px Monaco, MonoSpace;
+    color:black;
+    height: 20px;
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 0;
+    margin-top:30px;
+    transform-origin: bottom left;
+}
+c{
+	top:100px;
+}
+c a span{
+    font: 16px Monaco, MonoSpace;
+    color:black;
+    height: 200px;
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 0;
+    margin-top:190px;
+    transform-origin: bottom left;
+}
+d a {
+	height:14px;
+}
+.circleLink{
+	display: inline-block;
+	text-align: center;
+}
+#dojo-info p{
+	font-weight:10px;
+}
+span.dateSmall{
+	font-size:2em !important;
+}
+small.dateSmall{
+	font-size:21px;
+}
+.entry{
+	height:100px;
+	margin-bottom:20px;
+}
+d:hover a span{
+-webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+     animation-play-state: paused;
+}
+
+li.dropdown ul.dropdown-menu-custom{
+	visibility:hidden;
+}
+
+li.dropdown ul.dropdown-menu-custom li{
+	background:  #00bce4;
+	width:100%;
+}
+
+li.dropdown ul.dropdown-menu-custom li a{
+	padding:15px;
+}
+
+li.dropdown:hover ul.dropdown-menu-custom {
+    visibility:visible;
+}
+
+.responsive-iframe-container{
+	position:relative;
+	padding-bottom:65.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+}
+
+.responsive-iframe-container iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@media (max-width: 991px){
+	.top-nav ul{
+		display: none;
+	}
+	.top-nav span.menu{
+		display: block;
+		text-align: right;
+		cursor: pointer;
+		position: relative;
+	}
+	.top-nav {
+ 		margin-top: 1.1em;
+	}
+}
+
+#dojo-info{
+	padding-top:5%;
+}
+
+#dojo-info p{
+	font-size:15px;
+}
+
+/* Slanted edge divs */
+.slanted {
+  min-height: 380px;
+  width:100%;
+  text-align:center;
+  display: inline-block;
+  transform: rotate(180deg);
+  position: relative;
+  overflow: hidden;
+  z-index: 8;
+  top:-40%;
+}
+.slanted-content{
+	position:absolute;
+	transform: rotate(-180deg);
+	padding: 0em 1.5em 1em;
+}
+.slanted:after {
+  content: "";
+  position: absolute;
+  height: 130%;
+  width: 100%;
+  transform: skewY(10deg);
+  background: rgba(0, 188, 228, 0.44);
+  top: -50%;
+  z-index: -2;
+  left: 0;
+}
+
+@media (max-width: 480px){
+	
+	.content-top{
+		padding:0;
+	}
+	
+	.content-top1{
+		position:relative;
+	}
+	
+}
+
+#switchFrom i{
+	margin-right:1%;
+}
+
+
+/* Tutorials */
+.tutorials-container{
+	padding-top:4%;
+	padding-bottom:4%;
+}
+
+.tutorial{
+	text-align:center;
+	position:relative;
+}
+
+.tutorial img{
+	width:100%;
+	height:100%;
+}
+
+.tutorial a{
+	text-decoration:none;
+	font-size:20px;
+}
+
+.tutorial a span{
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:1;
+}
+
+.tutorial-headers{
+	text-align:center;
+}
+
+.tutorial-content{
+	padding-bottom:25%;
+}
+
+
+	
