@@ -36,8 +36,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$(".TomButton").removeClass("TomButton");
 		}})
 	})
-	function showHide (){
-	}
 	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
 	function updateCal(){
