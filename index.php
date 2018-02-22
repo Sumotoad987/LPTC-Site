@@ -9,18 +9,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
-<link href="css/style.css?v=1.267" rel="stylesheet" type="text/css" media="all" />	
+<link href="css/style.css?v=1.267" rel="stylesheet" type="text/css" media="all" />
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Scientist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Scientist Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<script> 
-	window.onload = updateCal;
+<script>
 	hidden = 0;
 	$("document").ready(function(){
-		$("#Button").click(function(){		
+		$("#Button").click(function(){
 		if (hidden == 1){
 			hidden = 0;
 			$(".newentry").addClass("hideentry");
@@ -35,6 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$(".TomButton").addClass("TomButton2");
 			$(".TomButton").removeClass("TomButton");
 		}})
+		updateCal();
 	})
 	var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
     "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ];
@@ -49,7 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 	eventStarts = new Date(data["items"][i]["start"]["date"]);
                 }
              	var date = new Date()
-             	if(eventStarts > date){
+							date.setHours(0,0,0,0);
+             	if(eventStarts >= date){
              		month = months[eventStarts.getMonth()];
              		date = eventStarts.getDate();
              		info = data["items"][i].description;
@@ -72,12 +73,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							entry.addClass("hideentry");
 							entry.removeClass("entry");
 						}else {
-							$(".TomButton").toggle(); 
+							$(".TomButton").toggle();
 						}
 						hidden = 0;
              			$(".content-bottom-top").append(entry);
              		}
-             	} 
+             	}
             }
 		});
 	}
@@ -101,8 +102,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<?php
 						include('Content/siteNavigation.php');
-					?>		
-				</div>		
+					?>
+				</div>
 			</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -113,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				name: 'respNav',
 				source: '.navbar-collapse',
 				side: 'right'
-			});			
+			});
 		});
 		$(document).bind("click", function(){
 			$.sidr('close', 'respNav');
@@ -212,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         		<div class="clearfix"> </div>
         	</div>
 		</div>
-	</div>	
+	</div>
 	<img src="images/Arrow.png" alt="" id="Button" class="TomButton">
 </div>
 <div class="footer">
